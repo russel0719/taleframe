@@ -14,7 +14,7 @@ function formatZod(e: z.ZodError): Issue[] {
   return e.issues.map((i) => ({ level: 'error', where: i.path.join('.') || '(root)', message: i.message }));
 }
 
-export async function validate(slugs: string[], { remote = false } = {}) {
+export async function validate(slugs: string[], { remote = false, strictMedia = false } = {}) {
   if (!slugs.length) {
     slugs = fs.existsSync(STORIES) ? fs.readdirSync(STORIES).filter((d) => fs.existsSync(path.join(STORIES, d, 'story.json'))) : [];
   }
@@ -50,12 +50,17 @@ export async function validate(slugs: string[], { remote = false } = {}) {
       if (manifest) {
         if (remote) {
           for (const f of await checkRemote(slug)) issues.push({ level: 'error', where: 'storage', message: `원격에 없음: ${f}` });
-        } else {
+        } else if (!strictMedia || story.status === 'published') {
+          // 배포(--strict-media): 게시 스토리의 파일이 media 브랜치에서 받은 public/media 에 다 있어야 한다
           const missing = Object.values(manifest.items)
             .flatMap(expectedFiles)
             .filter((f) => !fs.existsSync(path.join(mediaDir(slug), f)));
           if (missing.length) {
-            issues.push({ level: 'warning', where: 'public/media', message: `로컬 파생 파일 ${missing.length}개 없음 — \`tf media ${slug}\`` });
+            issues.push(
+              strictMedia
+                ? { level: 'error', where: 'media 브랜치', message: `파일 ${missing.length}개 없음 (예: ${missing[0]}) — \`tf upload ${slug}\` 를 했는지 확인` }
+                : { level: 'warning', where: 'public/media', message: `로컬 파생 파일 ${missing.length}개 없음 — \`tf media ${slug}\`` },
+            );
           }
         }
       }

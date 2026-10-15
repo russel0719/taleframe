@@ -32,3 +32,5 @@ next-env.d.ts
 /work/
 /public/media/
 /public/vendor/
+/.media-repo/
+/out/

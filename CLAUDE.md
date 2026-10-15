@@ -10,13 +10,16 @@
 | `content/stories/<slug>/story.json` | 스토리 원본 — 스킬이 쓴다. 커밋한다 |
 | `content/stories/<slug>/media.json` · `weather.json` | `tf media` / `tf weather` 가 생성. 손으로 쓰지 않는다. 커밋한다 |
 | `work/<slug>/` | 스캔 결과·분석·인터뷰 답 (원본 경로·GPS 포함). **gitignore, 절대 배포하지 않는다** |
-| `public/media/<slug>/` | 로컬 미리보기용 파생 파일. gitignore. 배포본은 Supabase Storage `taleframe` 버킷 |
+| `public/media/<slug>/` | 로컬 미리보기용 파생 파일. gitignore. 배포본은 같은 저장소의 `media` 브랜치 (커밋 1개) |
+| `.media-repo/` | `tf upload` 가 `media` 브랜치를 다루는 작업 폴더. gitignore |
 | `src/lib/story/schema.ts` | story.json / media.json zod 스키마 — 데이터 계약의 유일한 출처 |
 | `src/lib/story/validate.ts` | 스키마로 안 잡히는 의미 검증 (CLI·빌드·테스트 공용) |
 | `src/templates/catalog.ts` | 템플릿 메타데이터 (`tf catalog` 로 스킬에 노출) |
 | `src/templates/registry.ts` | template id → React 컴포넌트. 여기 등록된 것만 렌더된다 |
 | `src/templates/StoryRenderer.tsx` | 미리보기와 게시가 공유하는 단일 렌더러 |
 | `scripts/tf.ts` | CLI: status · scan · places · catalog · media · routes · weather · validate · upload · schema |
+| `scripts/postexport.mjs` | 빌드 뒤처리 — 공유 카드 `opengraph-image` 에 .png 를 붙인다 (Pages 의 Content-Type 때문) |
+| `.github/workflows/pages.yml` | main 푸시 → media 브랜치 체크아웃 → 검사 → 정적 내보내기 → GitHub Pages |
 | `scripts/shot.ts` | Playwright 스크롤 스크린샷 + 자동 검사(콘솔 오류·깨진 이미지·가로 넘침). `shot -- lab` 은 실험실 |
 | `src/templates/art.tsx` | 작품 템플릿 7종 (verse · color-field · film-roll · diptych · spotlight · riso-print · kinetic-type) |
 | `src/lib/lab.ts` · `/lab` | 템플릿 실험실 — 실제 스토리의 미디어로 모든 템플릿을 한 페이지에 (개발 전용) |
@@ -46,6 +49,9 @@
 - 타입 있는 데이터 + 스키마 검증. 등록된 컴포넌트만 렌더한다. LLM 이 만든 HTML/JS 를 실행하지 않는다.
 - AI 는 감정·사실·가격·장소·사건을 지어내지 않는다. 불확실하면 묻는다. 승인(`approved`)·잠금(`locked`) 섹션을 보존한다.
 - 공개 사이트다: 파생 파일은 EXIF/GPS 제거(sharp 기본 + ffmpeg `-map_metadata -1`, 출력 후 ffprobe 로 재검사). 숙소 좌표 금지.
+- 파생 형식(실측 근거는 커밋 메시지·프로젝트 문서): 사진은 AVIF q62 + 가장 작은 폭 WebP 대체본, 일반 영상 H.264 CRF 28
+  (상한 10Mbps), 스크럽 H.264 키프레임 4간격. 파일 하나 95MiB 초과 시 실패 (GitHub 100MiB 한도).
+- 자산 URL 은 반드시 `basePath`(`src/lib/media.ts`)를 붙인다 — Pages 는 `/<repo>/` 아래에 열린다. next/link 는 자동.
 - 반응형 + `prefers-reduced-motion` 존중 (모든 스크롤 장면에 정적 대체가 있다). 무거운 위젯(지도·파노라마·라이트박스)은 화면 근처에서만 로드.
 - 디자인 토큰은 `src/app/globals.css` 한곳 (`~/.claude/design.md` 값). 디자인 방향은 미정 — 바꿀 때 이 파일 위주로.
   작품 섹션만 예외적으로 명조(`font-serif`, Noto Serif KR)·잡음 질감·사진 팔레트 색을 쓴다 (프로젝트 문서에 편차 기록).
@@ -62,8 +68,10 @@ npm test               # vitest
 
 ## 배포 / 외부 서비스
 
-- Vercel: main 푸시 → 정적 빌드. 환경변수 `NEXT_PUBLIC_SUPABASE_URL` 이 있으면 프로덕션은 Storage URL 을 쓴다.
-- Supabase: 공용 프로젝트의 Storage 버킷 `taleframe` 만 사용 (DB 테이블 없음). 마이그레이션 `supabase/migrations/`.
-  공용 DB 이므로 `supabase migration repair --status reverted` 는 절대 실행하지 않는다 (`~/.claude/CLAUDE.md` 3.2).
+- **GitHub Pages** (Vercel·Supabase 를 쓰지 않는다 — 사용자 결정 2026-10-16).
+  게시 순서: `tf upload <slug>`(media 브랜치 강제 푸시) → story.json 등을 main 에 커밋·푸시 → `pages.yml` 이 배포.
+  워크플로는 게시 스토리의 파일이 media 브랜치에 다 있는지(`validate --strict-media`)와 사이트 1GB 상한을 검사한다.
+- 로컬에서 Pages 와 같은 조건 확인: `NEXT_PUBLIC_BASE_PATH=/taleframe TALEFRAME_SHOW_DRAFTS=1 npm run build` 후
+  `out/` 을 `/taleframe/` 아래로 서빙하고 `npm run shot -- <slug> --url http://127.0.0.1:<port>/taleframe`.
 - 지도 타일: OpenFreeMap (키 없음) / 장소 후보: Nominatim (초당 1회, 스킬 전용) / 날씨: Open-Meteo (CC BY 4.0, 표기 필수)
 - 프로젝트 문서: `~/.claude/docs/projects/taleframe.md`

@@ -113,6 +113,17 @@ describe('미디어', () => {
     expect(files).toContain(fileNames.poster('m010-12345678', 1920));
   });
 
+  it('AVIF 미디어는 폭마다 avif + 가장 작은 폭의 webp 대체본을 쓴다', () => {
+    const m = { ...manifest.items.m001, format: 'avif' as const };
+    const files = expectedFiles(m);
+    expect(files).toEqual(['m001-abcdef12-640.avif', 'm001-abcdef12-1280.avif', 'm001-abcdef12-640.webp']);
+    const img = resolveAll(showcase, { ...manifest, items: { ...manifest.items, m001: m } }).m001.img;
+    expect(img.type).toBe('image/avif');
+    expect(img.srcSet).toContain('-1280.avif 1280w');
+    expect(img.fallback).toMatch(/-640\.webp$/);
+    for (const url of [img.src, img.fallback!]) expect(files).toContain(url.split('/').pop());
+  });
+
   it('공개 HTML 에 원본 경로가 들어갈 수 없다', () => {
     const urls = JSON.stringify(resolveAll(showcase, manifest));
     expect(urls).not.toMatch(/\/home\/|IMG_|\.MOV|\.jpg"/i);

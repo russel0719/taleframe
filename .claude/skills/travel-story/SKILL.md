@@ -162,10 +162,13 @@ npm run shot -- <slug>          # 데스크톱·모바일 스크롤 스크린샷
 
 1. 승인된 섹션을 `approved` 로, 스토리 `status` 를 `published` 로 바꾸고 `validate` 를 다시 돌린다
    (published 인데 승인 안 된 섹션이 있으면 오류가 난다 — 의도된 안전장치다).
-2. **업로드 전에 확인받는다**: "사진 N장·영상 M개가 공개 버킷에 올라가 링크를 아는 누구나 볼 수 있게 됩니다. 진행할까요?"
-3. `npm run tf -- upload <slug>` → `npm run tf -- validate <slug> --remote` (원격에서 실제로 받아지는지)
-4. 커밋할 파일: `content/stories/<slug>/` (story.json · media.json · weather.json). `work/` 와 `public/media/` 는
-   gitignore 라 커밋되지 않는다. 커밋·푸시는 사용자에게 묻고 한다. main 에 푸시하면 Vercel 이 배포한다.
+2. **업로드 전에 확인받는다**: "사진 N장·영상 M개가 공개 GitHub 저장소(media 브랜치)와 사이트에 올라가 누구나 볼 수 있게 됩니다. 진행할까요?"
+3. `npm run tf -- upload <slug>` — 파생 파일을 `media` 브랜치에 올린다 (항상 커밋 1개로 강제 푸시, 브랜치 전체 용량을 출력).
+   출력이 850MB 경고를 내면 사용자에게 알린다 (GitHub Pages 사이트 상한 1GB)
+4. `content/stories/<slug>/` (story.json · media.json · routes.json · weather.json) 를 커밋해 main 에 푸시한다 —
+   이 푸시가 배포 워크플로를 돌린다. 커밋·푸시는 사용자에게 묻고 한다. **순서가 중요하다: upload 먼저, main 푸시 나중**
+   (워크플로가 media 브랜치에 파일이 없으면 배포를 멈춘다)
+5. 몇 분 뒤 `npm run tf -- validate <slug> --remote` 로 배포된 사이트에서 실제로 받아지는지 확인한다
 
 ---
 
@@ -193,7 +196,9 @@ npm run shot -- <slug>          # 데스크톱·모바일 스크롤 스크린샷
 | validate: 같은 템플릿 연속 | 리듬 단조 | composition.md 의 리듬 규칙대로 사이에 다른 섹션을 둔다 |
 | 피사체가 잘림 | 자동 중심점이 빗나감 | `media.<id>.focus: [x, y]` (0~1) 지정 |
 | weather 가 "기록이 아직 없다" | 최근 며칠은 집계 전 | 며칠 뒤 다시, 또는 섹션을 뺀다 |
-| upload 가 버킷 없음 | 마이그레이션 미적용 | `supabase/migrations/*_taleframe_storage_bucket.sql` 적용 필요 — 사용자에게 알린다 |
+| upload 가 "원격(origin)이 없다" | GitHub 저장소 미연결 | 사용자에게 저장소 생성을 확인받고 `gh repo create` |
+| media 가 "95MiB 를 넘는다" | 긴 영상 (GitHub 파일 한도 100MiB) | `media.<id>.trim` 으로 자른다 |
+| 배포 워크플로가 validate 에서 실패 | main 을 먼저 푸시했거나 upload 를 안 함 | `tf upload <slug> --deploy` |
 | validate: "tf media 를 다시 돌린다" | trim·용도(스크럽/현장음)를 바꾼 뒤 파생 파일이 낡음 | `tf media <slug>` |
 | shot 시트에서 뒤쪽 섹션이 통째로 없음 | 페이지 오류로 렌더 중단 (shot 이 오류를 출력) | 오류 메시지의 템플릿을 고친다. 새 스키마가 안 보이면 dev 서버 재시작 |
 | 지도 경로가 직선 점선 | transport 없음, 또는 기차·비행기 구간 | 사용자에게 이동 수단을 묻고 `tf routes` |

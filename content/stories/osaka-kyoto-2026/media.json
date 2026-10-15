@@ -3,7 +3,7 @@
   "items": {
     "m001": {
       "kind": "image",
-      "base": "m001-17478bb7",
+      "base": "m001-84ba3bff",
       "width": 3024,
       "height": 3024,
       "widths": [
@@ -24,11 +24,12 @@
         "DarkMuted": "#303f4d",
         "LightMuted": "#c4a3a9"
       },
+      "format": "avif",
       "taken": "2026-02-06T14:30"
     },
     "m002": {
       "kind": "image",
-      "base": "m002-bc7ed69b",
+      "base": "m002-a6710c6a",
       "width": 3024,
       "height": 3024,
       "widths": [
@@ -49,11 +50,12 @@
         "DarkMuted": "#604839",
         "LightMuted": "#98acc0"
       },
+      "format": "avif",
       "taken": "2026-02-06T19:32"
     },
     "m003": {
       "kind": "image",
-      "base": "m003-0555681b",
+      "base": "m003-eb118df5",
       "width": 3024,
       "height": 3024,
       "widths": [
@@ -74,11 +76,12 @@
         "DarkMuted": "#58402b",
         "LightMuted": "#92a3be"
       },
+      "format": "avif",
       "taken": "2026-02-06T19:48"
     },
     "m004": {
       "kind": "image",
-      "base": "m004-f750a7c7",
+      "base": "m004-e60661dd",
       "width": 4284,
       "height": 4284,
       "widths": [
@@ -99,11 +102,12 @@
         "DarkMuted": "#483e2f",
         "LightMuted": "#cbb0a0"
       },
+      "format": "avif",
       "taken": "2026-02-06T20:40"
     },
     "m005": {
       "kind": "image",
-      "base": "m005-0b70a2c7",
+      "base": "m005-de4658fa",
       "width": 4284,
       "height": 4284,
       "widths": [
@@ -124,11 +128,12 @@
         "DarkMuted": "#594130",
         "LightMuted": "#cbb29f"
       },
+      "format": "avif",
       "taken": "2026-02-06T21:08"
     },
     "m006": {
       "kind": "image",
-      "base": "m006-17079014",
+      "base": "m006-1f564cdc",
       "width": 4284,
       "height": 5712,
       "widths": [
@@ -149,11 +154,12 @@
         "DarkMuted": "#60433d",
         "LightMuted": "#bdb9c0"
       },
+      "format": "avif",
       "taken": "2026-02-06T21:20"
     },
     "m007": {
       "kind": "image",
-      "base": "m007-f8f3186c",
+      "base": "m007-23151942",
       "width": 4284,
       "height": 4284,
       "widths": [
@@ -174,11 +180,12 @@
         "DarkMuted": "#4e332c",
         "LightMuted": "#b8bcc3"
       },
+      "format": "avif",
       "taken": "2026-02-07T09:15"
     },
     "m009": {
       "kind": "image",
-      "base": "m009-80c1c139",
+      "base": "m009-c5374a14",
       "width": 3024,
       "height": 3024,
       "widths": [
@@ -199,11 +206,12 @@
         "DarkMuted": "#6c4a33",
         "LightMuted": "#dcc8b1"
       },
+      "format": "avif",
       "taken": "2026-02-07T09:18"
     },
     "m010": {
       "kind": "image",
-      "base": "m010-6d43e98d",
+      "base": "m010-83ae463a",
       "width": 3024,
       "height": 3024,
       "widths": [
@@ -224,11 +232,12 @@
         "DarkMuted": "#503d2a",
         "LightMuted": "#c4ac9c"
       },
+      "format": "avif",
       "taken": "2026-02-07T09:19"
     },
     "m011": {
       "kind": "image",
-      "base": "m011-181d3be7",
+      "base": "m011-53dfb4fa",
       "width": 3024,
       "height": 3024,
       "widths": [
@@ -249,11 +258,12 @@
         "DarkMuted": "#564234",
         "LightMuted": "#d3c2bb"
       },
+      "format": "avif",
       "taken": "2026-02-07T09:23"
     },
     "m012": {
       "kind": "video",
-      "base": "m012-95181d4f",
+      "base": "m012-3518e0ad",
       "width": 3840,
       "height": 2160,
       "widths": [
@@ -277,11 +287,12 @@
       "duration": 17.5,
       "hasAudio": true,
       "scrub": true,
+      "format": "avif",
       "taken": "2026-02-07T09:32"
     },
     "m013": {
       "kind": "image",
-      "base": "m013-3694daea",
+      "base": "m013-921c44bd",
       "width": 4284,
       "height": 4284,
       "widths": [
@@ -303,11 +314,12 @@
         "LightMuted": "#ac9f96"
       },
       "og": true,
+      "format": "avif",
       "taken": "2026-02-07T09:59"
     },
     "m014": {
       "kind": "image",
-      "base": "m014-b3092fdc",
+      "base": "m014-b6c7afb8",
       "width": 4284,
       "height": 4284,
       "widths": [
@@ -328,11 +340,12 @@
         "DarkMuted": "#582e26",
         "LightMuted": "#dec7bf"
       },
+      "format": "avif",
       "taken": "2026-02-07T10:59"
     },
     "m015": {
       "kind": "image",
-      "base": "m015-5eecf685",
+      "base": "m015-5f44d139",
       "width": 3024,
       "height": 3024,
       "widths": [
@@ -353,11 +366,12 @@
         "DarkMuted": "#6c4536",
         "LightMuted": "#b7b1a8"
       },
+      "format": "avif",
       "taken": "2026-02-07T11:25"
     },
     "m016": {
       "kind": "image",
-      "base": "m016-59ab597e",
+      "base": "m016-fb9e502d",
       "width": 4284,
       "height": 4284,
       "widths": [
@@ -378,11 +392,12 @@
         "DarkMuted": "#503c2f",
         "LightMuted": "#a7adbd"
       },
+      "format": "avif",
       "taken": "2026-02-07T11:28"
     },
     "m017": {
       "kind": "image",
-      "base": "m017-fd8725e4",
+      "base": "m017-9d2e9096",
       "width": 3024,
       "height": 3024,
       "widths": [
@@ -403,11 +418,12 @@
         "DarkMuted": "#543e39",
         "LightMuted": "#b6b6ba"
       },
+      "format": "avif",
       "taken": "2026-02-07T12:51"
     },
     "m018": {
       "kind": "image",
-      "base": "m018-5536d13c",
+      "base": "m018-f4e0db18",
       "width": 3024,
       "height": 3024,
       "widths": [
@@ -428,11 +444,12 @@
         "DarkMuted": "#653c34",
         "LightMuted": "#ccc1bc"
       },
+      "format": "avif",
       "taken": "2026-02-07T12:52"
     },
     "m019": {
       "kind": "image",
-      "base": "m019-b75846f9",
+      "base": "m019-4924ddd6",
       "width": 4284,
       "height": 4284,
       "widths": [
@@ -453,11 +470,12 @@
         "DarkMuted": "#473b34",
         "LightMuted": "#b8bfc8"
       },
+      "format": "avif",
       "taken": "2026-02-07T13:19"
     },
     "m020": {
       "kind": "image",
-      "base": "m020-d1ca9ada",
+      "base": "m020-42b3094e",
       "width": 4284,
       "height": 4284,
       "widths": [
@@ -478,11 +496,12 @@
         "DarkMuted": "#48362b",
         "LightMuted": "#ccb79d"
       },
+      "format": "avif",
       "taken": "2026-02-07T13:27"
     },
     "m021": {
       "kind": "image",
-      "base": "m021-26711245",
+      "base": "m021-fbac72cf",
       "width": 4284,
       "height": 4284,
       "widths": [
@@ -503,11 +522,12 @@
         "DarkMuted": "#69493a",
         "LightMuted": "#d4acac"
       },
+      "format": "avif",
       "taken": "2026-02-07T13:30"
     },
     "m022": {
       "kind": "image",
-      "base": "m022-7f18d6f9",
+      "base": "m022-078d6eed",
       "width": 4284,
       "height": 4284,
       "widths": [
@@ -528,11 +548,12 @@
         "DarkMuted": "#66432d",
         "LightMuted": "#c7b1a1"
       },
+      "format": "avif",
       "taken": "2026-02-07T14:28"
     },
     "m023": {
       "kind": "image",
-      "base": "m023-3fdebcb9",
+      "base": "m023-777a016b",
       "width": 4284,
       "height": 4284,
       "widths": [
@@ -553,11 +574,12 @@
         "DarkMuted": "#8f7e45",
         "LightMuted": "#d4b49c"
       },
+      "format": "avif",
       "taken": "2026-02-07T14:44"
     },
     "m024": {
       "kind": "image",
-      "base": "m024-b9c5717b",
+      "base": "m024-b3dd0b04",
       "width": 3024,
       "height": 3024,
       "widths": [
@@ -578,11 +600,12 @@
         "DarkMuted": "#4a392f",
         "LightMuted": "#c4bcb6"
       },
+      "format": "avif",
       "taken": "2026-02-07T15:42"
     },
     "m025": {
       "kind": "image",
-      "base": "m025-1861e54f",
+      "base": "m025-8f519fdf",
       "width": 3024,
       "height": 3024,
       "widths": [
@@ -603,11 +626,12 @@
         "DarkMuted": "#443d32",
         "LightMuted": "#c9b9a6"
       },
+      "format": "avif",
       "taken": "2026-02-07T16:01"
     },
     "m026": {
       "kind": "image",
-      "base": "m026-5ab8d919",
+      "base": "m026-6ae39fd8",
       "width": 3024,
       "height": 3024,
       "widths": [
@@ -628,11 +652,12 @@
         "DarkMuted": "#3d3631",
         "LightMuted": "#dbd2c5"
       },
+      "format": "avif",
       "taken": "2026-02-07T16:03"
     },
     "m027": {
       "kind": "image",
-      "base": "m027-ad069e56",
+      "base": "m027-7db094d4",
       "width": 3024,
       "height": 3024,
       "widths": [
@@ -653,11 +678,12 @@
         "DarkMuted": "#543c2c",
         "LightMuted": "#bcc2cb"
       },
+      "format": "avif",
       "taken": "2026-02-07T16:39"
     },
     "m028": {
       "kind": "image",
-      "base": "m028-9701e0a1",
+      "base": "m028-e38af975",
       "width": 3024,
       "height": 3024,
       "widths": [
@@ -678,11 +704,12 @@
         "DarkMuted": "#744f3a",
         "LightMuted": "#a2becd"
       },
+      "format": "avif",
       "taken": "2026-02-07T17:25"
     },
     "m029": {
       "kind": "image",
-      "base": "m029-b10b8b54",
+      "base": "m029-d1afb4d0",
       "width": 4284,
       "height": 4284,
       "widths": [
@@ -703,11 +730,12 @@
         "DarkMuted": "#614130",
         "LightMuted": "#d6bfb1"
       },
+      "format": "avif",
       "taken": "2026-02-07T18:04"
     },
     "m031": {
       "kind": "image",
-      "base": "m031-230b7d49",
+      "base": "m031-7cf79484",
       "width": 4284,
       "height": 4284,
       "widths": [
@@ -728,11 +756,12 @@
         "DarkMuted": "#4d433a",
         "LightMuted": "#d4c1af"
       },
+      "format": "avif",
       "taken": "2026-02-08T07:44"
     },
     "m032": {
       "kind": "video",
-      "base": "m032-b243003e",
+      "base": "m032-ded62698",
       "width": 3840,
       "height": 2160,
       "widths": [
@@ -756,11 +785,12 @@
       "duration": 12.4,
       "hasAudio": true,
       "mp4": true,
+      "format": "avif",
       "taken": "2026-02-08T09:18"
     },
     "m033": {
       "kind": "image",
-      "base": "m033-7cc90575",
+      "base": "m033-80e6f249",
       "width": 4284,
       "height": 4284,
       "widths": [
@@ -781,11 +811,12 @@
         "DarkMuted": "#594a31",
         "LightMuted": "#cecbcc"
       },
+      "format": "avif",
       "taken": "2026-02-08T10:29"
     },
     "m034": {
       "kind": "image",
-      "base": "m034-37fb74a7",
+      "base": "m034-50dc9d8d",
       "width": 3024,
       "height": 3024,
       "widths": [
@@ -806,11 +837,12 @@
         "DarkMuted": "#564531",
         "LightMuted": "#c2a27f"
       },
+      "format": "avif",
       "taken": "2026-02-08T11:17"
     },
     "m035": {
       "kind": "image",
-      "base": "m035-be8fba3e",
+      "base": "m035-70ab80e2",
       "width": 4284,
       "height": 4284,
       "widths": [
@@ -831,11 +863,12 @@
         "DarkMuted": "#5b483a",
         "LightMuted": "#b99d84"
       },
+      "format": "avif",
       "taken": "2026-02-08T11:20"
     },
     "m036": {
       "kind": "image",
-      "base": "m036-ce9f8543",
+      "base": "m036-0b06a389",
       "width": 4284,
       "height": 4284,
       "widths": [
@@ -856,11 +889,12 @@
         "DarkMuted": "#523d2c",
         "LightMuted": "#c8babc"
       },
+      "format": "avif",
       "taken": "2026-02-08T13:23"
     },
     "m037": {
       "kind": "image",
-      "base": "m037-1a4d3eea",
+      "base": "m037-afffa79e",
       "width": 4284,
       "height": 4284,
       "widths": [
@@ -881,11 +915,12 @@
         "DarkMuted": "#9c6c44",
         "LightMuted": "#c2a998"
       },
+      "format": "avif",
       "taken": "2026-02-08T14:58"
     },
     "m038": {
       "kind": "image",
-      "base": "m038-475561e9",
+      "base": "m038-c46ad5d7",
       "width": 4284,
       "height": 4284,
       "widths": [
@@ -906,11 +941,12 @@
         "DarkMuted": "#513a3a",
         "LightMuted": "#c1b5ab"
       },
+      "format": "avif",
       "taken": "2026-02-08T15:24"
     },
     "m039": {
       "kind": "image",
-      "base": "m039-51871ec1",
+      "base": "m039-bd34fae3",
       "width": 3024,
       "height": 3024,
       "widths": [
@@ -931,11 +967,12 @@
         "DarkMuted": "#544234",
         "LightMuted": "#a9bed4"
       },
+      "format": "avif",
       "taken": "2026-02-08T16:46"
     },
     "m040": {
       "kind": "image",
-      "base": "m040-ae454683",
+      "base": "m040-0424bd43",
       "width": 5712,
       "height": 4284,
       "widths": [
@@ -956,11 +993,12 @@
         "DarkMuted": "#5e4e43",
         "LightMuted": "#d4bcb4"
       },
+      "format": "avif",
       "taken": "2026-02-08T17:15"
     },
     "m041": {
       "kind": "image",
-      "base": "m041-86f6b595",
+      "base": "m041-92e06ee2",
       "width": 5712,
       "height": 4284,
       "widths": [
@@ -981,11 +1019,12 @@
         "DarkMuted": "#4e3d35",
         "LightMuted": "#d1bbaa"
       },
+      "format": "avif",
       "taken": "2026-02-08T17:27"
     },
     "m042": {
       "kind": "image",
-      "base": "m042-ec227906",
+      "base": "m042-aa32b0d2",
       "width": 5712,
       "height": 4284,
       "widths": [
@@ -1006,11 +1045,12 @@
         "DarkMuted": "#6a4d35",
         "LightMuted": "#c7ae98"
       },
+      "format": "avif",
       "taken": "2026-02-08T18:15"
     },
     "m043": {
       "kind": "image",
-      "base": "m043-61739c1b",
+      "base": "m043-57448dcb",
       "width": 5712,
       "height": 4284,
       "widths": [
@@ -1031,6 +1071,7 @@
         "DarkMuted": "#54342c",
         "LightMuted": "#c7b6a9"
       },
+      "format": "avif",
       "taken": "2026-02-09T07:09"
     }
   }

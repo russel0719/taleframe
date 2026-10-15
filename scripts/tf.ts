@@ -9,8 +9,8 @@
  *   npm run tf -- media <slug>                story.json 이 쓰는 미디어만 웹용으로 변환 → media.json
  *   npm run tf -- weather <slug>              weather-card 의 실측 날씨 → weather.json
  *   npm run tf -- routes <slug> [--force]     map-journey 구간별 실제 길 경로 (OSRM) → routes.json
- *   npm run tf -- validate [slug] [--remote]  스키마 + 참조 + 규칙 검사
- *   npm run tf -- upload <slug> [--prune]     파생 파일 → Supabase Storage
+ *   npm run tf -- validate [slug] [--remote] [--strict-media]  스키마 + 참조 + 규칙 검사
+ *   npm run tf -- upload <slug> [--deploy]    파생 파일 → 같은 저장소의 media 브랜치 (GitHub Pages)
  *   npm run tf -- schema                      content/story.schema.json 갱신
  */
 import { fail } from './lib/common';
@@ -55,10 +55,10 @@ switch (cmd) {
     await routes(need(positional[0], 'slug'), { force: flags.has('--force') });
     break;
   case 'validate':
-    await validate(positional, { remote: flags.has('--remote') });
+    await validate(positional, { remote: flags.has('--remote'), strictMedia: flags.has('--strict-media') });
     break;
   case 'upload':
-    await upload(need(positional[0], 'slug'), { prune: flags.has('--prune') });
+    await upload(need(positional[0], 'slug'), { deploy: flags.has('--deploy') });
     break;
   case 'schema':
     writeSchema();

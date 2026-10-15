@@ -1,0 +1,71 @@
+name: Deploy to GitHub Pages
+
+# main 에 푸시하면 배포한다. 미디어만 바꿨을 때는 `npm run tf -- upload <slug> --deploy` 가 수동 실행을 건다.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # 사진·영상은 media 브랜치에만 있다 (커밋 1개짜리) — 사이트의 /media 로 함께 내보낸다
+      - uses: actions/checkout@v7
+        with:
+          ref: media
+          path: public/media
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run lint && npm run typecheck && npm test
+
+      # 게시된 스토리의 파일이 media 브랜치에 다 있는지 — 빠졌으면 깨진 사이트를 배포하지 않는다
+      - run: npm run tf -- validate --strict-media
+
+      - id: pages
+        uses: actions/configure-pages@v6
+
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.base_url }}
+
+      # GitHub Pages 사이트 상한 1GB
+      - name: Check site size
+        run: |
+          rm -rf out/media/.git out/media/README.md
+          SIZE=$(du -sm out | cut -f1)
+          echo "site size: ${SIZE}MB"
+          if [ "$SIZE" -gt 1000 ]; then echo "::error::사이트가 1GB 를 넘는다 (${SIZE}MB)"; exit 1; fi
+          if [ "$SIZE" -gt 850 ]; then echo "::warning::사이트가 1GB 에 가깝다 (${SIZE}MB)"; fi
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

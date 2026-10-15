@@ -419,6 +419,8 @@ export const MediaEntry = z.strictObject({
   ambient: z.boolean().optional(),
   /** 공유 카드용 1200x630 jpg 가 있는지 (cover 만) */
   og: z.boolean().optional(),
+  /** 사진·포스터 파생 형식. 없으면 예전 webp. avif 면 가장 작은 폭의 webp 대체본이 하나 더 있다 */
+  format: z.enum(['avif', 'webp']).optional(),
   /** 촬영 현지 시각 "YYYY-MM-DDTHH:MM" (시간대·GPS 없음) — 필름 프레임 등에 표시 */
   taken: z.string().regex(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/).optional(),
 });

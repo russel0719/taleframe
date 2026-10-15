@@ -3,14 +3,14 @@ import path from 'node:path';
 import { ImageResponse } from 'next/og';
 import { fileNames, mediaBaseUrl } from '@/lib/media';
 import { formatRange } from '@/lib/site';
-import { loadAll, loadStory } from '@/lib/story/load';
+import { loadStory, staticSlugs } from '@/lib/story/load';
 
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 export const alt = '여행 이야기 대표 사진';
 
 export function generateStaticParams() {
-  return loadAll().map(({ story }) => ({ slug: story.slug }));
+  return staticSlugs();
 }
 
 /** 카드 배경: `tf media` 가 cover 로 만든 1200x630 jpg. 로컬은 파일, 배포는 Storage 에서 */
@@ -45,7 +45,16 @@ async function koreanFont(text: string): Promise<ArrayBuffer | null> {
 
 export default async function OgImage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const loaded = loadStory(slug)!;
+  const loaded = loadStory(slug);
+  // 게시된 스토리가 없을 때의 자리표시 경로 — 이름만 있는 카드
+  if (!loaded) {
+    return new ImageResponse(
+      <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#272729', color: '#fff', fontSize: 72 }}>
+        TaleFrame
+      </div>,
+      size,
+    );
+  }
   const { story, manifest } = loaded;
   const cover = manifest.items[story.cover];
   const bg = cover?.og ? await background(slug, cover.base) : null;

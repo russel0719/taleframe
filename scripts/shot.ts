@@ -42,7 +42,9 @@ try {
     page.on('response', (r) => {
       if (r.status() >= 400) problems.push(`[${d.name}] ${r.status()} ${r.url()}`);
     });
-    const res = await page.goto(url, { waitUntil: 'networkidle' });
+    // 영상·지도 타일이 계속 받아지는 페이지는 네트워크가 끝내 조용해지지 않는다 — 로드 후 최대 15초만 기다린다
+    const res = await page.goto(url, { waitUntil: 'load' });
+    await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
     if (!res?.ok()) fail(`${url} → ${res?.status()} (npm run dev 가 떠 있는지 확인)`);
 
     const vh = d.ctx.viewport!.height;

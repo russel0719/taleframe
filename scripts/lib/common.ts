@@ -32,9 +32,9 @@ export function writeJson(file: string, data: unknown) {
   fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n');
 }
 
-export function run(cmd: string, args: string[]): Promise<Buffer> {
+export function run(cmd: string, args: string[], cwd?: string): Promise<Buffer> {
   return new Promise((resolve, reject) => {
-    const p = spawn(cmd, args, { stdio: ['ignore', 'pipe', 'pipe'] });
+    const p = spawn(cmd, args, { stdio: ['ignore', 'pipe', 'pipe'], cwd });
     const out: Buffer[] = [];
     const errOut: Buffer[] = [];
     p.stdout.on('data', (d) => out.push(d));

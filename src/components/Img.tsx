@@ -33,12 +33,14 @@ export function Img({ media, sizes, fit = 'cover', className = '', style, priori
     }
   }, [media.img.thumbhash]);
 
-  const img = (
+  const avif = media.img.type === 'image/avif';
+  const tag = (
     // eslint-disable-next-line @next/next/no-img-element -- 파생 파일을 미리 만들어 두어 next/image 최적화가 필요 없다
     <img
-      src={media.img.src}
-      srcSet={media.img.srcSet}
-      sizes={sizes}
+      // AVIF 면 <source> 가 srcSet 을 맡고, <img> 는 AVIF 를 못 읽는 브라우저용 webp 한 장만 갖는다
+      src={avif ? media.img.fallback : media.img.src}
+      srcSet={avif ? undefined : media.img.srcSet}
+      sizes={avif ? undefined : sizes}
       width={media.width}
       height={media.height}
       alt={media.img.alt}
@@ -52,6 +54,14 @@ export function Img({ media, sizes, fit = 'cover', className = '', style, priori
       className={`h-full w-full transition-opacity duration-500 ${loaded ? 'opacity-100' : 'opacity-0'}`}
       style={{ objectFit: fit, objectPosition: media.img.position }}
     />
+  );
+  const img = avif ? (
+    <picture className="contents">
+      <source type="image/avif" srcSet={media.img.srcSet} sizes={sizes} />
+      {tag}
+    </picture>
+  ) : (
+    tag
   );
 
   const wrapStyle: CSSProperties = {

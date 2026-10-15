@@ -4,7 +4,7 @@ import path from 'node:path';
 import sharp, { type Sharp } from 'sharp';
 import { rgbaToThumbHash } from 'thumbhash';
 import { Vibrant } from 'node-vibrant/node';
-import { fileNames } from '@/lib/media';
+import { fileNames, type ImageFormat } from '@/lib/media';
 import { MediaManifest, Story, type MediaEntry, type MediaOptions } from '@/lib/story/schema';
 import { collectUsage, type MediaUsage } from '@/templates/catalog';
 import { FFMPEG, fail, mediaDir, pool, readJson, run, storyDir, writeJson } from './common';
@@ -12,7 +12,7 @@ import { leakedTags, probeVideo } from './probe';
 import { loadInventory, type InventoryItem } from './scan';
 
 /** 파생 규칙이 바뀌면 올린다 — 해시가 바뀌어 전부 다시 만들어지고, CDN 캐시도 자연히 갈린다 */
-const DERIVE_VERSION = 2;
+const DERIVE_VERSION = 3;
 const IMAGE_WIDTHS = [640, 1280, 2048];
 const PANORAMA_WIDTHS = [2048, 4096, 8192];
 const POSTER_WIDTHS = [640, 1280, 1920];
@@ -67,11 +67,20 @@ async function palette(img: Sharp) {
   return out;
 }
 
-async function writeWebp(img: Sharp, widths: number[], name: (w: number) => string, dir: string) {
+/** GitHub 은 100MiB 넘는 파일의 푸시를 막는다 — 여유를 두고 95MiB 에서 멈춘다 */
+const MAX_FILE_BYTES = 95 * 1024 * 1024;
+
+/**
+ * 폭마다 AVIF q62 (실측: WebP q80 과 같은 화질 SSIM 0.974, 24% 작다) +
+ * 가장 작은 폭의 WebP 한 장 (AVIF 를 못 읽는 오래된 브라우저용)
+ */
+async function writeImages(img: Sharp, widths: number[], name: (w: number, f: ImageFormat) => string, dir: string) {
   for (const w of widths) {
-    const out = path.join(dir, name(w));
-    if (!fs.existsSync(out)) await img.clone().resize({ width: w }).webp({ quality: 80, effort: 4 }).toFile(out);
+    const out = path.join(dir, name(w, 'avif'));
+    if (!fs.existsSync(out)) await img.clone().resize({ width: w }).avif({ quality: 62, effort: 4 }).toFile(out);
   }
+  const fb = path.join(dir, name(widths[0], 'webp'));
+  if (!fs.existsSync(fb)) await img.clone().resize({ width: widths[0] }).webp({ quality: 80, effort: 4 }).toFile(fb);
 }
 
 async function writeOg(img: Sharp, w: number, h: number, focus: [number, number], out: string) {
@@ -92,7 +101,7 @@ async function deriveImage(src: string, base: string, dir: string, usage: MediaU
   const widths = pickWidths(usage.panorama ? PANORAMA_WIDTHS : IMAGE_WIDTHS, width);
   // 파노라마에도 일반 크기를 같이 만든다 (목록 카드·라이트박스용)
   const all = usage.panorama ? [...new Set([...pickWidths(IMAGE_WIDTHS, width), ...widths])].sort((a, b) => a - b) : widths;
-  await writeWebp(img, all, (w) => fileNames.image(base, w), dir);
+  await writeImages(img, all, (w, f) => fileNames.image(base, w, f), dir);
   const focus = await focusPoint(img);
   if (isCover) await writeOg(img, width, height, focus, path.join(dir, fileNames.og(base)));
   return {
@@ -101,6 +110,7 @@ async function deriveImage(src: string, base: string, dir: string, usage: MediaU
     width,
     height,
     widths: all,
+    format: 'avif',
     thumbhash: await thumbhash(img),
     focus,
     palette: await palette(img),
@@ -124,7 +134,7 @@ async function deriveVideo(src: string, base: string, dir: string, usage: MediaU
   const frame = await run(FFMPEG, ['-v', 'error', '-ss', posterAt.toFixed(3), '-i', src, '-frames:v', '1', ...(pre ? ['-vf', TONEMAP] : []), '-f', 'image2pipe', '-vcodec', 'png', '-']);
   const poster = sharp(frame);
   const widths = pickWidths(POSTER_WIDTHS, p.width);
-  await writeWebp(poster, widths, (w) => fileNames.poster(base, w), dir);
+  await writeImages(poster, widths, (w, f) => fileNames.poster(base, w, f), dir);
 
   const fpsCap = p.fps > 30.5 ? ['-r', '30'] : [];
   if (usage.regular) {
@@ -134,8 +144,9 @@ async function deriveVideo(src: string, base: string, dir: string, usage: MediaU
         '-v', 'error', '-y', ...cut, '-i', src,
         '-map', '0:v:0', ...(p.audioIndex !== null ? ['-map', `0:${p.audioIndex}`] : []),
         '-vf', `${pre}${scaleShort(VIDEO_SHORT_SIDE)}`, ...fpsCap,
-        // 눈·비·물결처럼 잔 디테일이 많은 화면은 CRF 만으로는 15Mbps 넘게 튄다 — 상한을 둔다
-        '-c:v', 'libx264', '-preset', 'medium', '-crf', '23', '-maxrate', '4M', '-bufsize', '8M',
+        // 실측(눈 오는 장면): 예전 4Mbps 상한은 VMAF 80.7 로 화질을 깎았다. CRF 28 은 VMAF 93 안팎.
+        // 상한은 극단적인 장면이 파일 한도로 치닫는 것만 막도록 넉넉히 (10Mbps)
+        '-c:v', 'libx264', '-preset', 'slow', '-crf', '28', '-maxrate', '10M', '-bufsize', '20M',
         '-pix_fmt', 'yuv420p', '-profile:v', 'high',
         ...(p.audioIndex !== null ? ['-c:a', 'aac', '-b:a', '128k', '-ac', '2'] : []),
         ...strip, '-movflags', '+faststart', out,
@@ -144,14 +155,15 @@ async function deriveVideo(src: string, base: string, dir: string, usage: MediaU
     outputs.push(out);
   }
   if (usage.scrub) {
-    // 모든 프레임을 키프레임으로 — 스크롤로 임의 지점을 찾아갈 때 끊기지 않게
+    // 4프레임마다 키프레임 (B프레임 없음) — 실측: 모든 프레임 키프레임보다 28% 작고 화질은 오히려 높다
+    // (VMAF 92.8 → 96.7). 임의 지점으로 갈 때 최대 3프레임만 더 풀면 된다
     const out = path.join(dir, fileNames.scrub(base));
     if (!fs.existsSync(out)) {
       await run(FFMPEG, [
         '-v', 'error', '-y', ...cut, '-i', src, '-map', '0:v:0', '-an',
         '-vf', `${pre}${scaleShort(SCRUB_SHORT_SIDE)}`, '-r', '24',
-        '-c:v', 'libx264', '-preset', 'medium', '-crf', '27', '-maxrate', '5M', '-bufsize', '10M',
-        '-g', '1', '-keyint_min', '1', '-sc_threshold', '0',
+        '-c:v', 'libx264', '-preset', 'medium', '-crf', '27', '-maxrate', '8M', '-bufsize', '16M',
+        '-g', '4', '-keyint_min', '4', '-bf', '0', '-sc_threshold', '0',
         '-pix_fmt', 'yuv420p', ...strip, '-movflags', '+faststart', out,
       ]);
     }
@@ -172,6 +184,10 @@ async function deriveVideo(src: string, base: string, dir: string, usage: MediaU
   }
 
   for (const out of outputs) {
+    if (fs.statSync(out).size > MAX_FILE_BYTES) {
+      fs.rmSync(out);
+      throw new Error(`${path.basename(out)} 가 95MiB 를 넘는다 (GitHub 파일 한도 100MiB) — media.<id>.trim 으로 줄인다`);
+    }
     const leaked = await leakedTags(out);
     if (leaked.length) {
       fs.rmSync(out);
@@ -188,6 +204,7 @@ async function deriveVideo(src: string, base: string, dir: string, usage: MediaU
     thumbhash: await thumbhash(poster),
     focus: await focusPoint(poster),
     palette: await palette(poster),
+    format: 'avif',
     duration: Math.round(duration * 10) / 10,
     hasAudio: p.audioIndex !== null,
     ...(usage.regular ? { mp4: true } : {}),
@@ -204,9 +221,11 @@ export function hashFor(item: InventoryItem, sourceDir: string, opt?: MediaOptio
 
 export function expectedFiles(m: MediaEntry): string[] {
   const files: string[] = [];
-  if (m.kind === 'image') files.push(...m.widths.map((w) => fileNames.image(m.base, w)));
-  else {
-    files.push(...m.widths.map((w) => fileNames.poster(m.base, w)));
+  const f = m.format ?? 'webp';
+  const name = m.kind === 'image' ? fileNames.image : fileNames.poster;
+  files.push(...m.widths.map((w) => name(m.base, w, f)));
+  if (f === 'avif') files.push(name(m.base, Math.min(...m.widths), 'webp'));
+  if (m.kind === 'video') {
     if (m.mp4) files.push(fileNames.video(m.base));
     if (m.scrub) files.push(fileNames.scrub(m.base));
     if (m.ambient) files.push(fileNames.ambient(m.base));

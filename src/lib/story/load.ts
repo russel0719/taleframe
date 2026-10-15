@@ -55,6 +55,16 @@ export const loadAll = cache((): LoadedStory[] => {
     .sort((a, b) => b.story.trip.start.localeCompare(a.story.trip.start));
 });
 
+/**
+ * generateStaticParams 용. 정적 내보내기(output: export)는 경로가 하나도 없으면 빌드를 거부하므로,
+ * 게시된 스토리가 없을 때(첫 배포 전, 전부 초안) 자리표시 하나를 두고 그 페이지는 404 로 그린다
+ */
+export const PLACEHOLDER_SLUG = '_';
+export function staticSlugs(): { slug: string }[] {
+  const slugs = loadAll().map(({ story }) => ({ slug: story.slug }));
+  return slugs.length ? slugs : [{ slug: PLACEHOLDER_SLUG }];
+}
+
 export const loadStory = cache((slug: string): LoadedStory | undefined =>
   loadAll().find((s) => s.story.slug === slug),
 );

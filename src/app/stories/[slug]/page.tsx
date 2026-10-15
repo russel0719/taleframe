@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Footer } from '@/components/Footer';
-import { loadAll, loadStory } from '@/lib/story/load';
+import { loadStory, staticSlugs } from '@/lib/story/load';
 import { StoryRenderer } from '@/templates/StoryRenderer';
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return loadAll().map(({ story }) => ({ slug: story.slug }));
+  return staticSlugs();
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {

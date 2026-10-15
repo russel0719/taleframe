@@ -27,7 +27,7 @@ export function resolveAll(story: Story, manifest: MediaManifest): MediaMap {
     const name = m.kind === 'video' ? fileNames.poster : fileNames.image;
     const srcSet = [...m.widths]
       .sort((a, b) => a - b)
-      .map((w) => ({ src: fileUrl(story.slug, name(m.base, w)), width: w, height: Math.round((w * m.height) / m.width) }));
+      .map((w) => ({ src: fileUrl(story.slug, name(m.base, w, m.format)), width: w, height: Math.round((w * m.height) / m.width) }));
     out[id] = {
       id,
       kind: m.kind,

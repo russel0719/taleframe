@@ -12,12 +12,11 @@
     "typecheck": "tsc --noEmit",
     "shot": "tsx scripts/shot.ts",
     "predev": "node scripts/copy-vendor.mjs",
-    "prebuild": "node scripts/copy-vendor.mjs"
+    "prebuild": "node scripts/copy-vendor.mjs",
+    "postbuild": "node scripts/postexport.mjs"
   },
   "dependencies": {
     "@photo-sphere-viewer/core": "^5.15.1",
-    "@supabase/ssr": "^0.10.2",
-    "@supabase/supabase-js": "^2.105.1",
     "@turf/along": "^7.4.0",
     "@turf/helpers": "^7.4.0",
     "@turf/length": "^7.4.0",
