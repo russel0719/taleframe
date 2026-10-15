@@ -52,6 +52,9 @@ export function checkStory(story: Story, manifest?: MediaManifest, extras: Extra
     if (prev && prev.template === s.template) {
       warn(where, `${s.template} 가 연달아 나온다 — 의도한 게 아니라면 다른 템플릿을 고려`);
     }
+    if (prev && catalog[prev.template].art && catalog[s.template].art) {
+      warn(where, `작품 섹션(${prev.template} → ${s.template})이 붙어 있다 — 작품은 사이에 기록 섹션을 두어야 돋보인다`);
+    }
     if (prev && catalog[prev.template].tall && catalog[s.template].tall) {
       warn(where, `긴 스크롤 장면(${prev.template} → ${s.template})이 붙어 있다 — 사이에 짧은 섹션을 두면 덜 지친다`);
     }

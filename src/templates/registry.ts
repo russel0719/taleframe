@@ -1,5 +1,6 @@
 import type { ComponentType } from 'react';
 import type { TemplateId } from '@/lib/story/schema';
+import { ColorField, Diptych, FilmRoll, KineticType, RisoPrint, Spotlight, Verse } from './art';
 import { DailyTimeline, FoodReview, Closing, Recommendation, TravelStats } from './experience';
 import { BeforeAfter, PhotoGallery, PhotoOverlay, PhotoSingle, PhotoStrip, PolaroidCollage } from './gallery';
 import { HeroFullbleed, PostcardCover } from './hero';
@@ -39,4 +40,11 @@ export const registry: { [K in TemplateId]: ComponentType<TemplateProps<K>> } = 
   'daily-timeline': DailyTimeline,
   'travel-stats': TravelStats,
   closing: Closing,
+  verse: Verse,
+  'color-field': ColorField,
+  'film-roll': FilmRoll,
+  diptych: Diptych,
+  spotlight: Spotlight,
+  'riso-print': RisoPrint,
+  'kinetic-type': KineticType,
 };

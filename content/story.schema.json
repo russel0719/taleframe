@@ -2318,6 +2318,560 @@
               "line"
             ],
             "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+              },
+              "tone": {
+                "type": "string",
+                "enum": [
+                  "light",
+                  "parchment",
+                  "dark"
+                ]
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "draft",
+                  "needs_review",
+                  "approved"
+                ]
+              },
+              "locked": {
+                "type": "boolean"
+              },
+              "ambient": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^m\\d{3,4}$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "none"
+                  }
+                ]
+              },
+              "memo": {
+                "type": "string"
+              },
+              "template": {
+                "type": "string",
+                "const": "verse"
+              },
+              "lines": {
+                "minItems": 1,
+                "maxItems": 8,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 24
+                }
+              },
+              "media": {
+                "type": "string",
+                "pattern": "^m\\d{3,4}$"
+              },
+              "attribution": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              }
+            },
+            "required": [
+              "id",
+              "status",
+              "template",
+              "lines"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+              },
+              "tone": {
+                "type": "string",
+                "enum": [
+                  "light",
+                  "parchment",
+                  "dark"
+                ]
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "draft",
+                  "needs_review",
+                  "approved"
+                ]
+              },
+              "locked": {
+                "type": "boolean"
+              },
+              "ambient": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^m\\d{3,4}$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "none"
+                  }
+                ]
+              },
+              "memo": {
+                "type": "string"
+              },
+              "template": {
+                "type": "string",
+                "const": "color-field"
+              },
+              "heading": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "items": {
+                "minItems": 2,
+                "maxItems": 5,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "media": {
+                      "type": "string",
+                      "pattern": "^m\\d{3,4}$"
+                    },
+                    "caption": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 80
+                    }
+                  },
+                  "required": [
+                    "media"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "id",
+              "status",
+              "template",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+              },
+              "tone": {
+                "type": "string",
+                "enum": [
+                  "light",
+                  "parchment",
+                  "dark"
+                ]
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "draft",
+                  "needs_review",
+                  "approved"
+                ]
+              },
+              "locked": {
+                "type": "boolean"
+              },
+              "ambient": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^m\\d{3,4}$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "none"
+                  }
+                ]
+              },
+              "memo": {
+                "type": "string"
+              },
+              "template": {
+                "type": "string",
+                "const": "film-roll"
+              },
+              "heading": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "label": {
+                "type": "string",
+                "pattern": "^[A-Z0-9 .·-]{1,24}$"
+              },
+              "items": {
+                "minItems": 4,
+                "maxItems": 12,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "media": {
+                      "type": "string",
+                      "pattern": "^m\\d{3,4}$"
+                    },
+                    "caption": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 80
+                    }
+                  },
+                  "required": [
+                    "media"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "id",
+              "status",
+              "template",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+              },
+              "tone": {
+                "type": "string",
+                "enum": [
+                  "light",
+                  "parchment",
+                  "dark"
+                ]
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "draft",
+                  "needs_review",
+                  "approved"
+                ]
+              },
+              "locked": {
+                "type": "boolean"
+              },
+              "ambient": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^m\\d{3,4}$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "none"
+                  }
+                ]
+              },
+              "memo": {
+                "type": "string"
+              },
+              "template": {
+                "type": "string",
+                "const": "diptych"
+              },
+              "heading": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "statement": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240
+              },
+              "works": {
+                "minItems": 2,
+                "maxItems": 3,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "media": {
+                      "type": "string",
+                      "pattern": "^m\\d{3,4}$"
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 30
+                    },
+                    "note": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 80
+                    }
+                  },
+                  "required": [
+                    "media",
+                    "title"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "id",
+              "status",
+              "template",
+              "works"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+              },
+              "tone": {
+                "type": "string",
+                "enum": [
+                  "light",
+                  "parchment",
+                  "dark"
+                ]
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "draft",
+                  "needs_review",
+                  "approved"
+                ]
+              },
+              "locked": {
+                "type": "boolean"
+              },
+              "ambient": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^m\\d{3,4}$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "none"
+                  }
+                ]
+              },
+              "memo": {
+                "type": "string"
+              },
+              "template": {
+                "type": "string",
+                "const": "spotlight"
+              },
+              "media": {
+                "type": "string",
+                "pattern": "^m\\d{3,4}$"
+              },
+              "caption": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "place": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              }
+            },
+            "required": [
+              "id",
+              "status",
+              "template",
+              "media"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+              },
+              "tone": {
+                "type": "string",
+                "enum": [
+                  "light",
+                  "parchment",
+                  "dark"
+                ]
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "draft",
+                  "needs_review",
+                  "approved"
+                ]
+              },
+              "locked": {
+                "type": "boolean"
+              },
+              "ambient": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^m\\d{3,4}$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "none"
+                  }
+                ]
+              },
+              "memo": {
+                "type": "string"
+              },
+              "template": {
+                "type": "string",
+                "const": "riso-print"
+              },
+              "media": {
+                "type": "string",
+                "pattern": "^m\\d{3,4}$"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 20
+              },
+              "caption": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "inks": {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  }
+                ],
+                "items": false,
+                "minItems": 2,
+                "maxItems": 2
+              }
+            },
+            "required": [
+              "id",
+              "status",
+              "template",
+              "media"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+              },
+              "tone": {
+                "type": "string",
+                "enum": [
+                  "light",
+                  "parchment",
+                  "dark"
+                ]
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "draft",
+                  "needs_review",
+                  "approved"
+                ]
+              },
+              "locked": {
+                "type": "boolean"
+              },
+              "ambient": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^m\\d{3,4}$"
+                  },
+                  {
+                    "type": "string",
+                    "const": "none"
+                  }
+                ]
+              },
+              "memo": {
+                "type": "string"
+              },
+              "template": {
+                "type": "string",
+                "const": "kinetic-type"
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 12
+              },
+              "media": {
+                "type": "string",
+                "pattern": "^m\\d{3,4}$"
+              },
+              "caption": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            },
+            "required": [
+              "id",
+              "status",
+              "template",
+              "text"
+            ],
+            "additionalProperties": false
           }
         ]
       }

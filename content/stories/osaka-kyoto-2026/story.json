@@ -5,129 +5,533 @@
   "status": "draft",
   "title": "오사카 · 교토",
   "summary": "혼자 다녀온 3박 4일. 후시미 이나리의 도리이 길과 저녁의 교토 골목, 그리고 눈 내린 야마자키.",
-  "trip": { "start": "2026-02-06", "end": "2026-02-09", "places": ["오사카", "교토"] },
+  "trip": {
+    "start": "2026-02-06",
+    "end": "2026-02-09",
+    "places": [
+      "오사카",
+      "교토"
+    ]
+  },
   "cover": "m013",
   "media": {
-    "m001": { "alt": "공항 탑승구 위 출발 안내 전광판" },
-    "m004": { "alt": "나무 접시 위 초밥 한 접시와 생맥주" },
-    "m006": { "alt": "밤의 도톤보리, 글리코 간판 앞을 메운 사람들" },
-    "m007": { "alt": "후시미 이나리 신사의 주홍색 누문과 돌계단" },
-    "m008": { "alt": "시메나와가 걸린 주홍 기둥 회랑" },
-    "m010": { "alt": "작은 도리이 모양 에마가 줄지어 놓인 상자" },
-    "m011": { "alt": "도리이 옆 여우 석상" },
-    "m012": { "alt": "도리이 터널 안을 걸어 들어가는 영상" },
-    "m013": { "alt": "끝없이 이어지는 주홍색 도리이 터널" },
-    "m014": { "alt": "연어 살이 올라간 라멘 그릇" },
-    "m016": { "alt": "말차 파르페와 커피 한 잔" },
-    "m017": { "alt": "기요미즈데라의 삼층탑과 붉은 전각" },
-    "m018": { "alt": "사슴 문양이 그려진 흰 막과 붉은 기둥" },
-    "m019": { "alt": "목조 가옥이 늘어선 산넨자카 돌길" },
-    "m021": { "alt": "잔에 담긴 라떼아트 커피" },
-    "m022": { "alt": "알록달록한 천장 아래 니시키 시장 아케이드" },
-    "m023": { "alt": "파를 올린 타코야키 두 알" },
-    "m024": { "alt": "등불이 걸린 폰토초의 좁은 돌길" },
-    "m026": { "alt": "기온 시라카와 하천변의 목조 가옥과 겨울나무" },
-    "m027": { "alt": "제등이 걸린 야사카 신사 무대 앞 사람들" },
-    "m028": { "alt": "등불이 켜진 저녁 골목" },
-    "m029": { "alt": "레몬을 곁들인 얇게 썬 고기 접시" },
-    "m031": { "alt": "붉은 양념을 올린 돈코츠 라멘" },
-    "m032": { "alt": "기차 창밖으로 눈 내리는 동네" },
-    "m033": { "alt": "눈 덮인 숲길과 증류소 입구 안내판" },
-    "m034": { "alt": "SPIRIT STILL이라 적힌 증류기와 위스키 병 진열장" },
-    "m035": { "alt": "야마자키 12년을 포함한 위스키 테이스팅 세 잔" },
-    "m037": { "alt": "그림이 새겨진 거품의 생맥주 한 잔" },
-    "m040": { "alt": "초밥 모둠 한 판" },
-    "m043": { "alt": "밥과 된장국, 계란말이가 놓인 아침 정식" }
+    "m001": {
+      "alt": "공항 탑승구 위 출발 안내 전광판"
+    },
+    "m004": {
+      "alt": "나무 접시 위 초밥 한 접시와 생맥주"
+    },
+    "m006": {
+      "alt": "밤의 도톤보리, 글리코 간판 앞을 메운 사람들"
+    },
+    "m007": {
+      "alt": "후시미 이나리 신사의 주홍색 누문과 돌계단"
+    },
+    "m010": {
+      "alt": "작은 도리이 모양 에마가 줄지어 놓인 상자"
+    },
+    "m011": {
+      "alt": "도리이 옆 여우 석상"
+    },
+    "m012": {
+      "alt": "도리이 터널 안을 걸어 들어가는 영상"
+    },
+    "m013": {
+      "alt": "끝없이 이어지는 주홍색 도리이 터널"
+    },
+    "m014": {
+      "alt": "연어 살이 올라간 라멘 그릇"
+    },
+    "m016": {
+      "alt": "말차 파르페와 커피 한 잔"
+    },
+    "m017": {
+      "alt": "기요미즈데라의 삼층탑과 붉은 전각"
+    },
+    "m018": {
+      "alt": "사슴 문양이 그려진 흰 막과 붉은 기둥"
+    },
+    "m019": {
+      "alt": "목조 가옥이 늘어선 산넨자카 돌길"
+    },
+    "m021": {
+      "alt": "잔에 담긴 라떼아트 커피"
+    },
+    "m022": {
+      "alt": "알록달록한 천장 아래 니시키 시장 아케이드"
+    },
+    "m023": {
+      "alt": "파를 올린 타코야키 두 알"
+    },
+    "m024": {
+      "alt": "등불이 걸린 폰토초의 좁은 돌길"
+    },
+    "m026": {
+      "alt": "기온 시라카와 하천변의 목조 가옥과 겨울나무"
+    },
+    "m027": {
+      "alt": "제등이 걸린 야사카 신사 무대 앞 사람들"
+    },
+    "m028": {
+      "alt": "등불이 켜진 저녁 골목"
+    },
+    "m029": {
+      "alt": "레몬을 곁들인 얇게 썬 고기 접시"
+    },
+    "m031": {
+      "alt": "붉은 양념을 올린 돈코츠 라멘"
+    },
+    "m032": {
+      "alt": "기차 창밖으로 눈 내리는 동네"
+    },
+    "m033": {
+      "alt": "눈 덮인 숲길과 증류소 입구 안내판"
+    },
+    "m034": {
+      "alt": "SPIRIT STILL이라 적힌 증류기와 위스키 병 진열장"
+    },
+    "m035": {
+      "alt": "야마자키 12년을 포함한 위스키 테이스팅 세 잔"
+    },
+    "m037": {
+      "alt": "그림이 새겨진 거품의 생맥주 한 잔"
+    },
+    "m040": {
+      "alt": "초밥 모둠 한 판"
+    },
+    "m043": {
+      "alt": "밥과 된장국, 계란말이가 놓인 아침 정식"
+    },
+    "m002": {
+      "alt": "초밥집 앞 세로 간판과 등불, 밤거리"
+    },
+    "m003": {
+      "alt": "창 너머로 초밥을 쥐는 요리사"
+    },
+    "m005": {
+      "alt": "캐릭터 그림이 그려진 입간판"
+    },
+    "m009": {
+      "alt": "나무 상자에 꽂힌 부적 판"
+    },
+    "m015": {
+      "alt": "붉은 천이 깔린 찻집 자리, 노렌 너머 바깥"
+    },
+    "m020": {
+      "alt": "드리퍼와 커피 기구가 놓인 카페 바"
+    },
+    "m025": {
+      "alt": "매화 가지 사이의 붉은 등롱"
+    },
+    "m036": {
+      "alt": "노렌이 걸린 카페 입구와 OPEN 간판"
+    },
+    "m038": {
+      "alt": "프리미엄 몰츠 캔과 2026.02.08 액자"
+    },
+    "m039": {
+      "alt": "맑은 하늘 아래 오사카 빌딩 풍경"
+    },
+    "m041": {
+      "alt": "흰살 생선과 고등어 초밥"
+    },
+    "m042": {
+      "alt": "편의점 오니기리와 소바, 튀김"
+    }
   },
   "updatedAt": "2026-10-15",
   "sections": [
-    { "id": "opening", "template": "hero-fullbleed", "status": "draft", "media": "m013", "title": "오사카 · 교토", "kicker": "2026. 02. 06 – 09" },
-
-    { "id": "day1", "template": "chapter-divider", "status": "draft", "index": "Day 1", "title": "오사카", "subtitle": "2월 6일" },
-    { "id": "day1-departure", "template": "photo-single", "status": "draft", "media": "m001", "caption": "인천에서 오사카로 떠났다.", "place": "인천국제공항" },
     {
-      "id": "day1-sushi", "template": "split-feature", "status": "draft", "media": "m004",
-      "heading": "첫 저녁", "place": "타치스시 마구로 잇테츠 센니치마에점",
+      "id": "opening",
+      "template": "hero-fullbleed",
+      "status": "draft",
+      "media": "m013",
+      "title": "오사카 · 교토",
+      "kicker": "2026. 02. 06 – 09"
+    },
+    {
+      "id": "day1",
+      "template": "chapter-divider",
+      "status": "draft",
+      "index": "Day 1",
+      "title": "오사카",
+      "subtitle": "2월 6일"
+    },
+    {
+      "id": "day1-departure",
+      "template": "photo-single",
+      "status": "draft",
+      "media": "m001",
+      "caption": "인천에서 오사카로 떠났다.",
+      "place": "인천국제공항"
+    },
+    {
+      "id": "day1-night",
+      "template": "photo-strip",
+      "status": "draft",
+      "heading": "도착한 밤",
+      "items": [
+        {
+          "media": "m002"
+        },
+        {
+          "media": "m003"
+        },
+        {
+          "media": "m005"
+        }
+      ]
+    },
+    {
+      "id": "day1-sushi",
+      "template": "split-feature",
+      "status": "draft",
+      "media": "m004",
+      "heading": "첫 저녁",
+      "place": "타치스시 마구로 잇테츠 센니치마에점",
       "body": "한국인 손님들이 많았던 곳이지만 생맥주 한 잔 마시니 일본에 왔음을 실감할 수 있었다."
     },
-    { "id": "day1-dotonbori", "template": "photo-overlay", "status": "draft", "media": "m006", "caption": "글리코 간판 앞은 밤에도 사람이 많았다.", "place": "도톤보리" },
-
-    { "id": "day2", "template": "chapter-divider", "status": "draft", "index": "Day 2", "title": "교토", "subtitle": "2월 7일" },
     {
-      "id": "day2-torii", "template": "scroll-scrub", "status": "draft", "media": "m012",
-      "steps": [{ "text": "아침 아홉 시 반, 후시미 이나리에 갔다." }, { "text": "도리이 사이로 걸어 들어갔다." }]
+      "id": "day1-dotonbori",
+      "template": "spotlight",
+      "status": "draft",
+      "media": "m006",
+      "caption": "글리코 간판 앞은 밤에도 사람이 많았다.",
+      "place": "도톤보리"
     },
     {
-      "id": "day2-fushimi", "template": "photo-gallery", "status": "needs_review", "layout": "rows",
+      "id": "day2-chapter",
+      "template": "chapter-divider",
+      "status": "draft",
+      "index": "Day 2",
+      "title": "교토",
+      "subtitle": "2월 7일"
+    },
+    {
+      "id": "day2-torii",
+      "template": "scroll-scrub",
+      "status": "draft",
+      "media": "m012",
+      "steps": [
+        {
+          "text": "아침 아홉 시 반, 후시미 이나리에 갔다."
+        },
+        {
+          "text": "도리이 사이로 걸어 들어갔다."
+        }
+      ]
+    },
+    {
+      "id": "day2-fushimi",
+      "template": "photo-gallery",
+      "status": "draft",
+      "layout": "rows",
       "heading": "후시미 이나리 신사",
       "caption": "붉은 문을 하나 지날 때마다 산이 조금씩 깊어졌다.",
-      "items": [{ "media": "m007" }, { "media": "m008" }, { "media": "m010" }, { "media": "m011" }],
-      "memo": "caption 은 사용자 요청으로 AI 가 쓴 문장 — 미리보기에서 확인"
-    },
-    {
-      "id": "day2-afternoon", "template": "photo-strip", "status": "draft", "heading": "기요미즈데라에서 니시키 시장까지",
       "items": [
-        { "media": "m017", "caption": "기요미즈데라" },
-        { "media": "m018" },
-        { "media": "m019", "caption": "산넨자카" },
-        { "media": "m021" },
-        { "media": "m022", "caption": "니시키 시장" }
+        {
+          "media": "m007"
+        },
+        {
+          "media": "m009"
+        },
+        {
+          "media": "m010"
+        }
       ]
     },
     {
-      "id": "day2-evening", "template": "sticky-story", "status": "needs_review",
-      "steps": [
-        { "media": "m024", "heading": "폰토초", "text": "폰토초, 오후 세 시 반." },
-        { "media": "m026", "heading": "기온 시라카와", "text": "기온 시라카와를 따라 걸었다." },
-        { "media": "m028", "text": "해가 진 폰토초 거리는 일본스러움이 가득하다." }
+      "id": "day2-verse",
+      "template": "verse",
+      "status": "draft",
+      "lines": [
+        "아침 아홉 시 반,",
+        "붉은 문을 하나씩 지났다",
+        "돌여우가 길을 지키고",
+        "나는 산으로 올라갔다"
       ],
-      "memo": "①② 는 사용자가 직접 쓰지 않아 사실 초안을 넣었다 — 미리보기에서 확인"
+      "media": "m011",
+      "attribution": "후시미 이나리, 2월 7일"
     },
     {
-      "id": "day2-food", "template": "food-review", "status": "draft", "heading": "교토에서 먹은 것",
+      "id": "day2-teahouse",
+      "template": "photo-single",
+      "status": "draft",
+      "media": "m015"
+    },
+    {
+      "id": "day2-kiyomizu",
+      "template": "diptych",
+      "status": "draft",
+      "heading": "기요미즈데라에서 산넨자카로",
+      "statement": "점심 무렵 기요미즈데라에 닿았다. 삼층탑을 올려다보고, 목조 가옥이 늘어선 산넨자카 돌길로 내려왔다.",
+      "works": [
+        {
+          "media": "m017",
+          "title": "기요미즈데라",
+          "note": "12:51"
+        },
+        {
+          "media": "m019",
+          "title": "산넨자카",
+          "note": "13:19"
+        }
+      ]
+    },
+    {
+      "id": "day2-afternoon",
+      "template": "photo-strip",
+      "status": "draft",
+      "heading": "니시키 시장까지",
       "items": [
-        { "media": "m014", "dish": "연어 라멘", "restaurant": "살몬 누들 교토" },
-        { "media": "m016", "dish": "말차 파르페" },
-        { "media": "m023", "dish": "타코야키" },
-        { "media": "m029", "dish": "야키니쿠", "restaurant": "야키니쿠 이자카야 774" }
+        {
+          "media": "m018"
+        },
+        {
+          "media": "m021"
+        },
+        {
+          "media": "m022",
+          "caption": "니시키 시장"
+        }
       ]
     },
     {
-      "id": "day2-route", "template": "map-journey", "status": "draft", "heading": "교토에서 걸은 길",
+      "id": "day2-colors",
+      "template": "color-field",
+      "status": "draft",
+      "heading": "교토의 색",
+      "items": [
+        {
+          "media": "m016"
+        },
+        {
+          "media": "m025"
+        },
+        {
+          "media": "m020"
+        }
+      ]
+    },
+    {
+      "id": "day2-food",
+      "template": "food-review",
+      "status": "draft",
+      "heading": "교토에서 먹은 것",
+      "items": [
+        {
+          "media": "m014",
+          "dish": "연어 라멘",
+          "restaurant": "살몬 누들 교토"
+        },
+        {
+          "media": "m023",
+          "dish": "타코야키"
+        },
+        {
+          "media": "m029",
+          "dish": "야키니쿠",
+          "restaurant": "야키니쿠 이자카야 774"
+        }
+      ]
+    },
+    {
+      "id": "day2-evening",
+      "template": "sticky-story",
+      "status": "draft",
+      "steps": [
+        {
+          "media": "m024",
+          "heading": "폰토초",
+          "text": "폰토초, 오후 세 시 반."
+        },
+        {
+          "media": "m026",
+          "heading": "기온 시라카와",
+          "text": "기온 시라카와를 따라 걸었다."
+        },
+        {
+          "media": "m028",
+          "text": "해가 진 폰토초 거리는 일본스러움이 가득하다."
+        }
+      ]
+    },
+    {
+      "id": "day2-yasaka",
+      "template": "photo-single",
+      "status": "draft",
+      "media": "m027",
+      "place": "야사카 신사"
+    },
+    {
+      "id": "day2-route",
+      "template": "map-journey",
+      "status": "draft",
+      "heading": "교토에서 걸은 길",
       "stops": [
-        { "name": "후시미 이나리 신사", "lat": 34.967, "lng": 135.773, "media": "m007" },
-        { "name": "기요미즈데라", "lat": 34.996, "lng": 135.783, "transport": "walk", "media": "m017" },
-        { "name": "산넨자카", "lat": 34.999, "lng": 135.78, "transport": "walk", "media": "m019" },
-        { "name": "니시키 시장", "lat": 35.005, "lng": 135.765, "transport": "walk", "media": "m022" },
-        { "name": "폰토초", "lat": 35.007, "lng": 135.771, "transport": "walk", "media": "m024" },
-        { "name": "기온 시라카와", "lat": 35.006, "lng": 135.774, "transport": "walk", "media": "m026" },
-        { "name": "야사카 신사", "lat": 35.003, "lng": 135.778, "transport": "walk", "media": "m027" }
+        {
+          "name": "후시미 이나리 신사",
+          "lat": 34.967,
+          "lng": 135.773,
+          "media": "m007"
+        },
+        {
+          "name": "기요미즈데라",
+          "lat": 34.996,
+          "lng": 135.783,
+          "transport": "walk",
+          "media": "m017"
+        },
+        {
+          "name": "산넨자카",
+          "lat": 34.999,
+          "lng": 135.78,
+          "transport": "walk",
+          "media": "m019"
+        },
+        {
+          "name": "니시키 시장",
+          "lat": 35.005,
+          "lng": 135.765,
+          "transport": "walk",
+          "media": "m022"
+        },
+        {
+          "name": "폰토초",
+          "lat": 35.007,
+          "lng": 135.771,
+          "transport": "walk",
+          "media": "m024"
+        },
+        {
+          "name": "기온 시라카와",
+          "lat": 35.006,
+          "lng": 135.774,
+          "transport": "walk",
+          "media": "m026"
+        },
+        {
+          "name": "야사카 신사",
+          "lat": 35.003,
+          "lng": 135.778,
+          "transport": "walk",
+          "media": "m027"
+        }
       ]
     },
-
-    { "id": "day3", "template": "chapter-divider", "status": "draft", "index": "Day 3", "title": "야마자키", "subtitle": "2월 8일" },
-    { "id": "day3-train", "template": "video-cinematic", "status": "draft", "media": "m032", "caption": "야마자키로 가는 기차, 창밖에 눈이 내렸다." },
     {
-      "id": "day3-yamazaki", "template": "place-feature", "status": "draft", "media": "m034",
+      "id": "day3-train",
+      "template": "video-cinematic",
+      "status": "draft",
+      "media": "m032",
+      "caption": "야마자키로 가는 기차, 창밖에 눈이 내렸다."
+    },
+    {
+      "id": "day3",
+      "template": "kinetic-type",
+      "status": "draft",
+      "text": "야마자키",
+      "media": "m033",
+      "caption": "2월 8일, 야마자키"
+    },
+    {
+      "id": "day3-yamazaki",
+      "template": "place-feature",
+      "status": "draft",
+      "media": "m034",
       "name": "산토리 야마자키 증류소",
       "description": "눈 덮인 숲길을 지나 산토리 야마자키 증류소에 갔다. 증류기를 보고, 야마자키 12년을 포함한 위스키 세 잔을 맛봤다.",
-      "gallery": ["m033", "m035"]
-    },
-    {
-      "id": "day3-log", "template": "daily-timeline", "status": "draft", "day": "그날의 기록", "date": "2026-02-08",
-      "entries": [
-        { "time": "07:44", "title": "라멘", "media": "m031" },
-        { "time": "09:18", "title": "야마자키행 기차" },
-        { "time": "10:29", "title": "산토리 야마자키 증류소" },
-        { "time": "14:58", "title": "산토리 교토 맥주 공장", "media": "m037" },
-        { "time": "17:15", "title": "오사카로 돌아와 초밥", "media": "m040" }
+      "gallery": [
+        "m035"
       ]
     },
-
     {
-      "id": "closing", "template": "closing", "status": "needs_review", "media": "m043",
-      "line": "마지막 날 아침, 따뜻한 정식 한 상으로 여행을 닫았다.", "credit": "2026. 02 · 오사카 · 교토",
-      "memo": "line 은 사용자 요청으로 사실형 문장에 AI 가 감성을 얹은 것 — 미리보기에서 확인"
+      "id": "day3-film",
+      "template": "film-roll",
+      "status": "draft",
+      "heading": "2월 8일 오후",
+      "label": "2026.02.08",
+      "items": [
+        {
+          "media": "m036"
+        },
+        {
+          "media": "m038"
+        },
+        {
+          "media": "m039"
+        },
+        {
+          "media": "m041"
+        },
+        {
+          "media": "m042"
+        }
+      ]
+    },
+    {
+      "id": "day3-log",
+      "template": "daily-timeline",
+      "status": "draft",
+      "day": "그날의 기록",
+      "date": "2026-02-08",
+      "entries": [
+        {
+          "time": "07:44",
+          "title": "라멘",
+          "media": "m031"
+        },
+        {
+          "time": "09:18",
+          "title": "야마자키행 기차"
+        },
+        {
+          "time": "10:29",
+          "title": "산토리 야마자키 증류소"
+        },
+        {
+          "time": "14:58",
+          "title": "산토리 교토 맥주 공장",
+          "media": "m037"
+        },
+        {
+          "time": "17:15",
+          "title": "오사카로 돌아와 초밥",
+          "media": "m040"
+        }
+      ]
+    },
+    {
+      "id": "numbers",
+      "template": "travel-stats",
+      "status": "needs_review",
+      "heading": "숫자로 본 여행",
+      "stats": [
+        {
+          "label": "여행",
+          "value": 4,
+          "unit": "일"
+        },
+        {
+          "label": "찍은 사진",
+          "value": 41,
+          "unit": "장"
+        },
+        {
+          "label": "교토에서 걸은 길(추정)",
+          "value": 12,
+          "unit": "km"
+        }
+      ],
+      "memo": "4일=2/6~2/9, 41장=원본 폴더 사진 수, 12km=routes.json 도보 구간 합(사진 지점을 이은 추정)"
+    },
+    {
+      "id": "closing",
+      "template": "closing",
+      "status": "draft",
+      "media": "m043",
+      "line": "마지막 날 아침, 따뜻한 정식 한 상으로 여행을 닫았다.",
+      "credit": "2026. 02 · 오사카 · 교토"
     }
   ]
 }

@@ -12,6 +12,10 @@ export type ClientMedia = {
   /** 라이트박스용 전체 해상도 후보 */
   full: { src: string; width: number; height: number; srcSet: { src: string; width: number; height: number }[] };
   video?: { src?: string; scrub?: string; ambient?: string; duration: number; hasAudio: boolean };
+  /** node-vibrant 팔레트 (Vibrant, Muted, DarkVibrant, DarkMuted, LightVibrant, LightMuted) */
+  palette: Record<string, string>;
+  /** 촬영 현지 시각 "YYYY-MM-DDTHH:MM" */
+  taken?: string;
 };
 export type MediaMap = Record<string, ClientMedia>;
 
@@ -31,6 +35,8 @@ export function resolveAll(story: Story, manifest: MediaManifest): MediaMap {
       height: m.height,
       img,
       full: { ...srcSet[srcSet.length - 1], srcSet },
+      palette: m.palette ?? {},
+      taken: m.taken,
       ...(m.kind === 'video'
         ? {
             video: {

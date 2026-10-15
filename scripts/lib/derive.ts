@@ -196,7 +196,7 @@ async function deriveVideo(src: string, base: string, dir: string, usage: MediaU
   };
 }
 
-function hashFor(item: InventoryItem, sourceDir: string, opt?: MediaOptions) {
+export function hashFor(item: InventoryItem, sourceDir: string, opt?: MediaOptions) {
   const st = fs.statSync(path.join(sourceDir, item.file));
   const key = [DERIVE_VERSION, item.file, st.size, Math.round(st.mtimeMs), JSON.stringify(opt?.trim ?? null)].join('|');
   return crypto.createHash('sha1').update(key).digest('hex').slice(0, 8);
@@ -245,10 +245,12 @@ export async function deriveMedia(slug: string) {
     const base = `${id}-${hashFor(it, inv.sourceDir, opt)}`;
     const src = path.join(inv.sourceDir, it.file);
     try {
-      entries[id] =
+      const entry =
         it.kind === 'image'
           ? await deriveImage(src, base, dir, usage.get(id)!, id === story.cover)
           : await deriveVideo(src, base, dir, usage.get(id)!, opt);
+      // 촬영 현지 시각만 (시간대·GPS 는 넣지 않는다)
+      entries[id] = it.takenAt ? { ...entry, taken: it.takenAt.slice(0, 16) } : entry;
       process.stdout.write(`  ✓ ${id}\n`);
     } catch (e) {
       errors.push(`${id} (${it.file}): ${(e as Error).message}`);

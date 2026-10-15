@@ -2,6 +2,7 @@
  * TaleFrame CLI — 기계적인 일(스캔·변환·검증·업로드)은 전부 여기서 한다.
  * 판단(컷 선택·순서·자막·템플릿)은 travel-story 스킬이 한다.
  *
+ *   npm run tf -- status <slug>               어느 단계까지 했는지 (이어서 할 때 가장 먼저)
  *   npm run tf -- scan <폴더> --slug <slug>   원본 폴더 → work/<slug>/inventory.json + 썸네일 + 밀착 인화지
  *   npm run tf -- places <slug>               GPS 묶음 + 장소명 후보 (Nominatim)
  *   npm run tf -- catalog                     템플릿 카탈로그 (필드 포함)
@@ -18,6 +19,7 @@ import { deriveMedia } from './lib/derive';
 import { places } from './lib/places';
 import { routes } from './lib/routes';
 import { scan } from './lib/scan';
+import { status } from './lib/status';
 import { upload } from './lib/upload';
 import { weather } from './lib/weather';
 
@@ -31,6 +33,9 @@ const positional = rest.filter((a, i) => !a.startsWith('--') && rest[i - 1] !== 
 const need = (v: string | undefined, what: string) => v ?? fail(`${what} 가 필요하다 — scripts/tf.ts 상단 사용법 참고`);
 
 switch (cmd) {
+  case 'status':
+    status(need(positional[0], 'slug'));
+    break;
   case 'scan':
     await scan(need(positional[0], '폴더'), need(opt('--slug'), '--slug'));
     break;

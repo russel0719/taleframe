@@ -16,16 +16,30 @@
 | `src/templates/catalog.ts` | 템플릿 메타데이터 (`tf catalog` 로 스킬에 노출) |
 | `src/templates/registry.ts` | template id → React 컴포넌트. 여기 등록된 것만 렌더된다 |
 | `src/templates/StoryRenderer.tsx` | 미리보기와 게시가 공유하는 단일 렌더러 |
-| `scripts/tf.ts` | CLI: scan · places · catalog · media · weather · validate · upload · schema |
-| `scripts/shot.ts` | Playwright 스크롤 스크린샷 (스킬의 미리보기 점검용) |
+| `scripts/tf.ts` | CLI: status · scan · places · catalog · media · routes · weather · validate · upload · schema |
+| `scripts/shot.ts` | Playwright 스크롤 스크린샷 + 자동 검사(콘솔 오류·깨진 이미지·가로 넘침). `shot -- lab` 은 실험실 |
+| `src/templates/art.tsx` | 작품 템플릿 7종 (verse · color-field · film-roll · diptych · spotlight · riso-print · kinetic-type) |
+| `src/lib/lab.ts` · `/lab` | 템플릿 실험실 — 실제 스토리의 미디어로 모든 템플릿을 한 페이지에 (개발 전용) |
 
 ## 새 템플릿 추가 순서
 
 1. `schema.ts` 의 `sectionSchemas` 에 strict 스키마 추가
 2. `catalog.ts` 에 메타데이터, `mediaRefs()` 에 미디어 참조 추가
 3. 컴포넌트 작성 후 `registry.ts` 에 등록 (타입이 누락을 잡는다)
-4. `tests/fixtures/showcase.ts` 에 사용 예 추가 — 테스트가 "모든 템플릿 사용"을 강제한다
+4. `tests/fixtures/showcase.ts` 와 `src/lib/lab.ts` 의 `labSection()` 에 예시 추가 — 테스트가 둘 다 "모든 템플릿"을 강제한다
 5. `npm run tf -- schema` 로 `content/story.schema.json` 갱신
+6. **dev 서버를 재시작**하고 `npm run shot -- lab` 으로 데스크톱·모바일 시트를 직접 본다.
+   실제 화면으로 확인하기 전에는 스토리에 쓰지 않는다 (지난번 11종이 테스트만 통과한 채 남아 있었다)
+
+## 이번에 걸린 함정
+
+- **스크롤 애니메이션의 입력 구간은 0~1 안에서 증가해야 한다.** Motion 이 스크롤 연동을 WAAPI 로 넘길 때 음수나 1 초과,
+  겹친 오프셋이 있으면 "Offsets must be monotonically non-decreasing" 로 **페이지 렌더가 통째로 멈춘다** (그 뒤 섹션이 다 사라짐).
+- **스키마(`sectionSchemas`)를 바꾸면 dev 서버를 재시작한다.** Turbopack HMR 이 바뀐 스키마를 반영하지 못해 새 템플릿이 조용히 빠진다.
+- MapLibre 6 워커는 번들되지 않는다 → `scripts/copy-vendor.mjs` + `setWorkerUrl` (predev/prebuild).
+- Satori(OG 이미지)는 `inset` 을 모른다 — top/left/width/height 를 직접 준다.
+- 눈·비 같은 잔 디테일 영상은 CRF 만으로 15Mbps 를 넘는다 → `-maxrate`. 파생 규칙을 바꾸면 `DERIVE_VERSION` 을 올린다.
+- 색면 배경은 DarkMuted 부터 고르면 사진마다 같은 갈색이 된다 → DarkVibrant 우선.
 
 ## 규칙
 
@@ -34,6 +48,7 @@
 - 공개 사이트다: 파생 파일은 EXIF/GPS 제거(sharp 기본 + ffmpeg `-map_metadata -1`, 출력 후 ffprobe 로 재검사). 숙소 좌표 금지.
 - 반응형 + `prefers-reduced-motion` 존중 (모든 스크롤 장면에 정적 대체가 있다). 무거운 위젯(지도·파노라마·라이트박스)은 화면 근처에서만 로드.
 - 디자인 토큰은 `src/app/globals.css` 한곳 (`~/.claude/design.md` 값). 디자인 방향은 미정 — 바꿀 때 이 파일 위주로.
+  작품 섹션만 예외적으로 명조(`font-serif`, Noto Serif KR)·잡음 질감·사진 팔레트 색을 쓴다 (프로젝트 문서에 편차 기록).
 - 새 기능에는 테스트를 붙이고 `npm run typecheck && npm run lint && npm test && npm run build` 를 돌린다. 실제로 돌린 것과 결과를 그대로 보고한다.
 
 ## 명령

@@ -3,6 +3,7 @@ import path from 'node:path';
 import { profileFor, stopsKey } from '@/lib/story/routes';
 import { RoutesFile, Story, type RouteData, type RouteLeg } from '@/lib/story/schema';
 import { readJson, sleep, storyDir, workDir, writeJson } from './common';
+import { haversine, lodgingPoints, nearLodging, type LngLat } from './geo';
 import type { Inventory } from './scan';
 
 /**
@@ -17,12 +18,6 @@ const UA = 'TaleFrame/0.1 (personal travel story builder)';
 const MAX_VIA = 10;
 const MIN_GAP_M = 60;
 
-function haversine(a: [number, number], b: [number, number]) {
-  const R = 6371000;
-  const r = (d: number) => (d * Math.PI) / 180;
-  const h = Math.sin(r(b[1] - a[1]) / 2) ** 2 + Math.cos(r(a[1])) * Math.cos(r(b[1])) * Math.sin(r(b[0] - a[0]) / 2) ** 2;
-  return 2 * R * Math.asin(Math.sqrt(h));
-}
 
 function pathLength(coords: [number, number][]) {
   let m = 0;
@@ -31,7 +26,7 @@ function pathLength(coords: [number, number][]) {
 }
 
 /** 두 장소의 사진 촬영 시각 사이에 찍힌 사진들의 GPS (시간순, 너무 가까운 점은 버린다) */
-function waypoints(inv: Inventory | null, fromMedia?: string, toMedia?: string, ends: [number, number][] = []) {
+function waypoints(inv: Inventory | null, lodging: LngLat[], fromMedia?: string, toMedia?: string, ends: [number, number][] = []) {
   if (!inv || !fromMedia || !toMedia) return [];
   const byId = new Map(inv.items.map((it) => [it.id, it]));
   const t0 = byId.get(fromMedia)?.takenAt;
@@ -41,6 +36,8 @@ function waypoints(inv: Inventory | null, fromMedia?: string, toMedia?: string, 
   for (const it of [...inv.items].sort((a, b) => (a.takenAt ?? '').localeCompare(b.takenAt ?? ''))) {
     if (!it.gps || !it.takenAt || it.takenAt <= t0 || it.takenAt >= t1) continue;
     const p: [number, number] = [it.gps.lng, it.gps.lat];
+    // 숙소 근처에서 찍은 사진은 경유지로 쓰지 않는다 — 경로가 숙소 앞을 지나가게 그려지면 위치가 드러난다
+    if (nearLodging(p, lodging)) continue;
     if ([...ends, ...pts].some((q) => haversine(p, q) < MIN_GAP_M)) continue;
     pts.push(p);
   }
@@ -81,6 +78,7 @@ export async function routes(slug: string, { force = false } = {}) {
   const invPath = path.join(workDir(slug), 'inventory.json');
   const inv = fs.existsSync(invPath) ? readJson<Inventory>(invPath) : null;
   if (!inv) console.log('· work/ 에 inventory 가 없어 사진 경유지 없이 장소끼리만 잇는다');
+  const lodging = lodgingPoints(slug);
 
   const out: Record<string, RouteData> = {};
   const journeys = story.sections.filter((s) => s.template === 'map-journey');
@@ -103,12 +101,15 @@ export async function routes(slug: string, { force = false } = {}) {
         [a.lng, a.lat],
         [b.lng, b.lat],
       ];
+      for (const [k, st] of [[i - 1, a], [i, b]] as const) {
+        if (nearLodging([st.lng, st.lat], lodging)) throw new Error(`${s.id} stops[${k}] "${st.name}" 이 숙소 후보 반경 안이다 — 공개할 수 없다`);
+      }
       const profile = profileFor(b.transport);
       if (!b.transport) console.log(`  · ${s.id} ${i}구간: transport 가 없어 점선 직선으로 그린다`);
       let coords: [number, number][] = ends;
       let via = 0;
       if (profile !== 'straight') {
-        const vias = waypoints(inv, a.media, b.media, ends);
+        const vias = waypoints(inv, lodging, a.media, b.media, ends);
         try {
           coords = await osrm(profile, [ends[0], ...vias, ends[1]]);
           via = vias.length;

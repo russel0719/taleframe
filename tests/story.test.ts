@@ -4,6 +4,7 @@ import { ambientPlan, resolveAll } from '@/lib/resolve';
 import { profileFor, stopsKey } from '@/lib/story/routes';
 import { Story, templateIds, type SectionOf } from '@/lib/story/schema';
 import { checkStory } from '@/lib/story/validate';
+import { buildLab, labSection, pickMedia } from '@/lib/lab';
 import { catalog, collectUsage } from '@/templates/catalog';
 import { registry } from '@/templates/registry';
 import { resolveTones } from '@/templates/StoryRenderer';
@@ -122,6 +123,39 @@ describe('미디어', () => {
     expect(plan[0]).toMatch(/m010-12345678-ambient\.m4a$/);
     expect(plan[4]).toBe(plan[0]);
     expect(plan[5]).toBeNull();
+  });
+});
+
+describe('작품 섹션', () => {
+  it('작품 섹션이 연달아 오면 경고한다', () => {
+    const st = clone(showcase);
+    const i = st.sections.findIndex((x) => x.id === 'note1');
+    st.sections.splice(i, 1); // verse 다음에 바로 color-field
+    const warns = checkStory(st, manifest).filter((w) => w.level === 'warning');
+    expect(warns.some((w) => w.message.includes('작품 섹션'))).toBe(true);
+  });
+
+  it('필름 가장자리 글자는 영문 대문자만', () => {
+    const st = clone(showcase);
+    (st.sections.find((x) => x.id === 'film') as { label?: string }).label = '교토';
+    expect(Story.safeParse(st).success).toBe(false);
+  });
+});
+
+describe('실험실', () => {
+  it('모든 템플릿을 실제 미디어로 한 번씩 그린다', () => {
+    const lab = buildLab({ story: showcase, manifest });
+    expect(lab.skipped).toEqual([]);
+    expect(lab.story.sections.map((s) => s.template).sort()).toEqual([...templateIds].sort());
+    expect(Story.safeParse(lab.story).success).toBe(true);
+    expect(checkStory(lab.story, manifest).filter((i) => i.level === 'error')).toEqual([]);
+  });
+
+  it('영상이 없으면 영상 템플릿만 건너뛰고 알린다', () => {
+    const imagesOnly = { ...manifest, items: Object.fromEntries(Object.entries(manifest.items).filter(([, m]) => m.kind === 'image')) };
+    const pick = pickMedia(imagesOnly);
+    expect(labSection('scroll-scrub', pick)).toBeNull();
+    expect(labSection('verse', pick)).not.toBeNull();
   });
 });
 

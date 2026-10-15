@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { readJson, sleep, workDir, writeJson } from './common';
+import { haversine as distance, isLodging } from './geo';
 import { loadInventory } from './scan';
 
 /**
@@ -21,16 +22,10 @@ type Cluster = {
   from: string | null;
   to: string | null;
   candidate?: { name: string; area: string; type: string; display: string };
+  /** 숙소로 보이는 지점 — 좌표·경로 경유지로 절대 공개하지 않는다 */
+  lodging?: boolean;
 };
 
-function haversine(a: { lat: number; lng: number }, b: { lat: number; lng: number }) {
-  const R = 6371000;
-  const toRad = (d: number) => (d * Math.PI) / 180;
-  const dLat = toRad(b.lat - a.lat);
-  const dLng = toRad(b.lng - a.lng);
-  const h = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(a.lat)) * Math.cos(toRad(b.lat)) * Math.sin(dLng / 2) ** 2;
-  return 2 * R * Math.asin(Math.sqrt(h));
-}
 
 type NominatimResult = {
   name?: string;
@@ -66,7 +61,7 @@ export async function places(slug: string) {
   const clusters: Cluster[] = [];
   for (const it of pts) {
     const last = clusters[clusters.length - 1];
-    if (last && haversine(last, it.gps!) <= RADIUS_M) {
+    if (last && distance([last.lng, last.lat], [it.gps!.lng, it.gps!.lat]) <= RADIUS_M) {
       last.lat = (last.lat * last.ids.length + it.gps!.lat) / (last.ids.length + 1);
       last.lng = (last.lng * last.ids.length + it.gps!.lng) / (last.ids.length + 1);
       last.ids.push(it.id);
@@ -89,6 +84,7 @@ export async function places(slug: string) {
         type: [r.category, r.type].filter(Boolean).join('/'),
         display: r.display_name ?? '',
       };
+      c.lodging = isLodging(c.candidate);
     } catch (e) {
       console.log(`  ✗ #${c.n}: ${(e as Error).message}`);
     }
@@ -105,7 +101,7 @@ export async function places(slug: string) {
   for (const c of clusters) {
     const t = c.from?.slice(5, 16).replace('T', ' ') ?? '?';
     const name = c.candidate ? `${c.candidate.name || '(이름 없음)'} — ${c.candidate.area} [${c.candidate.type}]` : '(조회 실패)';
-    console.log(`  ${String(c.n).padStart(2)}  ${t}  ${String(c.ids.length).padStart(3)}  ${name}`);
+    console.log(`  ${String(c.n).padStart(2)}  ${t}  ${String(c.ids.length).padStart(3)}  ${name}${c.lodging ? '  ⚠ 숙소 — 공개 금지' : ''}`);
     console.log(`      ${c.ids.join(' ')}`);
   }
   console.log(`\n✓ work/${slug}/places.json · 장소명은 "후보"다. 반드시 사용자에게 확인받는다.`);

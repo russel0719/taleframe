@@ -123,7 +123,8 @@ function StickyLayer({ progress, i, n, children }: { progress: MotionValue<numbe
   // 컨테이너 높이 (n + 0.5) 화면, 글 카드 i 가 화면 가운데에 오는 진행도 = i / (n - 0.5).
   // 앞 카드가 반쯤 올라갔을 때 사진을 바꾸기 시작해, 카드가 가운데 오기 전에 다 바꾼다 — 두 사진이 겹쳐 보이지 않게
   const u = 1 / (n - 0.5);
-  const opacity = useTransform(progress, i === 0 ? [0, 1] : [(i - 0.5) * u, (i - 0.15) * u], i === 0 ? [1, 1] : [0, 1]);
+  // 디졸브는 화면 높이의 15% 동안만 — 길면 켄 번스 확대와 겹쳐 두 사진이 오래 겹쳐 보인다
+  const opacity = useTransform(progress, i === 0 ? [0, 1] : [(i - 0.42) * u, (i - 0.27) * u], i === 0 ? [1, 1] : [0, 1]);
   // 단계마다 아주 천천히 다가간다 (켄 번스)
   const scale = useTransform(progress, [Math.max(0, (i - 0.5) * u), (i + 0.5) * u], [1, 1.08]);
   return (

@@ -7,7 +7,7 @@ import type { MediaId, Section, TemplateId } from '@/lib/story/schema';
 export type TemplateDefinition = {
   id: TemplateId;
   name: string;
-  category: 'hero' | 'text' | 'gallery' | 'video' | 'place' | 'food' | 'timeline' | 'reflection';
+  category: 'hero' | 'text' | 'gallery' | 'video' | 'place' | 'food' | 'timeline' | 'reflection' | 'art';
   description: string;
   suitableFor: string[];
   /** 고르면 안 되는 경우 */
@@ -17,6 +17,8 @@ export type TemplateDefinition = {
   defaultTone: 'light' | 'parchment' | 'dark';
   /** 화면 하나를 넘게 차지하는 스크롤 장면인지 — 연달아 두면 지친다 */
   tall?: boolean;
+  /** 강한 연출. 한 스토리에 몇 번, 어디에 둘지 composition.md 의 "작품 섹션" 규칙을 따른다 */
+  art?: boolean;
 };
 
 export const catalog: Record<TemplateId, TemplateDefinition> = {
@@ -264,6 +266,88 @@ export const catalog: Record<TemplateId, TemplateDefinition> = {
     motionLevel: 'subtle',
     defaultTone: 'dark',
   },
+  verse: {
+    id: 'verse',
+    name: 'Verse (세로쓰기 시)',
+    category: 'art',
+    description: '한지 같은 여백 위에 세로로 쓴 시. 스크롤하면 한 줄씩 먹이 번지듯 나타나고, 옆에 사진 한 장이 족자처럼 걸린다.',
+    suitableFor: ['장 사이의 숨 고르기', '신사·정원·눈처럼 고요한 장면', '사용자가 남긴 짧은 메모'],
+    avoidWhen: ['줄마다 24자를 넘는 긴 문장', '사실 정보 전달 (그건 fact-card)'],
+    motionLevel: 'subtle',
+    defaultTone: 'parchment',
+    tall: true,
+    art: true,
+  },
+  'color-field': {
+    id: 'color-field',
+    name: 'Color Field (색면)',
+    category: 'art',
+    description: '사진마다 대표색으로 화면 전체가 물들고, 사진은 그 색면 위에 떠 있다. 색 견본처럼 색 코드가 붙는다.',
+    suitableFor: ['색이 강한 사진 묶음 (주홍·말차·네온)', '"그 도시의 색"이라는 주제'],
+    avoidWhen: ['색이 비슷한 사진만 있을 때 (변화가 안 느껴진다)', '어둡고 탁한 사진'],
+    motionLevel: 'cinematic',
+    defaultTone: 'dark',
+    tall: true,
+    art: true,
+  },
+  'film-roll': {
+    id: 'film-roll',
+    name: 'Film Roll (필름)',
+    category: 'art',
+    description: '35mm 필름 띠가 스크롤에 따라 가로로 흐른다. 가장자리에 프레임 번호와 촬영 시각이 인화된다.',
+    suitableFor: ['하룻밤·한나절의 연속된 스냅 4~12장', '시간 흐름이 있는 거리 사진'],
+    avoidWhen: ['한 장 한 장 자세히 봐야 하는 사진'],
+    motionLevel: 'cinematic',
+    defaultTone: 'dark',
+    tall: true,
+    art: true,
+  },
+  diptych: {
+    id: 'diptych',
+    name: 'Exhibition (전시 벽)',
+    category: 'art',
+    description: '미술관 벽에 매트와 액자로 건 2~3점. 작품마다 제목·메모가 적힌 캡션 카드가 붙는다.',
+    suitableFor: ['구도가 좋은 사진 2~3장을 나란히', '같은 날 다른 장소의 대비'],
+    avoidWhen: ['제목을 붙일 수 없는 사진 (title 필수)'],
+    motionLevel: 'subtle',
+    defaultTone: 'parchment',
+    art: true,
+  },
+  spotlight: {
+    id: 'spotlight',
+    name: 'Spotlight (어둠 속 빛)',
+    category: 'art',
+    description: '어둠 속에서 손전등처럼 빛이 비추는 곳만 보이다가(데스크톱은 마우스, 모바일은 스크롤), 끝에서 전부 드러난다.',
+    suitableFor: ['밤 장면, 네온, 등불', '숨은 디테일이 많은 사진'],
+    avoidWhen: ['낮 풍경 (어둠이 어색하다)', '연달아 두 번'],
+    motionLevel: 'cinematic',
+    defaultTone: 'dark',
+    tall: true,
+    art: true,
+  },
+  'riso-print': {
+    id: 'riso-print',
+    name: 'Riso Print (리소 인쇄)',
+    category: 'art',
+    description: '두 가지 잉크로 찍은 리소그래프 포스터처럼. 망점, 살짝 어긋난 판, 큰 제목. 누르면 원본 색으로 본다.',
+    suitableFor: ['형태가 뚜렷한 사진 (간판, 건물, 음식 한 그릇)', '유쾌하거나 진(zine) 같은 톤'],
+    avoidWhen: ['사람 얼굴이 크게 나온 사진', '디테일이 핵심인 풍경'],
+    motionLevel: 'subtle',
+    defaultTone: 'light',
+    art: true,
+  },
+  'kinetic-type': {
+    id: 'kinetic-type',
+    name: 'Kinetic Type (글자 속으로)',
+    category: 'art',
+    description: '화면을 채운 거대한 글자 안에 사진이 차 있다가, 스크롤하면 글자 속으로 빨려 들어가며 사진이 펼쳐진다.',
+    suitableFor: ['챕터 시작 (도시 이름 한 단어)', '여행의 핵심어 하나'],
+    avoidWhen: ['6자를 넘는 말 (글자가 작아져 효과가 죽는다)'],
+    motionLevel: 'cinematic',
+    defaultTone: 'dark',
+    tall: true,
+    art: true,
+  },
   closing: {
     id: 'closing',
     name: 'Closing',
@@ -328,6 +412,19 @@ export function mediaRefs(s: Section): MediaRef[] {
       break;
     case 'daily-timeline':
       s.entries.forEach((e, i) => add(e.media, 'image', `entries[${i}].media`));
+      break;
+    case 'verse':
+    case 'spotlight':
+    case 'riso-print':
+    case 'kinetic-type':
+      add('media' in s ? s.media : undefined, 'image', 'media');
+      break;
+    case 'color-field':
+    case 'film-roll':
+      s.items.forEach((it, i) => add(it.media, 'image', `items[${i}].media`));
+      break;
+    case 'diptych':
+      s.works.forEach((w, i) => add(w.media, 'image', `works[${i}].media`));
       break;
     case 'globe-intro':
     case 'fact-card':

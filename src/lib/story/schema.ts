@@ -36,6 +36,7 @@ const base = {
 const Fact = z.strictObject({ label: Text(20), value: Text(60) });
 const Item = z.strictObject({ media: MediaId, caption: Text(80).optional() });
 const Point = z.strictObject({ lat: Lat, lng: Lng, zoom: z.number().min(1).max(18).optional() });
+const Hex = z.string().regex(/^#[0-9a-fA-F]{6}$/, '#rrggbb');
 
 export const sectionSchemas = {
   // ── A. 오프닝 ──────────────────────────────────────────────
@@ -279,6 +280,70 @@ export const sectionSchemas = {
     line: Text(120),
     credit: Text(60).optional(),
   }),
+
+  // ── H. 작품 — 기록을 넘어 한 장면을 작품처럼 ────────────────
+  /** 세로쓰기 시. 스크롤에 따라 한 줄씩 먹이 번지듯 나타난다 */
+  verse: z.strictObject({
+    ...base,
+    template: z.literal('verse'),
+    lines: z.array(Text(24)).min(1).max(8),
+    media: MediaId.optional(),
+    attribution: Text(40).optional(),
+  }),
+  /** 사진마다 대표색으로 화면 전체가 물든다 (media.json 팔레트) */
+  'color-field': z.strictObject({
+    ...base,
+    template: z.literal('color-field'),
+    heading: Text(40).optional(),
+    items: z.array(Item).min(2).max(5),
+  }),
+  /** 35mm 필름 띠가 스크롤에 따라 가로로 흘러간다. 프레임 번호와 촬영 시각 */
+  'film-roll': z.strictObject({
+    ...base,
+    template: z.literal('film-roll'),
+    heading: Text(40).optional(),
+    /** 필름 가장자리에 찍히는 글자 (예: "KYOTO 2026") */
+    label: z.string().regex(/^[A-Z0-9 .·-]{1,24}$/, '영문 대문자·숫자 24자 이내').optional(),
+    items: z.array(Item).min(4).max(12),
+  }),
+  /** 전시 벽: 매트와 액자, 작품 캡션(placard) */
+  diptych: z.strictObject({
+    ...base,
+    template: z.literal('diptych'),
+    heading: Text(40).optional(),
+    /** 전시 서문 */
+    statement: Text(240).optional(),
+    works: z
+      .array(z.strictObject({ media: MediaId, title: Text(30), note: Text(80).optional() }))
+      .min(2)
+      .max(3),
+  }),
+  /** 어둠 속에서 빛이 비추는 곳만 보이다가, 끝에서 전부 드러난다 */
+  spotlight: z.strictObject({
+    ...base,
+    template: z.literal('spotlight'),
+    media: MediaId,
+    caption: Text(80).optional(),
+    place: Text(40).optional(),
+  }),
+  /** 두 가지 잉크로 찍은 리소그래프 포스터. 망점과 어긋난 판 */
+  'riso-print': z.strictObject({
+    ...base,
+    template: z.literal('riso-print'),
+    media: MediaId,
+    title: Text(20).optional(),
+    caption: Text(80).optional(),
+    /** 잉크 두 가지. 없으면 사진 팔레트에서 고른다 */
+    inks: z.tuple([Hex, Hex]).optional(),
+  }),
+  /** 거대한 글자 안에 사진이 차 있다가, 글자 속으로 빨려 들어가며 사진이 펼쳐진다 */
+  'kinetic-type': z.strictObject({
+    ...base,
+    template: z.literal('kinetic-type'),
+    text: Text(12),
+    media: MediaId.optional(),
+    caption: Text(80).optional(),
+  }),
 } as const;
 
 export type TemplateId = keyof typeof sectionSchemas;
@@ -354,6 +419,8 @@ export const MediaEntry = z.strictObject({
   ambient: z.boolean().optional(),
   /** 공유 카드용 1200x630 jpg 가 있는지 (cover 만) */
   og: z.boolean().optional(),
+  /** 촬영 현지 시각 "YYYY-MM-DDTHH:MM" (시간대·GPS 없음) — 필름 프레임 등에 표시 */
+  taken: z.string().regex(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/).optional(),
 });
 export type MediaEntry = z.infer<typeof MediaEntry>;
 

@@ -47,6 +47,8 @@
 
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Pretendard Variable", Pretendard, system-ui,
     "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  /* 작품 섹션 전용 명조 — next/font 가 layout 에서 --font-noto-serif 를 채운다 */
+  --font-serif: var(--font-noto-serif), "Noto Serif KR", "AppleMyungjo", serif;
   --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Pretendard Variable", Pretendard, system-ui,
     "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
 }
@@ -242,6 +244,19 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* 필름 잡음 — 작품 섹션의 질감 */
+@keyframes tf-grain {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-3%, 2%); }
+  50% { transform: translate(2%, -3%); }
+  75% { transform: translate(-2%, -1%); }
+  100% { transform: translate(0, 0); }
+}
+.tf-grain {
+  inset: -10%;
+  animation: tf-grain 0.8s steps(4) infinite;
 }
 
 /* 목록 ↔ 스토리 전환 (React ViewTransition) */
