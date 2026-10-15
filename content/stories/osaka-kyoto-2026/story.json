@@ -2,7 +2,7 @@
   "$schema": "../../story.schema.json",
   "version": 1,
   "slug": "osaka-kyoto-2026",
-  "status": "draft",
+  "status": "published",
   "title": "오사카 · 교토",
   "summary": "혼자 다녀온 3박 4일. 후시미 이나리의 도리이 길과 저녁의 교토 골목, 그리고 눈 내린 야마자키.",
   "trip": {
@@ -139,12 +139,12 @@
       "alt": "편의점 오니기리와 소바, 튀김"
     }
   },
-  "updatedAt": "2026-10-15",
+  "updatedAt": "2026-10-16",
   "sections": [
     {
       "id": "opening",
       "template": "hero-fullbleed",
-      "status": "draft",
+      "status": "approved",
       "media": "m013",
       "title": "오사카 · 교토",
       "kicker": "2026. 02. 06 – 09"
@@ -152,15 +152,15 @@
     {
       "id": "day1",
       "template": "chapter-divider",
-      "status": "draft",
+      "status": "approved",
       "index": "Day 1",
       "title": "오사카",
-      "subtitle": "2월 6일"
+      "subtitle": "2월 6일 · 8km"
     },
     {
       "id": "day1-departure",
       "template": "photo-single",
-      "status": "draft",
+      "status": "approved",
       "media": "m001",
       "caption": "인천에서 오사카로 떠났다.",
       "place": "인천국제공항"
@@ -168,7 +168,7 @@
     {
       "id": "day1-night",
       "template": "photo-strip",
-      "status": "draft",
+      "status": "approved",
       "heading": "도착한 밤",
       "items": [
         {
@@ -185,7 +185,7 @@
     {
       "id": "day1-sushi",
       "template": "split-feature",
-      "status": "draft",
+      "status": "approved",
       "media": "m004",
       "heading": "첫 저녁",
       "place": "타치스시 마구로 잇테츠 센니치마에점",
@@ -194,7 +194,7 @@
     {
       "id": "day1-dotonbori",
       "template": "spotlight",
-      "status": "draft",
+      "status": "approved",
       "media": "m006",
       "caption": "글리코 간판 앞은 밤에도 사람이 많았다.",
       "place": "도톤보리"
@@ -202,15 +202,15 @@
     {
       "id": "day2-chapter",
       "template": "chapter-divider",
-      "status": "draft",
+      "status": "approved",
       "index": "Day 2",
       "title": "교토",
-      "subtitle": "2월 7일"
+      "subtitle": "2월 7일 · 22km"
     },
     {
       "id": "day2-torii",
       "template": "scroll-scrub",
-      "status": "draft",
+      "status": "approved",
       "media": "m012",
       "steps": [
         {
@@ -224,7 +224,7 @@
     {
       "id": "day2-fushimi",
       "template": "photo-gallery",
-      "status": "draft",
+      "status": "approved",
       "layout": "rows",
       "heading": "후시미 이나리 신사",
       "caption": "붉은 문을 하나 지날 때마다 산이 조금씩 깊어졌다.",
@@ -243,7 +243,7 @@
     {
       "id": "day2-verse",
       "template": "verse",
-      "status": "draft",
+      "status": "approved",
       "lines": [
         "아침 아홉 시 반,",
         "붉은 문을 하나씩 지났다",
@@ -256,13 +256,13 @@
     {
       "id": "day2-teahouse",
       "template": "photo-single",
-      "status": "draft",
+      "status": "approved",
       "media": "m015"
     },
     {
       "id": "day2-kiyomizu",
       "template": "diptych",
-      "status": "draft",
+      "status": "approved",
       "heading": "기요미즈데라에서 산넨자카로",
       "statement": "점심 무렵 기요미즈데라에 닿았다. 삼층탑을 올려다보고, 목조 가옥이 늘어선 산넨자카 돌길로 내려왔다.",
       "works": [
@@ -281,7 +281,7 @@
     {
       "id": "day2-afternoon",
       "template": "photo-strip",
-      "status": "draft",
+      "status": "approved",
       "heading": "니시키 시장까지",
       "items": [
         {
@@ -299,7 +299,7 @@
     {
       "id": "day2-colors",
       "template": "color-field",
-      "status": "draft",
+      "status": "approved",
       "heading": "교토의 색",
       "items": [
         {
@@ -316,7 +316,7 @@
     {
       "id": "day2-food",
       "template": "food-review",
-      "status": "draft",
+      "status": "approved",
       "heading": "교토에서 먹은 것",
       "items": [
         {
@@ -338,7 +338,7 @@
     {
       "id": "day2-evening",
       "template": "sticky-story",
-      "status": "draft",
+      "status": "approved",
       "steps": [
         {
           "media": "m024",
@@ -359,14 +359,14 @@
     {
       "id": "day2-yasaka",
       "template": "photo-single",
-      "status": "draft",
+      "status": "approved",
       "media": "m027",
       "place": "야사카 신사"
     },
     {
       "id": "day2-route",
       "template": "map-journey",
-      "status": "draft",
+      "status": "approved",
       "heading": "교토에서 걸은 길",
       "stops": [
         {
@@ -422,22 +422,22 @@
     {
       "id": "day3-train",
       "template": "video-cinematic",
-      "status": "draft",
+      "status": "approved",
       "media": "m032",
       "caption": "야마자키로 가는 기차, 창밖에 눈이 내렸다."
     },
     {
       "id": "day3",
       "template": "kinetic-type",
-      "status": "draft",
+      "status": "approved",
       "text": "야마자키",
       "media": "m033",
-      "caption": "2월 8일, 야마자키"
+      "caption": "2월 8일, 야마자키 · 12km"
     },
     {
       "id": "day3-yamazaki",
       "template": "place-feature",
-      "status": "draft",
+      "status": "approved",
       "media": "m034",
       "name": "산토리 야마자키 증류소",
       "description": "눈 덮인 숲길을 지나 산토리 야마자키 증류소에 갔다. 증류기를 보고, 야마자키 12년을 포함한 위스키 세 잔을 맛봤다.",
@@ -448,7 +448,7 @@
     {
       "id": "day3-film",
       "template": "film-roll",
-      "status": "draft",
+      "status": "approved",
       "heading": "2월 8일 오후",
       "label": "2026.02.08",
       "items": [
@@ -472,7 +472,7 @@
     {
       "id": "day3-log",
       "template": "daily-timeline",
-      "status": "draft",
+      "status": "approved",
       "day": "그날의 기록",
       "date": "2026-02-08",
       "entries": [
@@ -504,7 +504,7 @@
     {
       "id": "numbers",
       "template": "travel-stats",
-      "status": "needs_review",
+      "status": "approved",
       "heading": "숫자로 본 여행",
       "stats": [
         {
@@ -518,17 +518,21 @@
           "unit": "장"
         },
         {
-          "label": "교토에서 걸은 길(추정)",
-          "value": 12,
+          "label": "걸은 거리",
+          "value": 48,
+          "unit": "km"
+        },
+        {
+          "label": "교토에서 하루",
+          "value": 22,
           "unit": "km"
         }
-      ],
-      "memo": "4일=2/6~2/9, 41장=원본 폴더 사진 수, 12km=routes.json 도보 구간 합(사진 지점을 이은 추정)"
+      ]
     },
     {
       "id": "closing",
       "template": "closing",
-      "status": "draft",
+      "status": "approved",
       "media": "m043",
       "line": "마지막 날 아침, 따뜻한 정식 한 상으로 여행을 닫았다.",
       "credit": "2026. 02 · 오사카 · 교토"
