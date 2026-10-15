@@ -1,0 +1,251 @@
+@import "tailwindcss";
+
+/*
+ * 디자인 토큰 — ~/.claude/design.md 의 값을 그대로 옮겼다.
+ * 디자인 방향은 "추후 결정" 상태라, 바꿀 때 이 블록과 아래 타이포 클래스만 고치면 되도록 한곳에 모았다.
+ */
+@theme {
+  --color-primary: #0066cc;
+  --color-primary-focus: #0071e3;
+  --color-primary-on-dark: #2997ff;
+  --color-canvas: #ffffff;
+  --color-parchment: #f5f5f7;
+  --color-pearl: #fafafc;
+  --color-tile-1: #272729;
+  --color-tile-2: #2a2a2c;
+  --color-tile-3: #252527;
+  --color-void: #000000;
+  --color-chip: rgba(210, 210, 215, 0.64);
+  --color-ink: #1d1d1f;
+  --color-on-dark: #ffffff;
+  --color-muted-on-dark: #cccccc;
+  --color-ink-80: #333333;
+  --color-ink-48: #7a7a7a;
+  --color-divider-soft: #f0f0f0;
+  --color-hairline: #e0e0e0;
+
+  --spacing-xxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 17px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-section: 80px;
+
+  --radius-xs: 5px;
+  --radius-sm: 8px;
+  --radius-md: 11px;
+  --radius-lg: 18px;
+  --radius-pill: 9999px;
+
+  --shadow-product: rgba(0, 0, 0, 0.22) 3px 5px 30px 0;
+
+  --breakpoint-phone: 640px;
+  --breakpoint-tablet: 834px;
+  --breakpoint-desktop: 1069px;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Pretendard Variable", Pretendard, system-ui,
+    "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Pretendard Variable", Pretendard, system-ui,
+    "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+
+/* ── 타이포그래피 ({typography.*}) ─────────────────────────────── */
+@utility t-hero {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 1.07;
+  letter-spacing: -0.28px;
+  @media (width <= 1068px) { font-size: 40px; line-height: 1.1; }
+  @media (width <= 640px) { font-size: 34px; }
+  @media (width <= 419px) { font-size: 28px; }
+}
+@utility t-display-lg {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.1;
+  @media (width <= 640px) { font-size: 32px; }
+}
+@utility t-display-md {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.374px;
+  @media (width <= 640px) { font-size: 28px; }
+}
+@utility t-lead {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.14;
+  letter-spacing: 0.196px;
+  @media (width <= 640px) { font-size: 22px; line-height: 1.3; }
+}
+@utility t-lead-airy {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.5;
+  @media (width <= 640px) { font-size: 20px; }
+}
+@utility t-tagline {
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.19;
+  letter-spacing: 0.231px;
+}
+@utility t-body {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.47;
+  letter-spacing: -0.374px;
+}
+@utility t-body-strong {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.24;
+  letter-spacing: -0.374px;
+}
+@utility t-caption {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: -0.224px;
+}
+@utility t-caption-strong {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.29;
+  letter-spacing: -0.224px;
+}
+@utility t-fine {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.12px;
+}
+
+/* ── 섹션 톤 — 밝은/어두운 타일이 번갈아 나오며 색 변화 자체가 구분선이 된다 ── */
+@utility tone-light {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  --tone-muted: var(--color-ink-48);
+  --tone-link: var(--color-primary);
+  --tone-card: var(--color-canvas);
+  --tone-line: var(--color-hairline);
+}
+@utility tone-parchment {
+  background: var(--color-parchment);
+  color: var(--color-ink);
+  --tone-muted: var(--color-ink-48);
+  --tone-link: var(--color-primary);
+  --tone-card: var(--color-canvas);
+  --tone-line: var(--color-hairline);
+}
+@utility tone-dark {
+  background: var(--color-tile-1);
+  color: var(--color-on-dark);
+  --tone-muted: var(--color-muted-on-dark);
+  --tone-link: var(--color-primary-on-dark);
+  --tone-card: var(--color-tile-2);
+  --tone-line: rgba(255, 255, 255, 0.12);
+}
+/* 어두운 타일이 연달아 오면 한 단계 밝은 타일로 아주 옅게 구분 */
+@utility tone-dark-2 {
+  background: var(--color-tile-2);
+  color: var(--color-on-dark);
+  --tone-muted: var(--color-muted-on-dark);
+  --tone-link: var(--color-primary-on-dark);
+  --tone-card: var(--color-tile-1);
+  --tone-line: rgba(255, 255, 255, 0.12);
+}
+
+@utility section-pad {
+  padding-block: var(--spacing-section);
+  padding-inline: 22px;
+  @media (width <= 640px) { padding-block: var(--spacing-xxl); padding-inline: 16px; }
+}
+
+@utility text-muted {
+  color: var(--tone-muted);
+}
+
+/* {component.button-primary} */
+@utility btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--story-accent, var(--color-primary));
+  color: #fff;
+  border-radius: var(--radius-pill);
+  padding: 11px 22px;
+  font-size: 17px;
+  line-height: 1;
+  transition: transform 0.1s;
+  &:active { transform: scale(0.95); }
+  &:focus-visible { outline: 2px solid var(--color-primary-focus); outline-offset: 2px; }
+}
+
+/* {component.button-icon-circular} — 사진 위에 뜨는 원형 컨트롤 */
+@utility btn-chip {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  background: var(--color-chip);
+  color: var(--color-ink);
+  backdrop-filter: saturate(180%) blur(20px);
+  transition: transform 0.1s;
+  &:active { transform: scale(0.95); }
+  &:focus-visible { outline: 2px solid var(--color-primary-focus); outline-offset: 2px; }
+}
+
+/* ── 기본 ───────────────────────────────────────────────────────── */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.47;
+  letter-spacing: -0.374px;
+  color: var(--color-ink);
+  background: var(--color-canvas);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary-focus);
+  outline-offset: 2px;
+}
+
+/* 사진 위 글자 가독성을 위한 기능적 스크림 (장식용 그라데이션이 아니다) */
+.scrim-bottom {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0) 70%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 목록 ↔ 스토리 전환 (React ViewTransition) */
+::view-transition-group(*) {
+  animation-duration: 420ms;
+  animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
