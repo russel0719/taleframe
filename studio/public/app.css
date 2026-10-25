@@ -71,6 +71,13 @@ textarea { resize: vertical; margin-top: 10px; }
 .job.error h2 { color: var(--warn); }
 .meter { height: 6px; background: var(--parchment); border-radius: 3px; overflow: hidden; margin-bottom: 10px; }
 .meter div { height: 100%; background: var(--primary); transition: width 0.4s; }
+.meter.wait div { width: 30%; animation: meter-wait 1.6s ease-in-out infinite; }
+@keyframes meter-wait { from { transform: translateX(-100%); } to { transform: translateX(340%); } }
+@media (prefers-reduced-motion: reduce) { .meter.wait div { animation: none; width: 100%; opacity: 0.35; } }
+.eta { font-size: 13px; color: var(--ink-48); margin: 0 0 4px; font-variant-numeric: tabular-nums; }
+.now { font-size: 13px; margin: 0 0 10px; overflow-wrap: anywhere; }
+.now:empty, .eta:empty { display: none; }
+.now.quiet { color: var(--warn); }
 pre { white-space: pre-wrap; word-break: break-all; font-size: 12px; line-height: 1.5; background: var(--parchment); padding: 10px; border-radius: var(--radius-sm); max-height: 260px; overflow: auto; }
 pre.err { color: var(--warn); }
 

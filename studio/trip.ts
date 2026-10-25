@@ -61,14 +61,17 @@ export function tripMeta(slug: string) {
   return readJsonFile<{ name: string; createdAt: string } | null>(S(slug, 'meta.json'), null);
 }
 
-export function createTrip(name: string): string {
-  const ascii = name
-    .normalize('NFKD')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-    .slice(0, 40);
-  const base = ascii || `trip-${new Date().toISOString().slice(0, 10).replaceAll('-', '')}`;
+/** 게시 주소가 된다. 한글 이름에서 숫자만 남으면("다카마쓰 2026" → "2026") 쓰지 않는다 — 영문 주소를 따로 받는다 */
+export function createTrip(name: string, address = ''): string {
+  const kebab = (s: string) =>
+    s
+      .normalize('NFKD')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .slice(0, 40);
+  const fromName = kebab(name);
+  const base = kebab(address) || (/[a-z]/.test(fromName) ? fromName : `trip-${new Date().toISOString().slice(0, 10).replaceAll('-', '')}`);
   let slug = base;
   for (let i = 2; fs.existsSync(slugDir(slug)) || fs.existsSync(path.join(STORIES, slug)); i++) slug = `${base}-${i}`;
   fs.mkdirSync(path.join(slugDir(slug), 'inbox'), { recursive: true });
@@ -228,7 +231,7 @@ async function analyze(ctx: Ctx, slug: string) {
       schema: AnalysisBatch,
       slug,
       model: ANALYZE_MODEL,
-      log: ctx.log,
+      log: ctx.log, activity: ctx.activity,
     });
     ctx.cost(r.costUsd);
     // 시트마다 바로 디스크에 — 끊겨도 본 데까지는 남는다
@@ -249,7 +252,7 @@ async function ask(ctx: Ctx, slug: string) {
     const phases = readJsonFile<Record<string, boolean>>(S(slug, 'phases.json'), {});
     if (phases[phase]) continue;
     ctx.step(phase === 'photos' ? '① 사진 질문 준비' : '② 웹 방향 질문 준비');
-    const r = await runClaude({ prompt: phasePrompt(slug, phase), schema: QuestionStep, slug, write: true, log: ctx.log });
+    const r = await runClaude({ prompt: phasePrompt(slug, phase), schema: QuestionStep, slug, write: true, log: ctx.log, activity: ctx.activity });
     ctx.cost(r.costUsd);
     if (r.data.kind === 'questions' && r.data.questions?.length) {
       writeJsonFile(S(slug, 'next.json'), { phase, ...r.data });
@@ -261,7 +264,7 @@ async function ask(ctx: Ctx, slug: string) {
   }
   if (!tripState(slug).planApproved) {
     ctx.step('③ 레이아웃 짜기');
-    const r = await runClaude({ prompt: layoutPrompt(slug), schema: PlanStep, slug, write: true, log: ctx.log });
+    const r = await runClaude({ prompt: layoutPrompt(slug), schema: PlanStep, slug, write: true, log: ctx.log, activity: ctx.activity });
     ctx.cost(r.costUsd);
     writeJsonFile(S(slug, 'next.json'), { phase: 'layout', kind: 'plan', ...r.data });
     ctx.log(`· 배치표 ${r.data.plan.rows.length}개 섹션`);
@@ -274,7 +277,7 @@ async function ask(ctx: Ctx, slug: string) {
 async function draft(ctx: Ctx, slug: string, mode: 'write' | 'rebuild') {
   if (mode === 'write') {
     ctx.step('④ 초안 쓰기');
-    const r = await runClaude({ prompt: writePrompt(slug), schema: WriteResult, slug, write: true, log: ctx.log, timeoutMs: 30 * 60_000 });
+    const r = await runClaude({ prompt: writePrompt(slug), schema: WriteResult, slug, write: true, log: ctx.log, activity: ctx.activity, timeoutMs: 30 * 60_000 });
     ctx.cost(r.costUsd);
     ctx.log(`· ${r.data.title} — 섹션 ${r.data.sections}개. ${r.data.summary}`);
   }
@@ -298,14 +301,14 @@ async function draft(ctx: Ctx, slug: string, mode: 'write' | 'rebuild') {
       if (attempt >= 2) throw e;
       ctx.step('검증 오류 고치기');
       const errors = (e as Error).message.split('\n').filter((l) => l.includes('✗')).join('\n');
-      const r = await runClaude({ prompt: fixPrompt(slug, errors), schema: WriteResult, slug, write: true, log: ctx.log });
+      const r = await runClaude({ prompt: fixPrompt(slug, errors), schema: WriteResult, slug, write: true, log: ctx.log, activity: ctx.activity });
       ctx.cost(r.costUsd);
       await tf(ctx, 'media', slug);
     }
   }
   await buildPreview(ctx, slug);
   ctx.step('⑤ 보완 질문 찾기');
-  const g = await runClaude({ prompt: gapsPrompt(slug), schema: QuestionStep, slug, write: true, log: ctx.log });
+  const g = await runClaude({ prompt: gapsPrompt(slug), schema: QuestionStep, slug, write: true, log: ctx.log, activity: ctx.activity });
   ctx.cost(g.costUsd);
   const questions = g.data.kind === 'questions' ? (g.data.questions ?? []) : [];
   writeJsonFile(S(slug, 'gaps.json'), { message: g.data.message, questions });
@@ -408,7 +411,7 @@ export function review(
   if (!reqs.length && !answered.length) return null;
   return startJob(slug, 'revise', '초안 고치기', async (ctx) => {
     ctx.step('답과 요청 반영');
-    const r = await runClaude({ prompt: revisePrompt(slug, reqs, answered), schema: ReviseResult, slug, write: true, log: ctx.log });
+    const r = await runClaude({ prompt: revisePrompt(slug, reqs, answered), schema: ReviseResult, slug, write: true, log: ctx.log, activity: ctx.activity });
     ctx.cost(r.costUsd);
     ctx.log(`· ${r.data.summary}`);
     for (const sk of r.data.skipped) ctx.log(`· 못 고침: ${sk}`);
@@ -440,15 +443,30 @@ export function publish(slug: string) {
       if (!/nothing to commit/.test(e.message)) throw e;
     });
     await ctx.sh('git', ['push', 'origin', 'main']);
-    const commit = (await ctx.sh('git', ['rev-parse', '--short', 'HEAD'])).trim();
+    const sha = (await ctx.sh('git', ['rev-parse', 'HEAD'])).trim();
+    const commit = sha.slice(0, 7);
     ctx.step('배포 기다리기 (GitHub Actions)');
-    await new Promise((r) => setTimeout(r, 8000));
-    const id = (await ctx.sh('gh', ['run', 'list', '--branch', 'main', '--limit', '1', '--json', 'databaseId', '--jq', '.[0].databaseId'])).trim();
-    if (id) await ctx.sh('gh', ['run', 'watch', id, '--exit-status']);
+    const id = await findPagesRun(ctx, sha);
+    if (id) await ctx.sh('gh', ['run', 'watch', id, '--exit-status', '--interval', '10']);
+    else ctx.log('· 이 커밋의 배포 실행을 찾지 못했다 — 사이트 확인으로 넘어간다');
     ctx.step('배포된 사이트 확인');
     await tf(ctx, 'validate', slug, '--remote');
     const url = `${SITE_URL}/stories/${slug}/`;
     writeJsonFile(S(slug, 'published.json'), { at: new Date().toISOString(), url, commit });
     ctx.log(`✓ ${url}`);
   });
+}
+
+/**
+ * 푸시한 커밋의 pages.yml 실행 id. 실행이 목록에 뜨기까지 몇 초 걸려 잠시 기다린다.
+ * Ubuntu 의 gh 2.4 에는 `run list --branch/--commit` 이 없다 — headSha 로 직접 고른다.
+ */
+async function findPagesRun(ctx: Ctx, sha: string): Promise<string | null> {
+  for (let i = 0; i < 12; i++) {
+    const out = await ctx.sh('gh', ['run', 'list', '--workflow', 'pages.yml', '--limit', '10', '--json', 'databaseId,headSha']);
+    const run = (JSON.parse(out) as { databaseId: number; headSha: string }[]).find((r) => r.headSha === sha);
+    if (run) return String(run.databaseId);
+    await new Promise((r) => setTimeout(r, 5000));
+  }
+  return null;
 }

@@ -39,9 +39,17 @@ export const TripsPage: FC<{ trips: TripState[] }> = ({ trips }) => (
   <Layout title="TaleFrame Studio">
     <section class="card">
       <h1>새 여행</h1>
-      <p class="muted">이름은 나중에 페이지 제목과 따로 정한다. 비워 두면 날짜로 만든다.</p>
-      <form data-api="/api/trips" data-go="slug" class="row">
-        <input name="name" placeholder="예: 다카마쓰 2026" autocomplete="off" />
+      <p class="muted">이름은 나중에 페이지 제목과 따로 정한다. 주소는 게시 링크가 된다 (…/stories/주소/) — 영문 소문자·숫자·하이픈.</p>
+      <form data-api="/api/trips" data-go="slug" class="stack">
+        <input name="name" placeholder="이름 — 예: 다카마쓰 2026" autocomplete="off" />
+        <input
+          name="address"
+          placeholder="주소 — 예: takamatsu-2026"
+          autocomplete="off"
+          autocapitalize="none"
+          spellcheck={false}
+          pattern="[a-zA-Z0-9\- ]*"
+        />
         <button class="pill">만들기</button>
       </form>
     </section>
@@ -89,6 +97,10 @@ const Thumbs: FC<{ slug: string; ids: string[]; big?: boolean }> = ({ slug, ids,
     </div>
   ) : null;
 
+/** <script type=application/json> 안에 넣을 작업 상태 — 로그는 빼고, </script> 로 끊기지 않게 */
+const jobJson = (job: Job) =>
+  JSON.stringify({ step: job.step, stepAt: job.stepAt, expectMs: job.expectMs, activity: job.activity, progress: job.progress, now: Date.now() }).replace(/</g, '\\u003c');
+
 const JobCard: FC<{ job: Job; slug: string }> = ({ job, slug }) => {
   const running = job.state === 'running';
   const pct = job.progress ? Math.round((job.progress.done / Math.max(1, job.progress.total)) * 100) : null;
@@ -102,10 +114,22 @@ const JobCard: FC<{ job: Job; slug: string }> = ({ job, slug }) => {
         {job.step ?? ''}
         {pct !== null ? ` · ${pct}%` : ''}
       </p>
-      {pct !== null && (
-        <div class="meter">
-          <div style={`width:${pct}%`} />
-        </div>
+      {running ? (
+        // 막대·경과 시간·지금 하는 일은 app.js 가 1초마다 다시 그린다 (data-job 이 첫 상태)
+        <>
+          <div class="meter wait" data-field="meter">
+            <div />
+          </div>
+          <p class="eta" data-field="eta" />
+          <p class="now" data-field="activity" />
+          <script type="application/json" data-field="job" dangerouslySetInnerHTML={{ __html: jobJson(job) }} />
+        </>
+      ) : (
+        pct !== null && (
+          <div class="meter">
+            <div style={`width:${pct}%`} />
+          </div>
+        )
       )}
       {running && <p class="muted">화면을 닫아도 PC 에서 계속 돈다. 다시 열면 이어서 보인다.</p>}
       {job.state === 'error' && (

@@ -95,13 +95,16 @@ export function createApp({ lan, token: TOKEN }: { lan: boolean; token: string }
 
   // ── API ───────────────────────────────────────────────────────
   app.post('/api/trips', async (c) => {
-    const { name } = await c.req.json<{ name?: string }>();
-    return c.json({ ok: true, slug: createTrip(String(name ?? '').slice(0, 60)) });
+    const { name, address } = await c.req.json<{ name?: string; address?: string }>();
+    return c.json({ ok: true, slug: createTrip(String(name ?? '').slice(0, 60), String(address ?? '').slice(0, 60)) });
   });
 
   app.get('/api/t/:slug/job', (c) => {
     const slug = guard(c);
-    return slug ? c.json(jobOf(slug)) : c.notFound();
+    if (!slug) return c.notFound();
+    const job = jobOf(slug);
+    // 폰 시계와 PC 시계가 다를 수 있다 — 경과 시간은 서버 시각 기준으로 센다
+    return c.json(job && { ...job, now: Date.now() });
   });
 
   app.post('/api/t/:slug/upload/check', async (c) => {

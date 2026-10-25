@@ -7,6 +7,8 @@
 
 param([int]$Port = 8742)
 $ErrorActionPreference = "Stop"
+# WSL 터미널로 나가는 출력이 CP949 로 깨지지 않게 (승격 전 첫 안내가 깨져 보였다)
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
 
 function Admin {
   return ([Security.Principal.WindowsPrincipal] `

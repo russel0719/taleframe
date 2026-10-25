@@ -1,5 +1,8 @@
-// TaleFrame Studio — 폰 쪽 스크립트: 업로드(8MB 청크, 이어 올리기) · 폼 전송 · 작업 폴링
-const CHUNK = 8 * 1024 * 1024;
+// TaleFrame Studio — 폰 쪽 스크립트: 업로드(32MB 청크, 이어 올리기) · 폼 전송 · 작업 폴링
+// 사진 대부분이 한 번에 가는 크기. 서버는 청크를 메모리로 받는다
+const CHUNK = 32 * 1024 * 1024;
+// 화면이 꺼졌다 켜지면 iOS 가 멈춰 둔 요청이 응답 없이 남는다 — 오래 걸리면 끊고 다시 보낸다
+const CHUNK_TIMEOUT = 60_000;
 
 /** 질문 카드(fieldset[data-q])의 답 — 질문 단계와 초안 확인(보완 질문)이 함께 쓴다 */
 function collectAnswers(form) {
@@ -57,7 +60,14 @@ async function uploadFile(slug, file, row) {
     const q = new URLSearchParams({ name: file.name, size: String(file.size), offset: String(offset) });
     let res;
     try {
-      res = await fetch(`/api/t/${slug}/upload?${q}`, { method: 'PUT', body: file.slice(offset, end) });
+      // iOS Safari 는 사진 앱에서 고른 파일을 중간부터 자른 Blob 을 그대로 body 로 주면 전송이 멈춘다
+      // (첫 조각만 가고 두 번째에서 응답 없음, 2026-10 실측) — 먼저 메모리로 읽어서 보낸다
+      const body = await file.slice(offset, end).arrayBuffer();
+      res = await fetch(`/api/t/${slug}/upload?${q}`, {
+        method: 'PUT',
+        body,
+        signal: AbortSignal.timeout(CHUNK_TIMEOUT),
+      });
     } catch {
       if (++tries > 5) throw new Error('연결이 끊겼다');
       await new Promise((r) => setTimeout(r, 1500 * tries));
@@ -75,6 +85,20 @@ async function uploadFile(slug, file, row) {
   }
 }
 
+/** 올리는 동안 화면이 꺼지지 않게 (Safari 16.4+). 탭을 벗어났다 돌아오면 다시 잡는다 */
+let wakeLock = null;
+let uploading = false;
+async function keepAwake() {
+  try {
+    wakeLock = await navigator.wakeLock?.request('screen');
+  } catch {
+    /* 지원하지 않거나 거절 — 안내 문구로 대신한다 */
+  }
+}
+document.addEventListener('visibilitychange', () => {
+  if (uploading && document.visibilityState === 'visible') keepAwake();
+});
+
 const input = document.getElementById('files');
 if (input) {
   input.addEventListener('change', async () => {
@@ -89,9 +113,16 @@ if (input) {
     }).then((r) => r.json());
     const skip = new Set(check.skip);
     input.disabled = true;
+    uploading = true;
+    keepAwake();
+    const stat = document.createElement('p');
+    stat.className = 'muted';
+    list.before(stat);
     let done = 0;
     let failed = 0;
+    let n = 0;
     for (const f of files) {
+      stat.textContent = `${++n}/${files.length}장째 · 이미 있는 ${skip.size}장은 건너뜀`;
       const li = document.createElement('li');
       li.innerHTML = `<span class="name"></span><span class="bar"><i></i></span>`;
       li.querySelector('.name').textContent = f.name;
@@ -112,23 +143,74 @@ if (input) {
       }
     }
     input.disabled = false;
+    uploading = false;
+    wakeLock?.release().catch(() => {});
     if (!failed) location.reload();
     else alert(`${done}개 올림, ${failed}개 실패 — 같은 파일을 다시 고르면 이어서 올린다`);
   });
 }
 
-// ── 작업 폴링 ────────────────────────────────────────────────
+// ── 작업 진행 ────────────────────────────────────────────────
+// Claude 호출은 진행률을 모른다 — 지난번 같은 단계가 걸린 시간(expectMs)으로 막대를 채우고,
+// 마지막 활동 신호가 몇 초 전인지 보여 줘서 "도는 중"과 "멈춤"을 구분한다
+const QUIET_MS = 90_000;
+
+function dur(ms) {
+  const s = Math.max(0, Math.round(ms / 1000));
+  return s < 60 ? `${s}초` : `${Math.floor(s / 60)}분 ${String(s % 60).padStart(2, '0')}초`;
+}
+
+function renderJob(card, job, skew) {
+  const now = Date.now() + skew;
+  const pct = job.progress ? Math.round((job.progress.done / Math.max(1, job.progress.total)) * 100) : null;
+  card.querySelector('[data-field="step"]').textContent = `${job.step ?? ''}${pct !== null ? ` · ${pct}%` : ''}`;
+  const meter = card.querySelector('[data-field="meter"]');
+  const eta = card.querySelector('[data-field="eta"]');
+  const act = card.querySelector('[data-field="activity"]');
+  if (!meter || !eta || !act) return;
+  const elapsed = job.stepAt ? now - job.stepAt : 0;
+  let width = null;
+  let text = job.stepAt ? `${dur(elapsed)} 지남` : '';
+  if (pct !== null) {
+    width = pct;
+    if (job.progress.done > 0 && pct < 100) text += ` · 약 ${dur((elapsed / job.progress.done) * (job.progress.total - job.progress.done))} 남음`;
+  } else if (job.expectMs) {
+    const r = elapsed / job.expectMs;
+    width = Math.min(95, Math.round(r * 100)); // 끝나기 전에는 다 채우지 않는다
+    text += r < 1 ? ` · 보통 ${dur(job.expectMs)} 걸린다` : ` · 지난번(${dur(job.expectMs)})보다 오래 걸리는 중`;
+  } else if (job.stepAt) {
+    text += ' · 처음 하는 단계라 예상 시간을 모른다';
+  }
+  meter.classList.toggle('wait', width === null);
+  meter.firstElementChild.style.width = width === null ? '' : `${width}%`;
+  eta.textContent = text;
+  const quiet = job.activity ? now - job.activity.at : elapsed;
+  act.classList.toggle('quiet', quiet > QUIET_MS);
+  act.textContent = !job.activity
+    ? quiet > QUIET_MS
+      ? `${dur(quiet)}째 신호 없음`
+      : ''
+    : quiet > QUIET_MS
+      ? `${job.activity.label} — ${dur(quiet)}째 신호 없음. 길게 생각하는 중일 수 있다 (20분이 넘으면 끊고 다시 시도한다)`
+      : `${job.activity.label} · ${quiet < 3000 ? '방금' : `${dur(quiet)} 전`}`;
+}
+
 const poll = document.querySelector('[data-poll]');
 if (poll) {
+  const seed = poll.querySelector('[data-field="job"]');
+  let job = seed ? JSON.parse(seed.textContent) : {};
+  let skew = job.now ? job.now - Date.now() : 0;
+  const draw = () => renderJob(poll, job, skew);
+  draw();
+  setInterval(draw, 1000);
   const tick = async () => {
     try {
-      const job = await fetch(poll.dataset.poll).then((r) => r.json());
-      if (!job || job.state !== 'running') return location.reload();
-      const pct = job.progress ? Math.round((job.progress.done / Math.max(1, job.progress.total)) * 100) : null;
-      poll.querySelector('[data-field="step"]').textContent = `${job.step ?? ''}${pct !== null ? ` · ${pct}%` : ''}`;
-      const meter = poll.querySelector('.meter div');
-      if (meter && pct !== null) meter.style.width = `${pct}%`;
-      poll.querySelector('[data-field="log"]').textContent = job.lines.slice(-25).join('\n');
+      const j = await fetch(poll.dataset.poll).then((r) => r.json());
+      if (!j || j.state !== 'running') return location.reload();
+      job = j;
+      skew = j.now - Date.now();
+      draw();
+      poll.querySelector('[data-field="log"]').textContent = j.lines.slice(-25).join('\n');
     } catch {
       /* PC 가 잠깐 안 보이면 다음 차례에 */
     }

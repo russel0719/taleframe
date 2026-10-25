@@ -16,7 +16,7 @@ const LAN = process.argv.includes('--lan');
 const TOKEN = token();
 const app = createApp({ lan: LAN, token: TOKEN });
 const hostname = LAN ? '0.0.0.0' : '127.0.0.1';
-serve({ fetch: app.fetch, port: PORT, hostname }, async () => {
+const server = serve({ fetch: app.fetch, port: PORT, hostname }, async () => {
   console.log(`TaleFrame Studio — http://127.0.0.1:${PORT}/  (이 PC)`);
   if (LAN) {
     const host = lanAddress();
@@ -29,4 +29,13 @@ serve({ fetch: app.fetch, port: PORT, hostname }, async () => {
       console.log(`  ${url.replace(TOKEN, '<토큰>')}`);
     }
   }
+});
+
+// 이미 다른 Studio(예: 백그라운드로 띄운 것)가 포트를 쓰고 있으면 오류 대신 안내만 한다
+server.on('error', (e: NodeJS.ErrnoException) => {
+  if (e.code !== 'EADDRINUSE') throw e;
+  console.log(`${PORT} 포트를 이미 쓰고 있다 — Studio 가 벌써 떠 있을 가능성이 크다.`);
+  console.log(`  · 떠 있는 것을 그대로 쓰려면: PC 브라우저로 http://127.0.0.1:${PORT}/connect 를 열어 QR 을 찍는다`);
+  console.log(`  · 끄고 다시 띄우려면: fuser -k ${PORT}/tcp && npm run studio -- --lan`);
+  process.exit(1);
 });

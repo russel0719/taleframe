@@ -1,6 +1,6 @@
 import { spawn } from 'node:child_process';
 import path from 'node:path';
-import { NTFY_TOPIC, ROOT, readJsonFile, studioDir, writeJsonFile } from './config';
+import { NTFY_TOPIC, ROOT, STATE, readJsonFile, studioDir, writeJsonFile } from './config';
 
 /**
  * 오래 걸리는 작업(스캔·훑어보기·질문 만들기·변환·빌드·게시)을 백그라운드로 돌린다.
@@ -15,6 +15,12 @@ export type Job = {
   startedAt: number;
   endedAt?: number;
   step?: string;
+  /** 지금 단계가 시작된 시각 */
+  stepAt?: number;
+  /** 같은 단계가 지난번까지 걸린 시간(중앙값) — 진행 막대의 기준. 처음이면 없다 */
+  expectMs?: number;
+  /** 마지막으로 들어온 활동 신호. at 이 오래되면 멈춘 것이다 */
+  activity?: { label: string; at: number };
   progress?: { done: number; total: number };
   lines: string[];
   error?: string;
@@ -25,12 +31,35 @@ export type Ctx = {
   log: (line: string) => void;
   step: (label: string) => void;
   progress: (done: number, total: number) => void;
+  /** 지금 하는 일 (label 없으면 살아 있다는 신호만) */
+  activity: (label?: string) => void;
   cost: (usd: number) => void;
   /** 저장소 루트에서 명령 실행 — 출력은 작업 로그로. 실패하면 마지막 출력을 담아 던진다 */
   sh: (cmd: string, args: string[], env?: Record<string, string>) => Promise<string>;
 };
 
 let running: Job | null = null;
+
+/**
+ * 단계별 걸린 시간 기록 (.studio/durations.json, 단계 이름 → 최근 5회 ms).
+ * Claude 호출은 진행률을 알 수 없어서, 지난번 걸린 시간을 기준으로 막대를 채운다.
+ */
+const DURATIONS = path.join(STATE, 'durations.json');
+const MIN_RECORD_MS = 3000;
+
+export function expectedMs(step: string): number | undefined {
+  const xs = readJsonFile<Record<string, number[]>>(DURATIONS, {})[step];
+  if (!xs?.length) return undefined;
+  const sorted = [...xs].sort((a, b) => a - b);
+  return sorted[Math.floor(sorted.length / 2)];
+}
+
+function recordDuration(step: string, ms: number) {
+  if (ms < MIN_RECORD_MS) return; // 할 일이 없어 바로 넘어간 단계는 기준을 망친다
+  const all = readJsonFile<Record<string, number[]>>(DURATIONS, {});
+  all[step] = [...(all[step] ?? []), Math.round(ms)].slice(-5);
+  writeJsonFile(DURATIONS, all);
+}
 const fileOf = (slug: string) => path.join(studioDir(slug), 'job.json');
 
 export function jobOf(slug: string): Job | null {
@@ -72,9 +101,18 @@ export function startJob(slug: string, kind: string, title: string, fn: (ctx: Ct
       save();
     },
     step: (label) => {
+      const now = Date.now();
+      if (job.step && job.stepAt) recordDuration(job.step, now - job.stepAt);
       job.step = label;
+      job.stepAt = now;
+      job.expectMs = expectedMs(label);
+      job.activity = undefined;
       job.progress = undefined;
       ctx.log(`▸ ${label}`);
+    },
+    activity: (label) => {
+      job.activity = { label: label ?? job.activity?.label ?? '진행 중', at: Date.now() };
+      save();
     },
     progress: (done, total) => {
       job.progress = { done, total };
@@ -103,6 +141,7 @@ export function startJob(slug: string, kind: string, title: string, fn: (ctx: Ct
   fn(ctx)
     .then(() => {
       job.state = 'done';
+      if (job.step && job.stepAt) recordDuration(job.step, Date.now() - job.stepAt); // 실패한 단계는 기록하지 않는다
     })
     .catch((e: Error) => {
       job.state = 'error';
