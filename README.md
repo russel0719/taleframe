@@ -24,6 +24,9 @@ npm run dev                     # http://localhost:3000 (/lab 은 템플릿 실�
 
 Claude Code 에서: `"~/Pictures/2026 오사카 폴더로 여행 후기 만들어줘"` → travel-story 스킬
 
+폰(집 와이파이)에서: `npm run studio -- --lan` → 터미널 QR 을 찍고, 사진 올리기 → 질문 답하기 → 미리보기 승인 → 게시.
+처음 한 번 `scripts/studio-lan.sh` 로 Windows 방화벽(개인 네트워크 전용)을 연다.
+
 CLI 를 직접 쓸 때는 `scripts/tf.ts` 상단의 사용법을 본다. 시스템에 `ffmpeg`/`ffprobe` 가 있어야 한다.
 
 ## 검사

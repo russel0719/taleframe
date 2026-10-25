@@ -1,6 +1,8 @@
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import exifr from 'exifr';
+import heicConvert from 'heic-convert';
 import sharp from 'sharp';
 import { FFMPEG, fail, pool, readJson, run, workDir, writeJson } from './common';
 import { probeVideo } from './probe';
@@ -22,7 +24,31 @@ export type InventoryItem = {
   bytes: number;
   /** work/<slug>/ 기준 썸네일 경로. 영상은 10% · 50% · 85% 세 장 */
   thumbs: string[];
+  /**
+   * HEIC 처럼 sharp 가 못 읽는 원본의 픽셀용 JPEG 사본 (work/<slug>/ 기준).
+   * 날짜·GPS 는 원본에서 읽고, 사진 처리(썸네일·파생 파일)만 이 사본으로 한다
+   */
+  pixels?: string;
 };
+
+const HEIC_EXT = new Set(['.heic', '.heif']);
+
+/** HEIC → 픽셀용 JPEG 사본. 이미 있으면 다시 만들지 않는다 */
+async function heicPixels(slug: string, abs: string, rel: string): Promise<string> {
+  const name = `heic/${crypto.createHash('sha1').update(rel).digest('hex').slice(0, 12)}.jpg`;
+  const out = path.join(workDir(slug), name);
+  if (!fs.existsSync(out)) {
+    fs.mkdirSync(path.dirname(out), { recursive: true });
+    const jpg = await heicConvert({ buffer: fs.readFileSync(abs), format: 'JPEG', quality: 0.95 });
+    fs.writeFileSync(out, Buffer.from(jpg));
+  }
+  return name;
+}
+
+/** 사진 처리에 쓸 실제 파일 — HEIC 면 JPEG 사본, 아니면 원본 */
+export function pixelPath(slug: string, sourceDir: string, it: Pick<InventoryItem, 'file' | 'pixels'>) {
+  return it.pixels ? path.join(workDir(slug), it.pixels) : path.join(sourceDir, it.file);
+}
 
 export type Inventory = {
   slug: string;
@@ -56,8 +82,8 @@ function exifDate(raw?: string, offset?: string): string | null {
   return `${m[1]}-${m[2]}-${m[3]}T${m[4]}:${m[5]}:${m[6]}${offset ?? ''}`;
 }
 
-async function scanImage(abs: string) {
-  const meta = await sharp(abs).metadata();
+async function scanImage(abs: string, pixelsAbs = abs) {
+  const meta = await sharp(pixelsAbs).metadata();
   const swap = (meta.orientation ?? 1) >= 5;
   const exif = (await exifr
     .parse(abs, { reviveValues: false, pick: ['DateTimeOriginal', 'OffsetTimeOriginal', 'CreateDate', 'OffsetTime'] })
@@ -143,6 +169,10 @@ export async function scan(sourceDir: string, slug: string) {
     try {
       const bytes = fs.statSync(abs).size;
       if (kind === 'image') {
+        if (HEIC_EXT.has(path.extname(file).toLowerCase())) {
+          const pixels = await heicPixels(slug, abs, file);
+          return { file, kind, bytes, pixels, ...(await scanImage(abs, path.join(workDir(slug), pixels))) };
+        }
         return { file, kind, bytes, ...(await scanImage(abs)) };
       }
       const p = await probeVideo(abs);
@@ -161,7 +191,7 @@ export async function scan(sourceDir: string, slug: string) {
       const reason = (e as Error).message.split('\n')[0];
       skipped.push({
         file,
-        reason: /heif|heic/i.test(file) ? `HEIC 를 읽지 못했다 (JPEG 로 내보내서 다시 스캔): ${reason}` : reason,
+        reason: /heif|heic/i.test(file) ? `HEIC 변환 실패 (JPEG 로 내보내서 다시 올린다): ${reason}` : reason,
       });
       return null;
     }
@@ -177,7 +207,7 @@ export async function scan(sourceDir: string, slug: string) {
     let thumbs: string[];
     if (it.kind === 'image') {
       thumbs = [`thumbs/${id}.jpg`];
-      if (!fs.existsSync(path.join(dir, thumbs[0]))) await thumbImage(abs, path.join(dir, thumbs[0]));
+      if (!fs.existsSync(path.join(dir, thumbs[0]))) await thumbImage(pixelPath(slug, src, it), path.join(dir, thumbs[0]));
     } else {
       thumbs = ['a', 'b', 'c'].map((s) => `thumbs/${id}_${s}.jpg`);
       const at = [0.1, 0.5, 0.85].map((r) => r * (it.duration ?? 1));

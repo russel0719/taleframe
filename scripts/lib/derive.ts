@@ -9,7 +9,7 @@ import { MediaManifest, Story, type MediaEntry, type MediaOptions } from '@/lib/
 import { collectUsage, type MediaUsage } from '@/templates/catalog';
 import { FFMPEG, fail, mediaDir, pool, readJson, run, storyDir, writeJson } from './common';
 import { leakedTags, probeVideo } from './probe';
-import { loadInventory, type InventoryItem } from './scan';
+import { loadInventory, pixelPath, type InventoryItem } from './scan';
 
 /** 파생 규칙이 바뀌면 올린다 — 해시가 바뀌어 전부 다시 만들어지고, CDN 캐시도 자연히 갈린다 */
 const DERIVE_VERSION = 3;
@@ -266,7 +266,7 @@ export async function deriveMedia(slug: string) {
     try {
       const entry =
         it.kind === 'image'
-          ? await deriveImage(src, base, dir, usage.get(id)!, id === story.cover)
+          ? await deriveImage(pixelPath(slug, inv.sourceDir, it), base, dir, usage.get(id)!, id === story.cover)
           : await deriveVideo(src, base, dir, usage.get(id)!, opt);
       // 촬영 현지 시각만 (시간대·GPS 는 넣지 않는다)
       entries[id] = it.takenAt ? { ...entry, taken: it.takenAt.slice(0, 16) } : entry;

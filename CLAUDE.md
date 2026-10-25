@@ -23,6 +23,8 @@
 | `scripts/shot.ts` | Playwright 스크롤 스크린샷 + 자동 검사(콘솔 오류·깨진 이미지·가로 넘침). `shot -- lab` 은 실험실 |
 | `src/templates/art.tsx` | 작품 템플릿 7종 (verse · color-field · film-roll · diptych · spotlight · riso-print · kinetic-type) |
 | `src/lib/lab.ts` · `/lab` | 템플릿 실험실 — 실제 스토리의 미디어로 모든 템플릿을 한 페이지에 (개발 전용) |
+| `studio/` | **TaleFrame Studio** — 폰(집 와이파이)에서 업로드·질문 답변·미리보기 승인·게시. Hono 서버, `npm run studio -- --lan` |
+| `studio/prompts.ts` | headless 단계별 지시 + 응답 zod 스키마. 판단 규칙은 스킬 문서를 Read 하게 할 뿐 여기 다시 쓰지 않는다 |
 
 ## 새 템플릿 추가 순서
 
@@ -33,6 +35,22 @@
 5. `npm run tf -- schema` 로 `content/story.schema.json` 갱신
 6. **dev 서버를 재시작**하고 `npm run shot -- lab` 으로 데스크톱·모바일 시트를 직접 본다.
    실제 화면으로 확인하기 전에는 스토리에 쓰지 않는다 (지난번 11종이 테스트만 통과한 채 남아 있었다)
+
+## Studio (폰에서 만들기)
+
+- 흐름은 interview.md 의 다섯 단계: **① 사진 질문 → ② 웹 방향 → ③ 레이아웃 승인 → ④ 초안 확인 → ⑤ 보완 질문**(④⑤ 반복).
+  문구를 다 받고 쓰지 않는다 — 빈칸 있는 초안을 먼저 보여주고 빈 곳만 묻는다. 단계는 서버가 파일로 정하고
+  (`studio/phases.json`·`next.json`·`gaps.json`), Claude 에게는 그 단계 프롬프트만 준다.
+- 스킬(대화형)과 studio(폰)는 **같은 규칙 파일**(`.claude/skills/travel-story/*.md`)을 읽는다. 규칙은 거기만 고친다.
+- headless 호출은 `studio/agent.ts` 한 곳: `--json-schema` 의 `structured_output` 만 믿는다(본문 파싱 금지),
+  `--strict-mcp-config --disable-slash-commands --tools …` 로 가볍게 (실측 $0.34 → $0.07~0.09/호출),
+  쓰기는 `work/<slug>/**`·`content/stories/<slug>/**`, Bash 는 `npm run tf` 만. **git push·게시는 서버 코드만** 한다.
+- 상태는 전부 파일 (`work/<slug>/studio/{meta,job,next,preview,published}.json` + 기존 inventory/analysis/interview).
+  작업은 한 번에 하나 (`studio/jobs.ts`). `tf` 명령은 하위 프로세스로 부른다 (`fail()` 이 서버를 죽이지 않게).
+- 보안: 루프백 또는 사설망 주소만, 이 PC 가 아니면 토큰 쿠키(QR `?k=`). 방화벽은 `scripts/studio-lan.sh`(개인 네트워크 전용).
+- 미리보기는 `NEXT_PUBLIC_BASE_PATH=/preview TALEFRAME_SHOW_DRAFTS=1 npm run build` 의 `out/` 을 studio 가 `/preview/` 로 낸다.
+  최신 여부는 파일 시각이 아니라 **story.json 내용 지문(status 제외)** 으로 본다 — 승인만으로 초안이 다시 만들어지지 않게.
+- Next 빌드는 `tsconfig.next.json`(src/ 만)으로 타입 검사한다 — studio·tests 의 오류가 미리보기·배포를 막지 않게 (실제로 막혔다).
 
 ## 이번에 걸린 함정
 

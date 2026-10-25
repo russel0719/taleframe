@@ -13,7 +13,7 @@
 
 - **날짜 기준 vs 테마 기준**을 먼저 정한다. 일정이 이야기면 날짜(Day 1, 2…), 음식이 이야기면 테마 챕터.
 - **미디어가 부족한 챕터를 만들지 않는다.** 사진 2장으로 챕터를 세우지 말고 이웃 챕터에 합친다.
-- **분량**은 라운드 1.5 의 답을 따른다 — 짧게 10~14 · 보통 16~22 · 길게 24~32 섹션.
+- **분량**은 ② 웹 방향의 답을 따른다 — 짧게 10~14 · 보통 16~22 · 길게 24~32 섹션.
   길게 할 때는 섹션을 늘리기 전에 **쓰지 않은 사진**부터 본다 (analysis 의 score 3 이상 중 미사용).
   같은 사진을 두 섹션에 쓰는 건 지도 카드(map-journey stops)와 타임라인 썸네일만 허용한다.
 - 챕터가 3개 이하면 chapter-divider 를 쓰지 않는다.
@@ -26,7 +26,7 @@
 기록만 있으면 블로그가 된다. 이 사이트가 노리는 건 그 사이다.
 
 - 작품 섹션은 **연달아 두지 않는다** (validate 가 경고). 기록 섹션 1~3개마다 하나가 적당하다.
-- 개수는 라운드 1.5 의 "작품 비중"을 따른다. 같은 작품 템플릿은 한 스토리에 한 번이 원칙 (film-roll·verse 는 두 번까지).
+- 개수는 ② 웹 방향의 "작품 비중"을 따른다. 같은 작품 템플릿은 한 스토리에 한 번이 원칙 (film-roll·verse 는 두 번까지).
 - 자리:
   - **장의 문** — kinetic-type (도시 이름) 이나 chapter-divider 대신 쓰면 장이 극적으로 열린다
   - **장 사이의 숨** — verse, color-field
@@ -57,7 +57,7 @@
    - food-review / editorial-text / quote-moment / travel-stats: 사용자에게 받은 문구·숫자가 있어야 한다
 2. **내용 적합성** — 섹션의 목적(풍경·음식·회고·이동)과 맞는가
 3. **미디어 적합성** — 세로 사진은 photo-single(narrow)·polaroid·split, 가로는 overlay·hero. 영상 길이와 소리
-4. **사용자 취향** — 라운드 1의 톤. 차분함 → sticky-story·quote·photo-single / 유쾌함 → polaroid·postcard·photo-strip
+4. **사용자 취향** — ② 웹 방향의 톤. 차분함 → sticky-story·quote·photo-single / 유쾌함 → polaroid·postcard·photo-strip
 5. **리듬과 다양성** — 아래 규칙
 
 ## 리듬

@@ -1,0 +1,7 @@
+{
+  // Next 빌드(사이트·미리보기)만 쓰는 설정 — 사이트 코드(src/)만 타입 검사한다.
+  // studio/·scripts/·tests/ 의 오류가 미리보기와 배포를 막지 않게 (실제로 막힌 적이 있다).
+  // 저장소 전체 검사는 `npm run typecheck`(tsconfig.json)와 CI 가 맡는다.
+  "extends": "./tsconfig.json",
+  "include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx", ".next/types/**/*.ts", ".next/dev/types/**/*.ts"]
+}

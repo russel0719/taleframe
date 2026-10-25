@@ -1,0 +1,131 @@
+/* TaleFrame Studio — 폰 화면. 토큰은 ~/.claude/design.md (사이트의 globals.css 와 같은 값) */
+:root {
+  --primary: #0066cc;
+  --canvas: #ffffff;
+  --parchment: #f5f5f7;
+  --ink: #1d1d1f;
+  --ink-80: #333333;
+  --ink-48: #7a7a7a;
+  --hairline: #e0e0e0;
+  --ok: #1f7a3d;
+  --warn: #b25000;
+  --radius-sm: 8px;
+  --radius-lg: 18px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Pretendard Variable", Pretendard, system-ui, sans-serif;
+  color: var(--ink);
+  -webkit-text-size-adjust: 100%;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { margin: 0; background: var(--parchment); font-size: 17px; line-height: 1.47; letter-spacing: -0.374px; word-break: keep-all; }
+a { color: var(--primary); }
+code { font-size: 13px; background: var(--parchment); padding: 1px 6px; border-radius: 5px; }
+
+.bar { position: sticky; top: 0; z-index: 10; height: 44px; display: flex; align-items: center; padding: 0 16px; background: #000; }
+.brand { color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; }
+.brand span { opacity: 0.6; font-weight: 400; }
+.wrap { max-width: 640px; margin: 0 auto; padding: 16px 16px 64px; }
+
+h1 { font-size: 28px; line-height: 1.15; margin: 8px 0 12px; font-weight: 600; letter-spacing: -0.28px; }
+h1.title { margin: 12px 4px 16px; }
+h2 { font-size: 21px; line-height: 1.19; margin: 0 0 8px; font-weight: 600; }
+.muted { color: var(--ink-48); font-size: 14px; line-height: 1.43; }
+.lead { font-size: 19px; margin: 0 0 16px; }
+
+.card { background: var(--canvas); border-radius: var(--radius-lg); padding: 20px; margin: 0 0 14px; display: block; }
+.card.center { text-align: center; }
+details.card > summary { list-style: none; cursor: pointer; }
+details.card > summary::-webkit-details-marker { display: none; }
+details.card > summary h2 { display: inline; }
+details.card > summary .muted { display: block; margin-top: 4px; }
+
+.trip { display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: inherit; }
+.trip h2 { margin-bottom: 2px; }
+.chev { font-size: 28px; color: var(--ink-48); }
+
+/* {component.button-primary} */
+.pill { appearance: none; border: 0; background: var(--primary); color: #fff; border-radius: 9999px; padding: 12px 22px;
+  font: inherit; font-size: 17px; display: inline-block; text-align: center; text-decoration: none; min-height: 44px; cursor: pointer; }
+.pill:active { transform: scale(0.97); }
+.pill:disabled { opacity: 0.5; }
+.pill.wide { display: block; width: 100%; margin-top: 12px; }
+.pill.ghost { background: transparent; color: var(--primary); box-shadow: inset 0 0 0 1px var(--primary); }
+
+input[type="text"], input:not([type]), textarea { width: 100%; font: inherit; font-size: 17px; padding: 12px 14px;
+  border: 1px solid var(--hairline); border-radius: 12px; background: var(--canvas); color: var(--ink); }
+textarea { resize: vertical; margin-top: 10px; }
+.row { display: flex; gap: 8px; }
+.row input { flex: 1; }
+.stack > * + * { margin-top: 10px; }
+
+/* 단계 레일 — 가로로 밀리는 칩 */
+.rail { list-style: none; margin: 0 -16px 14px; padding: 0 16px; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; }
+.rail li { flex: 0 0 auto; display: flex; align-items: center; gap: 6px; padding: 7px 12px 7px 7px; border-radius: 9999px;
+  background: var(--canvas); color: var(--ink-48); font-size: 14px; }
+.rail .num { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 600; background: var(--parchment); }
+.rail li.now { color: var(--ink); box-shadow: inset 0 0 0 2px var(--primary); }
+.rail li.now .num { background: var(--primary); color: #fff; }
+.rail li.done .num { background: var(--ok); color: #fff; }
+
+/* 작업 카드 */
+.job .step { margin: 0 0 8px; font-weight: 600; }
+.job.error h2 { color: var(--warn); }
+.meter { height: 6px; background: var(--parchment); border-radius: 3px; overflow: hidden; margin-bottom: 10px; }
+.meter div { height: 100%; background: var(--primary); transition: width 0.4s; }
+pre { white-space: pre-wrap; word-break: break-all; font-size: 12px; line-height: 1.5; background: var(--parchment); padding: 10px; border-radius: var(--radius-sm); max-height: 260px; overflow: auto; }
+pre.err { color: var(--warn); }
+
+/* 업로드 */
+input[type="file"] { width: 100%; padding: 18px 12px; border: 2px dashed var(--hairline); border-radius: 14px; margin-top: 12px; font-size: 15px; background: var(--parchment); }
+.uploads { list-style: none; padding: 0; margin: 10px 0 0; font-size: 13px; }
+.uploads li { display: grid; grid-template-columns: 1fr 80px; gap: 8px; align-items: center; padding: 5px 0; border-bottom: 1px solid var(--parchment); }
+.uploads .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.uploads .bar { position: static; height: 6px; background: var(--parchment); border-radius: 3px; padding: 0; overflow: hidden; }
+.uploads .bar i { display: block; height: 100%; width: 0; background: var(--primary); }
+.uploads li.ok .bar i { background: var(--ok); }
+.uploads li.skip { color: var(--ink-48); }
+.uploads li.fail { color: var(--warn); }
+
+/* 질문 카드 */
+/* fieldset 의 기본 min-width:min-content 가 가로 스크롤 사진 줄 때문에 카드 밖으로 넘친다 (실측) */
+fieldset.q { border: 0; padding: 0; margin: 0 0 26px; min-width: 0; }
+fieldset.q legend { font-size: 19px; font-weight: 600; line-height: 1.35; margin-bottom: 10px; padding: 0; }
+.tag { display: inline-block; font-size: 12px; font-weight: 600; color: var(--primary); background: #e8f1fb; padding: 2px 8px; border-radius: 9999px; margin-right: 6px; vertical-align: 2px; }
+.thumbs { display: flex; gap: 6px; overflow-x: auto; margin: 8px 0; scrollbar-width: none; }
+.thumbs img { height: 72px; width: auto; border-radius: var(--radius-sm); display: block; }
+.thumbs.big img { height: 150px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: 14px; background: var(--parchment); cursor: pointer; }
+.opt input { margin-top: 4px; width: 20px; height: 20px; accent-color: var(--primary); flex: 0 0 auto; }
+.opt b { display: block; font-weight: 600; }
+.opt small { display: block; color: var(--ink-48); font-size: 14px; line-height: 1.4; margin-top: 2px; }
+.opt:has(input:checked) { background: #e8f1fb; box-shadow: inset 0 0 0 2px var(--primary); }
+
+/* 배치표 */
+.outline { padding-left: 20px; margin: 4px 0 14px; color: var(--ink-80); font-size: 15px; }
+.plan { list-style: none; padding: 0; margin: 0; }
+.plan li { padding: 12px 0; border-top: 1px solid var(--parchment); }
+.plan-head, .sec-head { display: flex; align-items: center; gap: 8px; }
+.plan p { margin: 4px 0 0; }
+.no { font-size: 13px; color: var(--ink-48); min-width: 18px; }
+.kind { font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 9999px; background: var(--parchment); color: var(--ink-80); }
+.kind.art { background: #2b1d3a; color: #fff; }
+
+/* 섹션 확인 */
+.sections { list-style: none; padding: 0; margin: 14px 0 0; }
+.sections li { padding: 12px 0; border-top: 1px solid var(--parchment); }
+.sections li.ok .sec-head code { background: #e3f3e8; }
+.sec-head input { width: 22px; height: 22px; accent-color: var(--ok); }
+.sec-label { margin: 6px 0 0; font-size: 15px; color: var(--ink-80); }
+.anchor { font-size: 14px; display: inline-block; margin-top: 2px; }
+.sections textarea { margin-top: 6px; font-size: 15px; padding: 8px 12px; }
+
+.answers { list-style: none; padding: 0; margin: 10px 0 0; font-size: 14px; }
+.answers li { padding: 6px 0; border-top: 1px solid var(--parchment); }
+.qr svg { width: 260px; height: 260px; margin: 16px auto; display: block; }
+
+/* 단계 표시와 보완 질문 */
+.phase { font-size: 13px; font-weight: 600; color: var(--primary); margin: 0 0 6px; letter-spacing: 0; }
+h3.sub { font-size: 17px; margin: 22px 0 0; }
+.gaps { margin-top: 18px; padding-top: 6px; border-top: 1px solid var(--parchment); }
+.memo { margin: 6px 0 0; font-size: 13px; color: var(--warn); }
+.usage { margin: 4px 4px 14px; }

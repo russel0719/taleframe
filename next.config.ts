@@ -14,6 +14,8 @@ const nextConfig: NextConfig = {
   // Pages 는 /stories/x/ → /stories/x/index.html 로 찾는다
   trailingSlash: true,
   images: { unoptimized: true },
+  // 사이트 코드만 타입 검사 — studio·tests 의 오류가 미리보기·배포를 막지 않게
+  typescript: { tsconfigPath: 'tsconfig.next.json' },
 };
 
 export default nextConfig;
