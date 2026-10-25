@@ -51,6 +51,8 @@
 - 상태는 전부 파일 (`work/<slug>/studio/{meta,job,next,preview,published}.json` + 기존 inventory/analysis/interview).
   작업은 한 번에 하나 (`studio/jobs.ts`). `tf` 명령은 하위 프로세스로 부른다 (`fail()` 이 서버를 죽이지 않게).
 - 보안: 루프백 또는 사설망 주소만, 이 PC 가 아니면 토큰 쿠키(QR `?k=`). 방화벽은 `scripts/studio-lan.sh`(개인 네트워크 전용).
+- 바탕 화면 실행: `scripts/studio-desktop.sh` 가 `TaleFrame Studio.cmd` 를 만든다 → `wsl.exe … bash -lc scripts/studio-start.sh`.
+  **로그인 셸이어야** `~/.local/bin/claude` 가 PATH 에 들어온다. .ps1 은 더블클릭하면 메모장이 열려서 .cmd 다.
 - 미리보기는 `NEXT_PUBLIC_BASE_PATH=/preview TALEFRAME_SHOW_DRAFTS=1 npm run build` 의 `out/` 을 studio 가 `/preview/` 로 낸다.
   최신 여부는 파일 시각이 아니라 **story.json 내용 지문(status 제외)** 으로 본다 — 승인만으로 초안이 다시 만들어지지 않게.
 - Next 빌드는 `tsconfig.next.json`(src/ 만)으로 타입 검사한다 — studio·tests 의 오류가 미리보기·배포를 막지 않게 (실제로 막혔다).

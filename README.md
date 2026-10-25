@@ -34,6 +34,7 @@ Claude Code 에서: `"~/Pictures/2026 오사카 폴더로 여행 후기 만들�
 
 폰(집 와이파이)에서: `npm run studio -- --lan` → 터미널 QR 을 찍고, 사진 올리기 → 질문 답하기 → 미리보기 승인 → 게시.
 처음 한 번 `scripts/studio-lan.sh` 로 Windows 방화벽(개인 네트워크 전용)을 연다.
+`scripts/studio-desktop.sh` 를 한 번 돌리면 Windows 바탕 화면에 `TaleFrame Studio.cmd` 가 생긴다 — 더블클릭하면 창에 QR 이 뜨고, 창을 닫으면 꺼진다.
 
 스토리 주소를 바꾸려면 `npm run tf -- rename <옛> <새>` → `tf upload <새>` → 커밋·푸시 (옛 주소는 새 주소로 넘겨 준다).
 
