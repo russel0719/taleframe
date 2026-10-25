@@ -11,12 +11,14 @@
  *   npm run tf -- routes <slug> [--force]     map-journey 구간별 실제 길 경로 (OSRM) → routes.json
  *   npm run tf -- validate [slug] [--remote] [--strict-media]  스키마 + 참조 + 규칙 검사
  *   npm run tf -- upload <slug> [--deploy]    파생 파일 → 같은 저장소의 media 브랜치 (GitHub Pages)
+ *   npm run tf -- rename <옛 slug> <새 slug>  주소 바꾸기 (로컬 폴더 + 옛 주소 넘김) → 그다음 upload · 커밋·푸시
  *   npm run tf -- schema                      content/story.schema.json 갱신
  */
 import { fail } from './lib/common';
 import { printCatalog, validate, writeSchema } from './lib/check';
 import { deriveMedia } from './lib/derive';
 import { places } from './lib/places';
+import { rename } from './lib/rename';
 import { routes } from './lib/routes';
 import { scan } from './lib/scan';
 import { status } from './lib/status';
@@ -59,6 +61,9 @@ switch (cmd) {
     break;
   case 'upload':
     await upload(need(positional[0], 'slug'), { deploy: flags.has('--deploy') });
+    break;
+  case 'rename':
+    rename(need(positional[0], '옛 slug'), need(positional[1], '새 slug'));
     break;
   case 'schema':
     writeSchema();

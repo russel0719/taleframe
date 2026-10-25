@@ -1,9 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
+import { describeTool, watchStream } from '../studio/agent';
 import { createApp } from '../studio/app';
 import { slugDir } from '../studio/config';
-import { currentStep, type TripState } from '../studio/trip';
+import { addRedirect } from '../scripts/lib/rename';
+import { createTrip, currentStep, type TripState } from '../studio/trip';
 import { existing, inboxStats, safeName, writeChunk } from '../studio/upload';
 
 const SLUG = 'vitest-studio';
@@ -115,5 +117,45 @@ describe('단계', () => {
 
   it('이미 초안이 있는 여행(스킬로 만든 것)은 질문 단계를 건너뛴다', () => {
     expect(at({ story, hasMedia: true, previewFresh: true, phases: {} })).toBe('review');
+  });
+});
+
+describe('진행 상황', () => {
+  it('도구 호출을 폰에 보일 한 줄로 바꾼다', () => {
+    expect(describeTool({ type: 'tool_use', name: 'Read', input: { file_path: '/x/.claude/skills/travel-story/interview.md' } })).toBe('읽는 중 · travel-story/interview.md');
+    expect(describeTool({ type: 'tool_use', name: 'Bash', input: { command: 'npm run tf -- catalog' } })).toBe('실행 · tf catalog');
+  });
+
+  it('stream-json 에서 활동을 흘리고 마지막 result 를 돌려준다', () => {
+    const seen: (string | undefined)[] = [];
+    const w = watchStream({ activity: (l) => seen.push(l) });
+    const ev = (o: object) => w.line(JSON.stringify(o));
+    ev({ type: 'system', subtype: 'init' });
+    ev({ type: 'stream_event', event: { type: 'content_block_start', content_block: { type: 'thinking' } } });
+    ev({ type: 'assistant', message: { content: [{ type: 'tool_use', name: 'Read', input: { file_path: 'work/a/analysis.json' } }] } });
+    ev({ type: 'stream_event', event: { type: 'content_block_start', content_block: { type: 'tool_use', name: 'StructuredOutput' } } });
+    ev({ type: 'stream_event', event: { type: 'content_block_delta', delta: { type: 'input_json_delta', partial_json: '{"plan":' } } });
+    w.line('깨진 줄');
+    ev({ type: 'result', subtype: 'success', structured_output: { ok: 1 }, total_cost_usd: 0.1 });
+    expect(seen).toEqual([undefined, '생각하는 중', '읽는 중 · a/analysis.json', '답 쓰는 중', '답 쓰는 중 · 8자']);
+    expect(w.result()?.structured_output).toEqual({ ok: 1 });
+  });
+});
+
+describe('주소', () => {
+  it('한글 이름에서 숫자만 남으면 쓰지 않고, 영문 주소를 따로 받으면 그것을 쓴다', () => {
+    const a = createTrip('다카마쓰 2026');
+    const b = createTrip('다카마쓰 2026', 'Vitest Addr ZZ');
+    try {
+      expect(a).toMatch(/^trip-\d{8}/);
+      expect(b).toBe('vitest-addr-zz');
+    } finally {
+      for (const s of [a, b]) fs.rmSync(slugDir(s), { recursive: true, force: true });
+    }
+  });
+
+  it('옛 주소 넘김은 이어진 이름을 새 주소로 바로 보내고, 되돌린 이름은 지운다', () => {
+    expect(addRedirect({ a: 'b' }, 'b', 'c')).toEqual({ a: 'c', b: 'c' });
+    expect(addRedirect({ a: 'b' }, 'b', 'a')).toEqual({ b: 'a' });
   });
 });

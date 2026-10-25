@@ -1,6 +1,14 @@
 # TaleFrame
 
 사진과 영상으로 엮은 인터랙티브 여행 후기 모음 사이트.
+
+**사이트: https://russel0719.github.io/taleframe/**
+
+| 스토리 | 주소 |
+|---|---|
+| 오사카 · 교토 | https://russel0719.github.io/taleframe/stories/osaka-2026/ |
+| 다카마쓰 · 나오시마 | https://russel0719.github.io/taleframe/stories/takamatsu-2026/ |
+
 여행마다 같은 디자인 시스템을 쓰되, 33종의 템플릿(기록 26 + 작품 7)을 이야기에 맞게 조합해 서로 다른 구조와 리듬을 만든다.
 
 스토리는 Claude Code 의 `travel-story` 스킬로 추가한다 — 폴더를 주면 사진을 훑어보고, 필요한 것만 묻고,
@@ -26,6 +34,8 @@ Claude Code 에서: `"~/Pictures/2026 오사카 폴더로 여행 후기 만들�
 
 폰(집 와이파이)에서: `npm run studio -- --lan` → 터미널 QR 을 찍고, 사진 올리기 → 질문 답하기 → 미리보기 승인 → 게시.
 처음 한 번 `scripts/studio-lan.sh` 로 Windows 방화벽(개인 네트워크 전용)을 연다.
+
+스토리 주소를 바꾸려면 `npm run tf -- rename <옛> <새>` → `tf upload <새>` → 커밋·푸시 (옛 주소는 새 주소로 넘겨 준다).
 
 CLI 를 직접 쓸 때는 `scripts/tf.ts` 상단의 사용법을 본다. 시스템에 `ffmpeg`/`ffprobe` 가 있어야 한다.
 

@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { MediaManifest } from '@/lib/story/schema';
-import { ROOT, fail, mediaDir, pool, readJson, run, storyDir } from './common';
+import { ROOT, STORIES, fail, mediaDir, pool, readJson, run, storyDir } from './common';
 import { expectedFiles } from './derive';
 
 /**
@@ -13,6 +13,7 @@ import { expectedFiles } from './derive';
  * - 배포 워크플로(.github/workflows/pages.yml)가 이 브랜치를 public/media/ 에 받아 사이트와 함께 내보낸다
  *
  * 작업 폴더는 저장소 안의 `.media-repo/` (gitignore). 다른 스토리의 파일은 원격에서 받아 그대로 둔다.
+ * 단, content/stories/ 에 없는 스토리 폴더(지웠거나 `tf rename` 으로 주소를 바꾼 것)는 지운다.
  */
 export const MEDIA_BRANCH = 'media';
 const MEDIA_REPO = path.join(ROOT, '.media-repo');
@@ -78,6 +79,13 @@ export async function upload(slug: string, { deploy = false } = {}) {
   if (missing.length) fail(`로컬 파생 파일이 없다 (${missing.length}개) — \`tf media ${slug}\` 를 먼저`);
 
   await prepareRepo();
+  let pruned = 0;
+  for (const d of fs.readdirSync(MEDIA_REPO, { withFileTypes: true })) {
+    if (!d.isDirectory() || d.name.startsWith('.') || fs.existsSync(path.join(STORIES, d.name))) continue;
+    fs.rmSync(path.join(MEDIA_REPO, d.name), { recursive: true });
+    console.log(`· 없는 스토리의 폴더 정리: ${d.name}/`);
+    pruned++;
+  }
   const dst = path.join(MEDIA_REPO, slug);
   fs.mkdirSync(dst, { recursive: true });
 
@@ -108,7 +116,7 @@ export async function upload(slug: string, { deploy = false } = {}) {
   if (total > WARN_BYTES) {
     console.log('  ⚠ GitHub Pages 사이트 상한(1GB)에 가깝다 — 오래된 스토리 정리나 다른 호스팅을 검토한다');
   }
-  if (!added && !removed) {
+  if (!added && !removed && !pruned) {
     console.log('✓ 바뀐 파일이 없다 — 푸시하지 않는다');
   } else {
     // 커밋 하나짜리 orphan 브랜치로 다시 만든다

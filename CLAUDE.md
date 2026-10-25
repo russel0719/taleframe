@@ -17,7 +17,8 @@
 | `src/templates/catalog.ts` | 템플릿 메타데이터 (`tf catalog` 로 스킬에 노출) |
 | `src/templates/registry.ts` | template id → React 컴포넌트. 여기 등록된 것만 렌더된다 |
 | `src/templates/StoryRenderer.tsx` | 미리보기와 게시가 공유하는 단일 렌더러 |
-| `scripts/tf.ts` | CLI: status · scan · places · catalog · media · routes · weather · validate · upload · schema |
+| `scripts/tf.ts` | CLI: status · scan · places · catalog · media · routes · weather · validate · upload · rename · schema |
+| `content/redirects.json` | `tf rename` 이 남긴 옛 주소 → 새 주소. `postexport.mjs` 가 옛 주소에 넘김 페이지를 만든다 (Pages 는 서버 리다이렉트가 없다) |
 | `scripts/postexport.mjs` | 빌드 뒤처리 — 공유 카드 `opengraph-image` 에 .png 를 붙인다 (Pages 의 Content-Type 때문) |
 | `.github/workflows/pages.yml` | main 푸시 → media 브랜치 체크아웃 → 검사 → 정적 내보내기 → GitHub Pages |
 | `scripts/shot.ts` | Playwright 스크롤 스크린샷 + 자동 검사(콘솔 오류·깨진 이미지·가로 넘침). `shot -- lab` 은 실험실 |
@@ -45,6 +46,8 @@
 - headless 호출은 `studio/agent.ts` 한 곳: `--json-schema` 의 `structured_output` 만 믿는다(본문 파싱 금지),
   `--strict-mcp-config --disable-slash-commands --tools …` 로 가볍게 (실측 $0.34 → $0.07~0.09/호출),
   쓰기는 `work/<slug>/**`·`content/stories/<slug>/**`, Bash 는 `npm run tf` 만. **git push·게시는 서버 코드만** 한다.
+  출력은 `stream-json --include-partial-messages` 로 받아 지금 하는 일(읽는 파일·답 쓰는 글자 수)을 폰에 흘린다.
+  진행 막대는 그 단계가 지난번 걸린 시간(`.studio/durations.json`, 최근 5회 중앙값) 기준, 처음이면 오가는 막대.
 - 상태는 전부 파일 (`work/<slug>/studio/{meta,job,next,preview,published}.json` + 기존 inventory/analysis/interview).
   작업은 한 번에 하나 (`studio/jobs.ts`). `tf` 명령은 하위 프로세스로 부른다 (`fail()` 이 서버를 죽이지 않게).
 - 보안: 루프백 또는 사설망 주소만, 이 PC 가 아니면 토큰 쿠키(QR `?k=`). 방화벽은 `scripts/studio-lan.sh`(개인 네트워크 전용).
@@ -89,6 +92,8 @@ npm test               # vitest
 - **GitHub Pages** (Vercel·Supabase 를 쓰지 않는다 — 사용자 결정 2026-10-16).
   게시 순서: `tf upload <slug>`(media 브랜치 강제 푸시) → story.json 등을 main 에 커밋·푸시 → `pages.yml` 이 배포.
   워크플로는 게시 스토리의 파일이 media 브랜치에 다 있는지(`validate --strict-media`)와 사이트 1GB 상한을 검사한다.
+  `tf upload` 는 content/stories/ 에 없는 스토리 폴더를 media 브랜치에서 지운다 (주소 변경·삭제 정리).
+- 주소(slug)는 게시 링크다. 바꿀 때는 `tf rename <옛> <새>` → `tf upload <새>` → 커밋·푸시. Studio 는 새 여행을 만들 때 영문 주소를 따로 받는다.
 - 로컬에서 Pages 와 같은 조건 확인: `NEXT_PUBLIC_BASE_PATH=/taleframe TALEFRAME_SHOW_DRAFTS=1 npm run build` 후
   `out/` 을 `/taleframe/` 아래로 서빙하고 `npm run shot -- <slug> --url http://127.0.0.1:<port>/taleframe`.
 - 지도 타일: OpenFreeMap (키 없음) / 장소 후보: Nominatim (초당 1회, 스킬 전용) / 날씨: Open-Meteo (CC BY 4.0, 표기 필수)
