@@ -65,7 +65,10 @@ const READ_COMMON = (slug: string) => `먼저 Read 로 읽는다:
 - .claude/skills/travel-story/SKILL.md (절대 규칙)
 - .claude/skills/travel-story/interview.md (다섯 단계와 질문 규칙)
 - work/${slug}/analysis.json, work/${slug}/interview.json (지금까지의 답 — 없으면 아직 아무것도 묻지 않은 것)
-- work/${slug}/places.json (있으면. lodging 지점은 절대 쓰지 않는다)`;
+- work/${slug}/places.json (있으면)
+- work/${slug}/plan-questions.json (있으면 — 사용자가 travel-plan 에 적은 여행 계획과 사진 매칭의 요약.
+  interview.md ① 의 "travel-plan 계획이 있으면" 절차대로: confirm 은 일괄 확인 한 번, ask 는 묶음마다 질문 하나.
+  일정 메모(notes·가격)가 질문에 꼭 필요할 때만 plan.json 을 연다)`;
 
 export function phasePrompt(slug: string, phase: Phase) {
   return `여행 "${slug}" 의 스토리를 사용자와 함께 정하는 중이다. 지금은 interview.md 의 **${PHASE_NAME[phase]}** 단계다.
@@ -139,7 +142,8 @@ export function writePrompt(slug: string) {
   return `여행 "${slug}" 의 **④ 초안**을 쓴다.
 
 Read 로 읽는다: .claude/skills/travel-story/SKILL.md (6절), interview.md (④ 초안), composition.md,
-work/${slug}/analysis.json, work/${slug}/interview.json (승인된 배치표는 at="plan" 의 승인 항목), work/${slug}/places.json (있으면).
+work/${slug}/analysis.json, work/${slug}/interview.json (승인된 배치표는 at="plan" 의 승인 항목), work/${slug}/places.json (있으면),
+work/${slug}/plan.json · plan-matches.json (있으면 — interview.json 의 plan-confirm 으로 확인된 일정만 사실로 쓴다. 메모·가격은 그 일정의 notes 에서).
 \`npm run tf -- catalog\` 로 템플릿 필드를 확인한다.
 
 content/stories/${slug}/story.json 을 쓴다. status 는 "draft".

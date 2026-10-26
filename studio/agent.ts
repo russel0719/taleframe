@@ -29,7 +29,7 @@ type Options<T> = {
 const SYSTEM = `너는 TaleFrame 여행 후기 제작 파이프라인의 한 단계를 맡는다. 사용자는 폰 화면으로 결과를 본다.
 - 저장소: 이 디렉토리. 규칙의 원본은 .claude/skills/travel-story/ 의 SKILL.md · interview.md · composition.md 다. 지시가 있으면 반드시 Read 로 읽고 따른다.
 - 절대 규칙: 감정·사건·가게 이름·가격·지명을 지어내지 않는다. 사용자가 말했거나 확인한 것만 쓴다. 사진만 보고 짐작한 것은 질문 선택지로만 쓴다.
-- 이 사이트는 완전 공개다. 숙소 좌표는 어디에도 넣지 않는다 (work/<slug>/places.json 의 lodging 지점).
+- 이 사이트는 완전 공개다. 숙소 위치는 써도 된다(사용자 결정). 일행이 아닌 사람 얼굴은 물어본 뒤에만.
 - 응답은 주어진 JSON 스키마로만 한다. 한국어로 쓴다.`;
 
 function args<T>(o: Options<T>) {

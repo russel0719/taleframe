@@ -6,7 +6,6 @@ import { checkStory, type Issue } from '@/lib/story/validate';
 import { catalog, collectUsage } from '@/templates/catalog';
 import { STORIES, mediaDir, readJson, storyDir, workDir, writeJson, ROOT } from './common';
 import { expectedFiles, hashFor } from './derive';
-import { lodgingPoints, nearLodging } from './geo';
 import type { Inventory } from './scan';
 import { checkRemote } from './upload';
 
@@ -45,7 +44,6 @@ export async function validate(slugs: string[], { remote = false, strictMedia = 
       );
       issues.push(...checkStory(story, manifest, { weather, routes }));
       if (manifest) issues.push(...freshness(slug, story, manifest));
-      issues.push(...privacy(slug, story));
 
       if (manifest) {
         if (remote) {
@@ -153,27 +151,6 @@ function freshness(slug: string, story: Story, manifest: MediaManifest): Issue[]
       }
     }
   }
-  return out;
-}
-
-/** 숙소 후보 반경 안의 좌표가 공개되지 않는지 (work/<slug>/places.json 이 있을 때만) */
-function privacy(slug: string, story: Story): Issue[] {
-  const lodging = lodgingPoints(slug);
-  if (!lodging.length) return [];
-  const out: Issue[] = [];
-  story.sections.forEach((s, i) => {
-    const pts: [string, number, number][] = [];
-    if (s.template === 'map-journey' || s.template === 'walk-line') s.stops.forEach((st, j) => pts.push([`stops[${j}]`, st.lng, st.lat]));
-    if (s.template === 'weather-card') pts.push(['place', s.place.lng, s.place.lat]);
-    if (s.template === 'globe-intro') pts.push(['target', s.target.lng, s.target.lat]);
-    if (s.template === 'day-clock') pts.push(['place', s.place.lng, s.place.lat]);
-    if (s.template === 'photo-map') s.points.forEach((p, j) => pts.push([`points[${j}]`, p.lng, p.lat]));
-    for (const [where, lng, lat] of pts) {
-      if (nearLodging([lng, lat], lodging)) {
-        out.push({ level: 'error', where: `sections[${i}] (${s.id}).${where}`, message: '숙소 후보 반경 안의 좌표다 — 공개하지 않는다' });
-      }
-    }
-  });
   return out;
 }
 

@@ -366,6 +366,12 @@ export const TripPage: FC<{ s: TripState }> = ({ s }) => {
         </details>
       )}
       {!s.published && <UploadCard s={s} open={cur === 'upload'} />}
+      {s.travelPlan && (
+        <p class="muted usage">
+          여행 계획(travel-plan): {s.travelPlan.title} — 계획대로 맞춘 곳 {s.travelPlan.confirm}곳은 한 번에 확인, 어긋난 {s.travelPlan.ask}묶음만 따로 묻는다
+          {s.travelPlan.outside > 0 ? ` · 계획 밖 사진 ${s.travelPlan.outside}장` : ''}
+        </p>
+      )}
       {s.usage.jobs > 0 && (
         <p class="muted usage">
           이 여행의 Claude 사용량 ≈ ${s.usage.usd.toFixed(2)} (작업 {s.usage.jobs}번 · 구독이면 청구되지 않고 한도에서 빠진다)

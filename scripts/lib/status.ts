@@ -25,8 +25,19 @@ export function status(slug: string) {
   const unseen = inv?.items.filter((it) => !seen.has(it.id)).map((it) => it.id) ?? [];
   line(total > 0 && unseen.length === 0, 'analysis', total ? `${seen.size}/${total}${unseen.length ? ` — 남은 것: ${unseen.slice(0, 8).join(' ')}${unseen.length > 8 ? ' …' : ''}` : ''}` : '');
 
+  const planM = has(path.join(w, 'plan-matches.json'))
+    ? readJson<{ trip: { title: string }; summary: Record<string, number> }>(path.join(w, 'plan-matches.json'))
+    : null;
+  line(
+    planM ? true : null,
+    'plan',
+    planM
+      ? `${planM.trip.title} — 확실 ${planM.summary.confident} · 어긋남 ${planM.summary.conflict} · 좌표만 ${planM.summary.place} · 근처 ${planM.summary.nearby}`
+      : 'travel-plan 에 계획이 있으면 `tf plan` (설정: TRAVEL_PLAN_URL · TRAVEL_PLAN_TOKEN)',
+  );
+
   const places = has(path.join(w, 'places.json')) ? readJson<{ lodging?: boolean }[]>(path.join(w, 'places.json')) : null;
-  line(places ? true : null, 'places', places ? `${places.length}곳${places.some((p) => p.lodging) ? ` · 숙소 후보 ${places.filter((p) => p.lodging).length}곳 (공개 금지)` : ''}` : 'GPS 가 있으면 `tf places`');
+  line(places ? true : null, 'places', places ? `${places.length}곳${places.some((p) => p.lodging) ? ` · 숙소 ${places.filter((p) => p.lodging).length}곳` : ''}` : 'GPS 가 있으면 `tf places`');
 
   const interview = has(path.join(w, 'interview.json')) ? readJson<{ at: string }[]>(path.join(w, 'interview.json')) : [];
   line(interview.length > 0, 'interview', interview.length ? `답 ${interview.length}개 · 마지막: ${interview[interview.length - 1].at}` : '');

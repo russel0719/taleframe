@@ -5,6 +5,7 @@
  *   npm run tf -- status <slug>               어느 단계까지 했는지 (이어서 할 때 가장 먼저)
  *   npm run tf -- scan <폴더> --slug <slug>   원본 폴더 → work/<slug>/inventory.json + 썸네일 + 밀착 인화지
  *   npm run tf -- places <slug>               GPS 묶음 + 장소명 후보 (Nominatim)
+ *   npm run tf -- plan <slug> [--trip <id>] [--file <json>]  travel-plan 계획 가져오기 + 사진 매칭 → work/<slug>/plan*.json
  *   npm run tf -- catalog                     템플릿 카탈로그 (필드 포함)
  *   npm run tf -- media <slug>                story.json 이 쓰는 미디어만 웹용으로 변환 → media.json
  *   npm run tf -- weather <slug>              weather-card 의 실측 날씨 → weather.json
@@ -18,6 +19,7 @@ import { fail } from './lib/common';
 import { printCatalog, validate, writeSchema } from './lib/check';
 import { deriveMedia } from './lib/derive';
 import { places } from './lib/places';
+import { plan } from './lib/plan';
 import { rename } from './lib/rename';
 import { routes } from './lib/routes';
 import { scan } from './lib/scan';
@@ -43,6 +45,9 @@ switch (cmd) {
     break;
   case 'places':
     await places(need(positional[0], 'slug'));
+    break;
+  case 'plan':
+    await plan(need(positional[0], 'slug'), { trip: opt('--trip'), file: opt('--file') });
     break;
   case 'catalog':
     printCatalog();

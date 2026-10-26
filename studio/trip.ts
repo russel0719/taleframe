@@ -121,6 +121,9 @@ export function tripState(slug: string) {
   const total = inv?.items.length ?? 0;
   const hasGps = inv?.items.some((i) => i.gps) ?? false;
   const places = fs.existsSync(P(slug, 'places.json'));
+  // travel-plan 계획과의 매칭 (tf plan) — 질문을 줄이는 재료
+  const planM = readJsonFile<{ trip: { title: string }; confirm: unknown[]; ask: unknown[]; summary: Record<string, number> } | null>(P(slug, 'plan-matches.json'), null);
+  const travelPlan = planM && { title: planM.trip.title, confirm: planM.confirm.length, ask: planM.ask.length, outside: planM.summary.none ?? 0 };
   const planApproved = interview.some((x) => x.at === 'plan' && x.a === '승인');
 
   const sp = storyPath(slug);
@@ -154,6 +157,7 @@ export function tripState(slug: string) {
     analysis: { done: inv?.items.filter((i) => analyzed.has(i.id)).length ?? 0, total },
     hasGps,
     places,
+    travelPlan,
     interview,
     pending,
     phases,
@@ -331,6 +335,14 @@ export function startPrepare(slug: string) {
       await tf(ctx, 'scan', path.join('work', slug, 'inbox'), '--slug', slug);
     }
     const inv = readJsonFile<Inventory>(P(slug, 'inventory.json'), { items: [], skipped: [] });
+    // travel-plan 에 적어 둔 계획이 있으면 사진마다 일정을 맞춘다 — 없거나 설정이 없으면 건너뛰고 예전처럼 묻는다
+    if (!s.scanned || s.needsScan || !fs.existsSync(P(slug, 'plan-matches.json'))) {
+      ctx.step('여행 계획 불러오기 (travel-plan)');
+      await tf(ctx, 'plan', slug).catch((e: Error) => {
+        const why = e.message.split('\n').find((l) => /설정|겹치는|여럿|연결|거부|travel-plan/.test(l)) ?? e.message.split('\n')[0];
+        ctx.log(`· 계획 없이 진행: ${why.trim()}`);
+      });
+    }
     if (inv.items.some((i) => i.gps)) {
       ctx.step('장소 후보 찾기');
       await tf(ctx, 'places', slug);

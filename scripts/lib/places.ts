@@ -22,7 +22,7 @@ type Cluster = {
   from: string | null;
   to: string | null;
   candidate?: { name: string; area: string; type: string; display: string };
-  /** 숙소로 보이는 지점 — 좌표·경로 경유지로 절대 공개하지 않는다 */
+  /** 숙소로 보이는 지점 (표시만 — 숙소 위치는 공개해도 된다, 사용자 결정 2026-10-26) */
   lodging?: boolean;
 };
 
@@ -101,7 +101,7 @@ export async function places(slug: string) {
   for (const c of clusters) {
     const t = c.from?.slice(5, 16).replace('T', ' ') ?? '?';
     const name = c.candidate ? `${c.candidate.name || '(이름 없음)'} — ${c.candidate.area} [${c.candidate.type}]` : '(조회 실패)';
-    console.log(`  ${String(c.n).padStart(2)}  ${t}  ${String(c.ids.length).padStart(3)}  ${name}${c.lodging ? '  ⚠ 숙소 — 공개 금지' : ''}`);
+    console.log(`  ${String(c.n).padStart(2)}  ${t}  ${String(c.ids.length).padStart(3)}  ${name}${c.lodging ? '  (숙소)' : ''}`);
     console.log(`      ${c.ids.join(' ')}`);
   }
   console.log(`\n✓ work/${slug}/places.json · 장소명은 "후보"다. 반드시 사용자에게 확인받는다.`);

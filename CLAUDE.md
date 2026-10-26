@@ -17,7 +17,8 @@
 | `src/templates/catalog.ts` | 템플릿 메타데이터 (`tf catalog` 로 스킬에 노출) |
 | `src/templates/registry.ts` | template id → React 컴포넌트. 여기 등록된 것만 렌더된다 |
 | `src/templates/StoryRenderer.tsx` | 미리보기와 게시가 공유하는 단일 렌더러 |
-| `scripts/tf.ts` | CLI: status · scan · places · catalog · media · routes · weather · validate · upload · rename · schema |
+| `scripts/tf.ts` | CLI: status · scan · places · plan · catalog · media · routes · weather · validate · upload · rename · schema |
+| `scripts/lib/plan.ts` · `planMatch.ts` | travel-plan 계획 가져오기(읽기 전용 API) + 사진↔일정 매칭·질문 묶음 → `work/<slug>/plan*.json` |
 | `content/redirects.json` | `tf rename` 이 남긴 옛 주소 → 새 주소. `postexport.mjs` 가 옛 주소에 넘김 페이지를 만든다 (Pages 는 서버 리다이렉트가 없다) |
 | `scripts/postexport.mjs` | 빌드 뒤처리 — 공유 카드 `opengraph-image` 에 .png 를 붙인다 (Pages 의 Content-Type 때문) |
 | `.github/workflows/pages.yml` | main 푸시 → media 브랜치 체크아웃 → 검사 → 정적 내보내기 → GitHub Pages |
@@ -59,6 +60,18 @@
   최신 여부는 파일 시각이 아니라 **story.json 내용 지문(status 제외)** 으로 본다 — 승인만으로 초안이 다시 만들어지지 않게.
 - Next 빌드는 `tsconfig.next.json`(src/ 만)으로 타입 검사한다 — studio·tests 의 오류가 미리보기·배포를 막지 않게 (실제로 막혔다).
 
+## travel-plan 연동 (여행 계획 → 질문 줄이기)
+
+- 사용자가 travel-plan(여행 플래너 앱, 같은 사용자의 다른 프로젝트)에 적은 일정·항공편·숙소를 **읽기 전용 내보내기 API**
+  (`<travel-plan>/api/export/trips?from&to` · `/trips/<id>`, Bearer 토큰)로 받는다. DB 키는 갖지 않는다.
+  설정은 `.env.local`(gitignore): `TRAVEL_PLAN_URL` · `TRAVEL_PLAN_TOKEN`. 없으면 `tf plan`·Studio 가 건너뛰고 예전처럼 묻는다.
+- **스토리를 만들 때 이 PC 에서만** 부른다 — 빌드·Actions·브라우저에서는 절대 부르지 않는다. 결과는 `work/<slug>/` 에만.
+- 매칭은 travel-video-maker `plan.py` 를 옮긴 것 + 다카마쓰 259장 실측으로 고친 것: 시각상 바로 앞뒤(60분) 일정의 장소면
+  어긋남이 아니라 "좌표로 확인", 이동 일정은 출발지·도착지 둘 다 그 일정의 장소. (고치기 전 어긋남 74장 → 13장, 질문 4묶음)
+- 질문은 사진 단위가 아니라 `plan-questions.json` 의 **confirm(일괄 확인 1번) · ask(어긋남 묶음마다 1개)**. Studio 프롬프트는
+  이 작은 요약만 읽게 한다 — 사진별 매칭 전체를 읽히면 headless 한 번이 $1 을 넘었다.
+- 계획은 사용자가 적은 자료지만 **확인(일괄) 전에는 짐작과 같다** (interview.md ①). 계획 시각을 잘못 적은 일정이 실제로 있다.
+
 ## 이번에 걸린 함정
 
 - **스크롤 애니메이션의 입력 구간은 0~1 안에서 증가해야 한다.** Motion 이 스크롤 연동을 WAAPI 로 넘길 때 음수나 1 초과,
@@ -76,7 +89,7 @@
 
 - 타입 있는 데이터 + 스키마 검증. 등록된 컴포넌트만 렌더한다. LLM 이 만든 HTML/JS 를 실행하지 않는다.
 - AI 는 감정·사실·가격·장소·사건을 지어내지 않는다. 불확실하면 묻는다. 승인(`approved`)·잠금(`locked`) 섹션을 보존한다.
-- 공개 사이트다: 파생 파일은 EXIF/GPS 제거(sharp 기본 + ffmpeg `-map_metadata -1`, 출력 후 ffprobe 로 재검사). 숙소 좌표 금지.
+- 공개 사이트다: 파생 파일은 EXIF/GPS 제거(sharp 기본 + ffmpeg `-map_metadata -1`, 출력 후 ffprobe 로 재검사). 집 좌표 금지 — **숙소 위치는 공개해도 된다**(사용자 결정 2026-10-26).
 - 파생 형식(실측 근거는 커밋 메시지·프로젝트 문서): 사진은 AVIF q62 + 가장 작은 폭 WebP 대체본, 일반 영상 H.264 CRF 28
   (상한 10Mbps), 스크럽 H.264 키프레임 4간격. 파일 하나 95MiB 초과 시 실패 (GitHub 100MiB 한도).
 - 자산 URL 은 반드시 `basePath`(`src/lib/media.ts`)를 붙인다 — Pages 는 `/<repo>/` 아래에 열린다. next/link 는 자동.
