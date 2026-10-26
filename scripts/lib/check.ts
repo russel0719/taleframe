@@ -163,7 +163,7 @@ function privacy(slug: string, story: Story): Issue[] {
   const out: Issue[] = [];
   story.sections.forEach((s, i) => {
     const pts: [string, number, number][] = [];
-    if (s.template === 'map-journey') s.stops.forEach((st, j) => pts.push([`stops[${j}]`, st.lng, st.lat]));
+    if (s.template === 'map-journey' || s.template === 'walk-line') s.stops.forEach((st, j) => pts.push([`stops[${j}]`, st.lng, st.lat]));
     if (s.template === 'weather-card') pts.push(['place', s.place.lng, s.place.lat]);
     if (s.template === 'globe-intro') pts.push(['target', s.target.lng, s.target.lat]);
     if (s.template === 'day-clock') pts.push(['place', s.place.lng, s.place.lat]);

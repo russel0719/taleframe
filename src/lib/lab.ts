@@ -1,4 +1,4 @@
-import type { MediaManifest, RouteData, Section, Story, WeatherDay } from './story/schema';
+import type { MediaManifest, RouteData, Section, SectionOf, Story, WeatherDay } from './story/schema';
 import { templateIds, type TemplateId } from './story/schema';
 
 /**
@@ -13,6 +13,8 @@ type Pick = {
   byDay: string[][];
   /** 가로 사진 (수평선·창틀용) */
   wide: string[];
+  /** 스토리의 첫 지도 여정 — 걸은 선이 같은 장소·경로를 그린다 */
+  journey?: { id: string; stops: SectionOf<'map-journey'>['stops'] };
   /** 지도·시계에 쓸 대략의 위치 (스토리의 첫 지도 장소) */
   center: { name: string; lat: number; lng: number };
   /** 일반 재생 mp4 가 있는 영상 */
@@ -29,11 +31,13 @@ export function pickMedia(manifest: MediaManifest, story?: Story): Pick {
   const days = new Map<string, [string, string][]>();
   for (const [id, m] of images) if (m.taken) days.set(m.taken.slice(0, 10), [...(days.get(m.taken.slice(0, 10)) ?? []), [id, m.taken]]);
   const byDay = [...days.keys()].sort().map((d) => days.get(d)!.sort((a, b) => a[1].localeCompare(b[1])).map(([id]) => id));
-  const stop = story?.sections.flatMap((x) => (x.template === 'map-journey' ? x.stops : []))[0];
+  const journey = story?.sections.find((x) => x.template === 'map-journey') as SectionOf<'map-journey'> | undefined;
+  const stop = journey?.stops[0];
   return {
     images: images.map(([id]) => id),
     byDay,
     wide: images.filter(([, m]) => m.width > m.height * 1.2).map(([id]) => id),
+    journey: journey && { id: journey.id, stops: journey.stops },
     center: stop ? { name: stop.name, lat: stop.lat, lng: stop.lng } : { name: '실험실', lat: 34.99, lng: 135.76 },
     video: entries.find(([, m]) => m.mp4)?.[0],
     scrub: entries.find(([, m]) => m.scrub)?.[0],
@@ -153,6 +157,26 @@ export function labSection(t: TemplateId, p: Pick): Section | null {
           lng: round3(p.center.lng + Math.cos(i * 2.3) * 0.016),
         })),
       };
+    case 'postcard-back':
+      return { ...s, template: t, media: wide(2), message: '실험실 예시 문장. 손글씨로 쓴 한마디가 여기 들어간다 — 사용자가 직접 쓴 말만.', to: '자리표시', from: '자리표시', place: 'TAKAMATSU' };
+    case 'receipt':
+      return {
+        ...s,
+        template: t,
+        heading: '영수증',
+        title: '실험실 영수증',
+        lines: spread(busiest, 7).map((id, i) => ({ item: `메뉴 ${i + 1}`, media: i % 3 === 2 ? undefined : id, price: i % 2 ? undefined : '¥000' })),
+        total: { label: '걸은 거리', value: '00.0 km' },
+        footer: '자리표시 — 또 오세요',
+      };
+    case 'walk-line':
+      return p.journey ? { ...s, template: t, heading: '걸은 선', title: '실험실 산책', stops: p.journey.stops } : null;
+    case 'split-flap':
+      return { ...s, template: t, board: 'DEPARTURES', media: wide(5), rows: [{ text: 'TAKAMATSU', note: '08:12' }, { text: '→ NAOSHIMA', note: '09:02' }, { text: '다카마쓰 2026' }] };
+    case 'photo-stack':
+      return { ...s, template: t, heading: '사진 더미', items: [0, 1, 2, 3, 4, 5].map((i) => ({ media: img(50 + i * 4), caption: i % 2 ? undefined : `${T} ${i + 1}` })) };
+    case 'scrap-object':
+      return { ...s, template: t, heading: '실물 스크랩', items: [busiest[3] ?? img(60), img(61), img(62)].map((id, i) => ({ media: id, caption: i === 1 ? undefined : `${T} ${i + 1}` })), note: T };
     case 'palette-diary': {
       const days = p.byDay.filter((d) => d.length >= 3).slice(0, 5);
       return days.length ? { ...s, template: t, heading: '색의 일기', caption: T, days: days.map((d, i) => ({ label: `${i + 1}일째`, items: d.slice(0, 48) })) } : null;
@@ -160,7 +184,7 @@ export function labSection(t: TemplateId, p: Pick): Section | null {
   }
 }
 
-export function buildLab(source: { story: Story; manifest: MediaManifest }): {
+export function buildLab(source: { story: Story; manifest: MediaManifest; routes?: Record<string, RouteData> }): {
   story: Story;
   weather: Record<string, WeatherDay>;
   routes: Record<string, RouteData>;
@@ -180,7 +204,8 @@ export function buildLab(source: { story: Story; manifest: MediaManifest }): {
     weather: {
       'lab-weather-card': { date: '2026-02-08', place: '실험실', code: 73, tMax: 4.2, tMin: -0.8, precipitation: 6.1, source: 'open-meteo' },
     },
-    routes: {},
+    // 걸은 선은 스토리의 지도 여정과 같은 장소라 그 경로를 그대로 쓴다
+    routes: pick.journey && source.routes?.[pick.journey.id] ? { 'lab-walk-line': source.routes[pick.journey.id] } : {},
     skipped,
   };
 }

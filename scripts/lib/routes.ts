@@ -7,7 +7,7 @@ import { haversine, lodgingPoints, nearLodging, type LngLat } from './geo';
 import type { Inventory } from './scan';
 
 /**
- * map-journey 의 구간마다 실제 길을 따라가는 경로를 받아 routes.json 에 고정한다.
+ * map-journey · walk-line 의 구간마다 실제 길을 따라가는 경로를 받아 routes.json 에 고정한다.
  * 길찾기: FOSSGIS 가 운영하는 OSRM (OpenStreetMap 데이터, 키 없음, 적정 사용).
  * https://routing.openstreetmap.de/about.html
  *
@@ -81,9 +81,9 @@ export async function routes(slug: string, { force = false } = {}) {
   const lodging = lodgingPoints(slug);
 
   const out: Record<string, RouteData> = {};
-  const journeys = story.sections.filter((s) => s.template === 'map-journey');
+  const journeys = story.sections.filter((s) => s.template === 'map-journey' || s.template === 'walk-line');
   if (!journeys.length) {
-    console.log('· map-journey 섹션이 없다');
+    console.log('· map-journey · walk-line 섹션이 없다');
     return;
   }
   for (const s of journeys) {

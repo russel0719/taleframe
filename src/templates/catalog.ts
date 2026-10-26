@@ -410,6 +410,70 @@ export const catalog: Record<TemplateId, TemplateDefinition> = {
     defaultTone: 'parchment',
     art: true,
   },
+  'postcard-back': {
+    id: 'postcard-back',
+    name: 'Postcard Back (엽서 뒷면)',
+    category: 'reflection',
+    description: '사진 엽서가 스크롤하면(또는 누르면) 뒤집히고, 뒷면에 손글씨 한마디·우표·날짜와 도시가 찍힌 소인이 있다.',
+    suitableFor: ['챕터 끝의 여운', '누군가에게 하고 싶었던 말'],
+    avoidWhen: ['사용자가 한마디를 주지 않았을 때 (지어내지 않는다)'],
+    motionLevel: 'subtle',
+    defaultTone: 'parchment',
+    tall: true,
+  },
+  receipt: {
+    id: 'receipt',
+    name: 'Receipt (영수증)',
+    category: 'food',
+    description: '감열지 영수증이 위에서부터 인쇄돼 나온다. 그날 먹은 것·들른 곳이 시각순으로, 합계 줄에는 확인된 숫자(걸은 거리 등). 가격은 사용자가 말한 것만.',
+    suitableFor: ['먹는 여행의 하루', '들른 곳이 많은 날의 요약'],
+    avoidWhen: ['가격을 모르는데 채우려 할 때 (빈칸으로 둔다)'],
+    motionLevel: 'subtle',
+    // 흰 종이라 밝은 바탕에서는 가장자리(톱니)가 안 보인다
+    defaultTone: 'dark',
+  },
+  'walk-line': {
+    id: 'walk-line',
+    name: 'Walk Line (걸은 선)',
+    category: 'art',
+    description: '지도 없이 빈 종이 위에 그날 실제로 걸은 길(tf routes)이 펜 한 줄로 그려지고, 거리가 올라간다. 날마다 한 장씩 두면 연작 드로잉.',
+    suitableFor: ['많이 걸은 날', '도시를 걸어서 돈 여행'],
+    avoidWhen: ['걸은 구간이 없고 기차·비행기뿐인 날 (점선 직선만 남는다)', '숙소에서 출발하는 경로 (숙소 좌표 금지)'],
+    motionLevel: 'cinematic',
+    defaultTone: 'parchment',
+    tall: true,
+    art: true,
+  },
+  'split-flap': {
+    id: 'split-flap',
+    name: 'Split-Flap Board (출발 안내판)',
+    category: 'hero',
+    description: '공항·역의 플랩 안내판처럼 글자가 따다닥 넘어가며 도시·날짜·편명이 맞춰진다. 배경 사진을 어둡게 깔 수 있다.',
+    suitableFor: ['오프닝', '도시가 바뀌는 챕터의 문'],
+    avoidWhen: ['확인 안 된 편명·시각'],
+    motionLevel: 'subtle',
+    defaultTone: 'dark',
+  },
+  'photo-stack': {
+    id: 'photo-stack',
+    name: 'Photo Stack (사진 더미)',
+    category: 'gallery',
+    description: '인화한 사진 더미. 맨 위 장을 옆으로 튕기거나 누르면 날아가고 다음 장이 나온다. 뒷면 귀퉁이에 짧은 메모.',
+    suitableFor: ['폰에서 넘겨 보는 재미가 있는 스냅 묶음', '사람·일행 사진'],
+    avoidWhen: ['한 장 한 장 비교해야 하는 사진 (gallery 가 낫다)'],
+    motionLevel: 'subtle',
+    defaultTone: 'parchment',
+  },
+  'scrap-object': {
+    id: 'scrap-object',
+    name: 'Scrap Object (실물 스크랩)',
+    category: 'gallery',
+    description: '표·영수증·입장권·지도처럼 실물을 찍은 사진을 마스킹테이프로 종이에 붙인다. 손글씨 메모와 화살표.',
+    suitableFor: ['직접 찍어 둔 표·입장권·영수증', '여행의 물건들'],
+    avoidWhen: ['풍경 사진 (스크랩 느낌이 안 난다)', '개인정보가 찍힌 실물 (이름·카드번호·QR)'],
+    motionLevel: 'subtle',
+    defaultTone: 'parchment',
+  },
   closing: {
     id: 'closing',
     name: 'Closing',
@@ -468,6 +532,20 @@ export function mediaRefs(s: Section): MediaRef[] {
     case 'place-feature':
       add(s.media, 'image', 'media');
       s.gallery?.forEach((id, i) => add(id, 'image', `gallery[${i}]`));
+      break;
+    case 'walk-line':
+      s.stops.forEach((st, i) => add(st.media, 'image', `stops[${i}].media`));
+      break;
+    case 'receipt':
+      s.lines.forEach((l, i) => add(l.media, 'image', `lines[${i}].media`));
+      break;
+    case 'postcard-back':
+    case 'split-flap':
+      add(s.media, 'image', 'media');
+      break;
+    case 'photo-stack':
+    case 'scrap-object':
+      s.items.forEach((it, i) => add(it.media, 'image', `items[${i}].media`));
       break;
     case 'photo-map':
       s.points.forEach((p, i) => add(p.media, 'image', `points[${i}].media`));

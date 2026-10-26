@@ -24,6 +24,7 @@
 | `scripts/shot.ts` | Playwright 스크롤 스크린샷 + 자동 검사(콘솔 오류·깨진 이미지·가로 넘침). `shot -- lab` 은 실험실 |
 | `src/templates/art.tsx` | 작품 템플릿 8종 (verse · color-field · film-roll · diptych · spotlight · riso-print · kinetic-type · palette-diary) |
 | `src/templates/keepsake.tsx` | 기록물 5종 (stamp-rally · transit-ticket · day-clock · contact-sheet · photo-map) |
+| `src/templates/paper.tsx` | 종이 위의 것들 6종 (postcard-back · receipt · walk-line · split-flap · photo-stack · scrap-object) |
 | `src/lib/lab.ts` · `/lab` | 템플릿 실험실 — 실제 스토리의 미디어로 모든 템플릿을 한 페이지에 (개발 전용). `/lab/<slug>` 로 사진 출처, `?t=a,b` 로 템플릿을 고른다 |
 | `studio/` | **TaleFrame Studio** — 폰(집 와이파이)에서 업로드·질문 답변·미리보기 승인·게시. Hono 서버, `npm run studio -- --lan` |
 | `studio/prompts.ts` | headless 단계별 지시 + 응답 zod 스키마. 판단 규칙은 스킬 문서를 Read 하게 할 뿐 여기 다시 쓰지 않는다 |

@@ -34,6 +34,21 @@ const base = {
 };
 
 const Fact = z.strictObject({ label: Text(20), value: Text(60) });
+/** 지도 장소 — map-journey 와 walk-line 이 같이 쓰고, tf routes 가 둘 다 실제 경로를 받는다 */
+const Stops = z
+  .array(
+    z.strictObject({
+      name: Text(30),
+      lat: Lat,
+      lng: Lng,
+      /** 이전 장소에서 여기로 온 방법 */
+      transport: Transport.optional(),
+      media: MediaId.optional(),
+      note: Text(120).optional(),
+    }),
+  )
+  .min(2)
+  .max(12);
 const Item = z.strictObject({ media: MediaId, caption: Text(80).optional() });
 const Point = z.strictObject({ lat: Lat, lng: Lng, zoom: z.number().min(1).max(18).optional() });
 const Hex = z.string().regex(/^#[0-9a-fA-F]{6}$/, '#rrggbb');
@@ -162,6 +177,21 @@ export const sectionSchemas = {
       .max(24)
       .refine((f) => f.some((x) => x.pick), { message: '고른 컷(pick: true)이 하나는 있어야 한다' }),
   }),
+  /** 인화한 사진 더미 — 맨 위 장을 넘기면(튕기면) 다음 장이 나온다 */
+  'photo-stack': z.strictObject({
+    ...base,
+    template: z.literal('photo-stack'),
+    heading: Text(40).optional(),
+    items: z.array(z.strictObject({ media: MediaId, caption: Text(40).optional() })).min(3).max(12),
+  }),
+  /** 표·영수증·입장권처럼 실물을 찍은 사진을 마스킹테이프로 종이에 붙인다 */
+  'scrap-object': z.strictObject({
+    ...base,
+    template: z.literal('scrap-object'),
+    heading: Text(40).optional(),
+    items: z.array(z.strictObject({ media: MediaId, caption: Text(40).optional() })).min(1).max(4),
+    note: Text(120).optional(),
+  }),
   'before-after': z.strictObject({
     ...base,
     template: z.literal('before-after'),
@@ -214,20 +244,25 @@ export const sectionSchemas = {
     ...base,
     template: z.literal('map-journey'),
     heading: Text(40).optional(),
-    stops: z
-      .array(
-        z.strictObject({
-          name: Text(30),
-          lat: Lat,
-          lng: Lng,
-          /** 이전 장소에서 여기로 온 방법 */
-          transport: Transport.optional(),
-          media: MediaId.optional(),
-          note: Text(120).optional(),
-        }),
-      )
-      .min(2)
-      .max(12),
+    stops: Stops,
+  }),
+  /** 지도 없이 빈 종이에 그날 걸은 길을 펜 한 줄로 그린다 (tf routes 의 실제 경로) */
+  'walk-line': z.strictObject({
+    ...base,
+    template: z.literal('walk-line'),
+    heading: Text(40).optional(),
+    /** 그림 아래 작은 제목 (예: "2/7 교토") */
+    title: Text(30).optional(),
+    stops: Stops,
+  }),
+  /** 공항·역 안내판처럼 글자가 따다닥 넘어가며 맞춰진다 */
+  'split-flap': z.strictObject({
+    ...base,
+    template: z.literal('split-flap'),
+    /** 안내판 이름 (예: "DEPARTURES") */
+    board: z.string().regex(/^[A-Z0-9 .·-]{1,20}$/, '영문 대문자·숫자 20자 이내').optional(),
+    rows: z.array(z.strictObject({ text: Text(16), note: Text(24).optional() })).min(1).max(5),
+    media: MediaId.optional(),
   }),
   /** 사진이 찍힌 자리에 썸네일이 흩어진 지도. 경로가 아니라 "어디서 많이 찍었나" */
   'photo-map': z.strictObject({
@@ -282,6 +317,29 @@ export const sectionSchemas = {
       )
       .min(1)
       .max(4),
+  }),
+  /** 감열지 영수증 — 그날 먹은 것·들른 곳이 시각순으로 인쇄돼 나온다. 가격은 사용자가 말한 것만 */
+  receipt: z.strictObject({
+    ...base,
+    template: z.literal('receipt'),
+    heading: Text(40).optional(),
+    /** 영수증 맨 위 이름 (예: "2/7 교토에서 먹은 것") */
+    title: Text(24),
+    date: IsoDate.optional(),
+    lines: z
+      .array(
+        z.strictObject({
+          item: Text(24),
+          /** 없으면 media 의 촬영 시각 */
+          time: Clock.optional(),
+          price: Text(12).optional(),
+          media: MediaId.optional(),
+        }),
+      )
+      .min(2)
+      .max(16),
+    total: z.strictObject({ label: Text(16), value: Text(16) }).optional(),
+    footer: Text(40).optional(),
   }),
   /** 스탬프 카드 — 들른 가게마다 도장이 찍힌다. 이름을 모르는 집은 빈 도장 */
   'stamp-rally': z.strictObject({
@@ -415,6 +473,19 @@ export const sectionSchemas = {
     text: Text(12),
     media: MediaId.optional(),
     caption: Text(80).optional(),
+  }),
+  /** 사진 엽서 — 뒤집으면 손글씨 한마디·우표·소인. 한마디는 사용자가 쓴 것만 */
+  'postcard-back': z.strictObject({
+    ...base,
+    template: z.literal('postcard-back'),
+    media: MediaId,
+    message: Text(160),
+    to: Text(20).optional(),
+    from: Text(20).optional(),
+    /** 소인에 찍히는 도시 */
+    place: Text(16).optional(),
+    /** 소인 날짜. 없으면 사진 촬영일 */
+    date: IsoDate.optional(),
   }),
   /** 하루를 촬영 순서대로 색 줄무늬 띠로 — 사진마다 대표색 */
   'palette-diary': z.strictObject({

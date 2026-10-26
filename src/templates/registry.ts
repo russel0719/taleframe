@@ -5,6 +5,7 @@ import { DailyTimeline, FoodReview, Closing, Recommendation, TravelStats } from 
 import { BeforeAfter, PhotoGallery, PhotoOverlay, PhotoSingle, PhotoStrip, PolaroidCollage } from './gallery';
 import { HeroFullbleed, PostcardCover } from './hero';
 import { ContactSheet, DayClock, PhotoMap, StampRally, TransitTicket } from './keepsake';
+import { PhotoStack, PostcardBack, Receipt, ScrapObject, SplitFlap, WalkLine } from './paper';
 import { GlobeIntro, MapJourney, Panorama, PlaceFeature, SplitFeature } from './place';
 import { ChapterDivider, EditorialText, FactCard, QuoteMoment, WeatherCard } from './text';
 import type { TemplateProps } from './types';
@@ -54,4 +55,10 @@ export const registry: { [K in TemplateId]: ComponentType<TemplateProps<K>> } = 
   'contact-sheet': ContactSheet,
   'photo-map': PhotoMap,
   'palette-diary': PaletteDiary,
+  'postcard-back': PostcardBack,
+  receipt: Receipt,
+  'walk-line': WalkLine,
+  'split-flap': SplitFlap,
+  'photo-stack': PhotoStack,
+  'scrap-object': ScrapObject,
 };

@@ -197,7 +197,8 @@ describe('경로', () => {
 
   it('장소가 바뀌면 낡은 경로를 경고한다', () => {
     const key = stopsKey(map().stops);
-    const ok = checkStory(showcase, manifest, { routes: { map: key } });
+    const walk = showcase.sections.find((x) => x.template === 'walk-line') as SectionOf<'walk-line'>;
+    const ok = checkStory(showcase, manifest, { routes: { map: key, walk: stopsKey(walk.stops) } });
     expect(ok.some((i) => i.message.includes('경로'))).toBe(false);
 
     const st = clone(showcase);
@@ -232,5 +233,22 @@ describe('해와 시계', () => {
     // 실제: 일출 06:13 · 일몰 17:26 (국립천문대 기준 근사)
     expect(Math.abs(t.rise - (6 + 13 / 60))).toBeLessThan(0.15);
     expect(Math.abs(t.set - (17 + 26 / 60))).toBeLessThan(0.15);
+  });
+
+  it('걸은 선: 장소가 그림 안(여백 포함)에 들어오고 세로는 모양대로', async () => {
+    const { projectWalk } = await import('@/templates/paper');
+    const g = projectWalk([
+      { name: 'a', lat: 34.985, lng: 135.758 },
+      { name: 'b', lat: 34.967, lng: 135.773, transport: 'walk' },
+      { name: 'c', lat: 35.004, lng: 135.769, transport: 'walk' },
+    ]);
+    expect(g.W).toBe(1000);
+    for (const st of g.stops) {
+      expect(st.at[0]).toBeGreaterThanOrEqual(69);
+      expect(st.at[0]).toBeLessThanOrEqual(931);
+      expect(st.at[1]).toBeGreaterThanOrEqual(0);
+      expect(st.at[1]).toBeLessThanOrEqual(g.H);
+    }
+    expect(g.legs.every((l) => !l.foot)).toBe(true); // 경로 데이터가 없으면 점선(걸은 거리 0)
   });
 });

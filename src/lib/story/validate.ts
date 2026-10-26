@@ -62,7 +62,7 @@ export function checkStory(story: Story, manifest?: MediaManifest, extras: Extra
     if (s.template === 'weather-card' && extras.weather && !extras.weather.has(s.id)) {
       warn(where, `날씨 데이터가 없다 — \`tf weather ${story.slug}\` 실행 필요`);
     }
-    if (s.template === 'map-journey') {
+    if (s.template === 'map-journey' || s.template === 'walk-line') {
       if (extras.routes) {
         const key = extras.routes[s.id];
         if (!key) warn(where, `경로가 없어 직선으로 그려진다 — \`tf routes ${story.slug}\``);

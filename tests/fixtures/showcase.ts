@@ -133,6 +133,12 @@ export const showcase: Story = {
     { ...s, id: 'pmap', template: 'photo-map', points: [{ media: 'm001', lat: 35.001, lng: 135.771 }, { media: 'm002', lat: 35.004, lng: 135.775 }, { media: 'm003', lat: 35.01, lng: 135.78 }] },
     { ...s, id: 'diary', template: 'palette-diary', days: [{ label: '둘째 날', items: ['m001', 'm003', 'm004', 'm005'] }] },
     { ...s, id: 'note8', template: 'quote-moment', quote: '사이' },
+    { ...s, id: 'card', template: 'postcard-back', media: 'm001', message: '다음엔 같이 오자', to: '엄마', place: 'KYOTO' },
+    { ...s, id: 'bill', template: 'receipt', title: '둘째 날', lines: [{ item: '우동', media: 'm002', price: '¥480' }, { item: '커피', time: '15:10' }], total: { label: '걸은 거리', value: '12.4 km' } },
+    { ...s, id: 'walk', template: 'walk-line', title: '교토', stops: [{ name: '역', lat: 34.985, lng: 135.758 }, { name: '신사', lat: 34.967, lng: 135.773, transport: 'walk' }] },
+    { ...s, id: 'board', template: 'split-flap', board: 'DEPARTURES', rows: [{ text: 'OSAKA', note: '09:00' }, { text: '교토' }], media: 'm003' },
+    { ...s, id: 'pile', template: 'photo-stack', items: [{ media: 'm001', caption: '하나' }, { media: 'm002' }, { media: 'm003' }] },
+    { ...s, id: 'scrap', template: 'scrap-object', items: [{ media: 'm004', caption: '표' }], note: '메모' },
     { ...s, id: 'end', template: 'closing', media: 'm001', line: '끝', credit: '2026. 02' },
   ],
 };

@@ -1,6 +1,6 @@
 import type { SectionOf } from './schema';
 
-type Stops = SectionOf<'map-journey'>['stops'];
+type Stops = SectionOf<'map-journey' | 'walk-line'>['stops'];
 
 /** 경로에 영향을 주는 값(좌표·이동 수단·사진)만으로 만든 지문 */
 export function stopsKey(stops: Stops): string {
