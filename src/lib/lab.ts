@@ -9,6 +9,12 @@ import { templateIds, type TemplateId } from './story/schema';
 
 type Pick = {
   images: string[];
+  /** 촬영 시각이 있는 사진 — 날짜별, 시각순 */
+  byDay: string[][];
+  /** 가로 사진 (수평선·창틀용) */
+  wide: string[];
+  /** 지도·시계에 쓸 대략의 위치 (스토리의 첫 지도 장소) */
+  center: { name: string; lat: number; lng: number };
   /** 일반 재생 mp4 가 있는 영상 */
   video?: string;
   /** 스크럽 영상이 있는 영상 */
@@ -17,10 +23,18 @@ type Pick = {
   ambient?: string;
 };
 
-export function pickMedia(manifest: MediaManifest): Pick {
+export function pickMedia(manifest: MediaManifest, story?: Story): Pick {
   const entries = Object.entries(manifest.items);
+  const images = entries.filter(([, m]) => m.kind === 'image');
+  const days = new Map<string, [string, string][]>();
+  for (const [id, m] of images) if (m.taken) days.set(m.taken.slice(0, 10), [...(days.get(m.taken.slice(0, 10)) ?? []), [id, m.taken]]);
+  const byDay = [...days.keys()].sort().map((d) => days.get(d)!.sort((a, b) => a[1].localeCompare(b[1])).map(([id]) => id));
+  const stop = story?.sections.flatMap((x) => (x.template === 'map-journey' ? x.stops : []))[0];
   return {
-    images: entries.filter(([, m]) => m.kind === 'image').map(([id]) => id),
+    images: images.map(([id]) => id),
+    byDay,
+    wide: images.filter(([, m]) => m.width > m.height * 1.2).map(([id]) => id),
+    center: stop ? { name: stop.name, lat: stop.lat, lng: stop.lng } : { name: '실험실', lat: 34.99, lng: 135.76 },
     video: entries.find(([, m]) => m.mp4)?.[0],
     scrub: entries.find(([, m]) => m.scrub)?.[0],
     ambient: entries.find(([, m]) => m.ambient)?.[0],
@@ -32,6 +46,11 @@ const T = '실험실 예시 문장';
 /** 템플릿별 예시 섹션. 필요한 미디어가 없으면 null (그 템플릿은 건너뛰고 화면에 알린다) */
 export function labSection(t: TemplateId, p: Pick): Section | null {
   const img = (i: number) => p.images[i % p.images.length];
+  const wide = (i: number) => (p.wide.length ? p.wide[i % p.wide.length] : img(i));
+  // 사진이 가장 많은 날 — 시계·밀착 인화지용
+  const busiest = [...p.byDay].sort((a, b) => b.length - a.length)[0] ?? p.images;
+  const spread = (ids: string[], n: number) => Array.from({ length: Math.min(n, ids.length) }, (_, i) => ids[Math.floor((i * (ids.length - 1)) / Math.max(1, n - 1))]);
+  const round3 = (v: number) => Math.round(v * 1000) / 1000;
   const items = (n: number, from = 0) => Array.from({ length: n }, (_, i) => ({ media: img(from + i), caption: i % 2 ? undefined : `${T} ${i + 1}` }));
   const s = { id: `lab-${t}`, status: 'draft' as const };
   switch (t) {
@@ -110,6 +129,34 @@ export function labSection(t: TemplateId, p: Pick): Section | null {
       return { ...s, template: t, media: img(11), title: 'RISO', caption: T };
     case 'kinetic-type':
       return { ...s, template: t, text: '교토', media: img(7), caption: T };
+    case 'stamp-rally':
+      return { ...s, template: t, heading: '스탬프 카드', card: '실험실 순례', stamps: [0, 1, 2, 3, 4, 5].map((i) => ({ media: img(40 + i), name: i === 2 ? undefined : `가게 ${i + 1}`, note: i % 2 ? undefined : T })) };
+    case 'transit-ticket':
+      return { ...s, template: t, from: '출발항', to: '도착항', mode: 'ferry', date: '2026-10-23', depart: '08:12', arrive: '09:02', operator: '자리표시 운항사', note: T, items: [0, 1, 2, 3].map((i) => ({ media: wide(i), caption: i ? undefined : T })) };
+    case 'day-clock':
+      return busiest.length >= 3
+        ? { ...s, template: t, heading: '하루 시계', date: '2026-10-23', place: p.center, items: spread(busiest, 10).map((id, i) => ({ media: id, caption: i % 3 ? undefined : T })) }
+        : null;
+    case 'contact-sheet': {
+      const run = busiest.slice(0, 12).length >= 6 ? busiest.slice(0, 12) : p.images.slice(0, 12);
+      return { ...s, template: t, heading: '밀착 인화지', label: 'LAB 2026', caption: T, frames: run.map((id, i) => ({ media: id, pick: i === 2 || i === 7, caption: i === 2 || i === 7 ? T : undefined })) };
+    }
+    case 'photo-map':
+      return {
+        ...s,
+        template: t,
+        heading: '사진 지도',
+        caption: '실험실 — 좌표는 자리표시',
+        points: Array.from({ length: 14 }, (_, i) => ({
+          media: img(i * 3),
+          lat: round3(p.center.lat + Math.sin(i * 1.7) * 0.012),
+          lng: round3(p.center.lng + Math.cos(i * 2.3) * 0.016),
+        })),
+      };
+    case 'palette-diary': {
+      const days = p.byDay.filter((d) => d.length >= 3).slice(0, 5);
+      return days.length ? { ...s, template: t, heading: '색의 일기', caption: T, days: days.map((d, i) => ({ label: `${i + 1}일째`, items: d.slice(0, 48) })) } : null;
+    }
   }
 }
 
@@ -119,7 +166,7 @@ export function buildLab(source: { story: Story; manifest: MediaManifest }): {
   routes: Record<string, RouteData>;
   skipped: TemplateId[];
 } {
-  const pick = pickMedia(source.manifest);
+  const pick = pickMedia(source.manifest, source.story);
   const sections: Section[] = [];
   const skipped: TemplateId[] = [];
   for (const t of templateIds) {

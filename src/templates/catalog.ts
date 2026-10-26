@@ -348,6 +348,68 @@ export const catalog: Record<TemplateId, TemplateDefinition> = {
     tall: true,
     art: true,
   },
+  'stamp-rally': {
+    id: 'stamp-rally',
+    name: 'Stamp Rally (스탬프 카드)',
+    category: 'food',
+    description: '스탬프 카드에 들른 집마다 붉은 도장이 하나씩 찍힌다. 도장을 누르면 그 집 사진. 이름을 모르는 집은 빈 도장(?)으로 남는다.',
+    suitableFor: ['같은 종류의 가게를 여러 곳 돈 여행 (우동·라멘·카페 순례)', '하루의 먹거리 기록'],
+    avoidWhen: ['2곳 이하', '가게 이름을 사용자가 말해 주지 않았는데 이름을 채우려 할 때 (빈 도장으로 둔다)'],
+    motionLevel: 'subtle',
+    defaultTone: 'parchment',
+  },
+  'transit-ticket': {
+    id: 'transit-ticket',
+    name: 'Transit Ticket (승차권)',
+    category: 'place',
+    description: '출발·도착·시각이 찍힌 표 한 장. 스크롤하면 절취선에서 찢기고 아래로 창밖 사진이 이어진다.',
+    suitableFor: ['이동 자체가 기억에 남은 구간 (페리, 야간열차, 비행)', '챕터 사이의 이동'],
+    avoidWhen: ['출발지·도착지를 확인하지 못했을 때', '시각을 모르는데 채우려 할 때 (시각은 빼도 된다)'],
+    motionLevel: 'subtle',
+    defaultTone: 'light',
+  },
+  'day-clock': {
+    id: 'day-clock',
+    name: 'Day Clock (하루 시계)',
+    category: 'timeline',
+    description: '24시간 원형 시계. 스크롤하면 바늘이 돌며 촬영 시각 자리의 사진이 차례로 떠오르고, 배경이 그날 해의 높이에 맞춰 새벽·낮·노을·밤으로 바뀐다.',
+    suitableFor: ['이른 아침부터 밤까지 이어진 하루', '시간대별 빛이 다른 사진 묶음'],
+    avoidWhen: ['촬영 시각이 없는 사진', '사진이 한두 시간 안에 몰려 있을 때 (시계가 거의 안 돈다)'],
+    motionLevel: 'cinematic',
+    defaultTone: 'dark',
+    tall: true,
+  },
+  'contact-sheet': {
+    id: 'contact-sheet',
+    name: 'Contact Sheet (밀착 인화지)',
+    category: 'gallery',
+    description: '한 장면에서 연달아 찍은 컷이 밀착 인화지처럼 깔리고, 고른 컷에 붉은 색연필 동그라미가 그려진다. 누르면 크게 본다.',
+    suitableFor: ['같은 자리에서 여러 장 찍은 장면 (정원, 전망, 미술관 앞)', '"고르는 과정"이 이야기가 될 때'],
+    avoidWhen: ['서로 다른 장소의 사진 묶음 (photo-gallery 가 낫다)'],
+    motionLevel: 'subtle',
+    defaultTone: 'dark',
+  },
+  'photo-map': {
+    id: 'photo-map',
+    name: 'Photo Map (사진 지도)',
+    category: 'place',
+    description: '사진이 찍힌 자리에 작은 썸네일이 흩어진 지도. 경로가 아니라 어디서 많이 찍었는지를 보여준다. 좌표는 소수점 3자리(약 100m)까지만.',
+    suitableFor: ['섬·동네 하나를 하루 돌아다닌 날', '사진이 넓게 흩어진 여행'],
+    avoidWhen: ['숙소·집 근처 사진 (검증이 막는다)', '한 장소에서 찍은 사진만 있을 때'],
+    motionLevel: 'subtle',
+    defaultTone: 'light',
+  },
+  'palette-diary': {
+    id: 'palette-diary',
+    name: 'Palette Diary (색의 일기)',
+    category: 'art',
+    description: '하루를 촬영 순서대로 색 줄무늬 띠로 바꾼다. 사진마다 대표색이 한 줄이 되어 아침의 파랑에서 저녁의 주황으로 흘러간다. 줄을 누르면 그 사진.',
+    suitableFor: ['에필로그 (날마다 한 줄)', '"그 여행의 색"'],
+    avoidWhen: ['하루 사진이 3장 미만', '촬영 시각이 없는 사진'],
+    motionLevel: 'subtle',
+    defaultTone: 'parchment',
+    art: true,
+  },
   closing: {
     id: 'closing',
     name: 'Closing',
@@ -406,6 +468,22 @@ export function mediaRefs(s: Section): MediaRef[] {
     case 'place-feature':
       add(s.media, 'image', 'media');
       s.gallery?.forEach((id, i) => add(id, 'image', `gallery[${i}]`));
+      break;
+    case 'photo-map':
+      s.points.forEach((p, i) => add(p.media, 'image', `points[${i}].media`));
+      break;
+    case 'transit-ticket':
+    case 'day-clock':
+      s.items?.forEach((it, i) => add(it.media, 'image', `items[${i}].media`));
+      break;
+    case 'stamp-rally':
+      s.stamps.forEach((st, i) => add(st.media, 'image', `stamps[${i}].media`));
+      break;
+    case 'contact-sheet':
+      s.frames.forEach((f, i) => add(f.media, 'image', `frames[${i}].media`));
+      break;
+    case 'palette-diary':
+      s.days.forEach((d, i) => d.items.forEach((id, j) => add(id, 'image', `days[${i}].items[${j}]`)));
       break;
     case 'food-review':
       s.items.forEach((it, i) => add(it.media, 'image', `items[${i}].media`));

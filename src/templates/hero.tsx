@@ -70,7 +70,7 @@ export function PostcardCover({ section: s, first, slug }: TemplateProps<'postca
   const reduce = useReducedMotion();
   const portrait = media.height > media.width;
   return (
-    <div className="section-pad flex min-h-[100svh] flex-col items-center justify-center gap-10">
+    <div className="section-pad flex min-h-[100svh] flex-col items-center justify-center gap-10 overflow-x-clip">
       <motion.div
         initial={reduce ? false : { opacity: 0, rotate: -8, y: 40 }}
         animate={{ opacity: 1, rotate: -2.5, y: 0 }}

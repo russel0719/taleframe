@@ -37,6 +37,14 @@ const Fact = z.strictObject({ label: Text(20), value: Text(60) });
 const Item = z.strictObject({ media: MediaId, caption: Text(80).optional() });
 const Point = z.strictObject({ lat: Lat, lng: Lng, zoom: z.number().min(1).max(18).optional() });
 const Hex = z.string().regex(/^#[0-9a-fA-F]{6}$/, '#rrggbb');
+const Clock = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'HH:MM');
+/** 공개 지도에 찍는 사진 위치 — 소수점 3자리(약 100m)까지만. 정확한 촬영 지점을 드러내지 않는다 */
+const Coarse = (min: number, max: number) =>
+  z
+    .number()
+    .min(min)
+    .max(max)
+    .refine((v) => Math.abs(v * 1000 - Math.round(v * 1000)) < 1e-6, '소수점 3자리(약 100m)까지만 — 촬영 지점을 정확히 공개하지 않는다');
 
 export const sectionSchemas = {
   // ── A. 오프닝 ──────────────────────────────────────────────
@@ -141,6 +149,19 @@ export const sectionSchemas = {
     heading: Text(40).optional(),
     items: z.array(Item).min(2).max(6),
   }),
+  /** 밀착 인화지 — 한 장면의 여러 컷과, 고른 컷에 그린 붉은 동그라미 */
+  'contact-sheet': z.strictObject({
+    ...base,
+    template: z.literal('contact-sheet'),
+    heading: Text(40).optional(),
+    caption: Text(120).optional(),
+    label: z.string().regex(/^[A-Z0-9 .·-]{1,24}$/, '영문 대문자·숫자 24자 이내').optional(),
+    frames: z
+      .array(z.strictObject({ media: MediaId, pick: z.boolean().optional(), caption: Text(60).optional() }))
+      .min(6)
+      .max(24)
+      .refine((f) => f.some((x) => x.pick), { message: '고른 컷(pick: true)이 하나는 있어야 한다' }),
+  }),
   'before-after': z.strictObject({
     ...base,
     template: z.literal('before-after'),
@@ -208,6 +229,32 @@ export const sectionSchemas = {
       .min(2)
       .max(12),
   }),
+  /** 사진이 찍힌 자리에 썸네일이 흩어진 지도. 경로가 아니라 "어디서 많이 찍었나" */
+  'photo-map': z.strictObject({
+    ...base,
+    template: z.literal('photo-map'),
+    heading: Text(40).optional(),
+    caption: Text(120).optional(),
+    points: z
+      .array(z.strictObject({ media: MediaId, lat: Coarse(-90, 90), lng: Coarse(-180, 180), caption: Text(60).optional() }))
+      .min(3)
+      .max(30),
+  }),
+  /** 표 한 장 — 출발·도착·시각이 찍히고, 스크롤하면 절취선에서 찢기며 창밖 사진이 이어진다 */
+  'transit-ticket': z.strictObject({
+    ...base,
+    template: z.literal('transit-ticket'),
+    from: Text(20),
+    to: Text(20),
+    mode: Transport,
+    date: IsoDate.optional(),
+    depart: Clock.optional(),
+    arrive: Clock.optional(),
+    /** 운항사·노선 이름 — 사용자가 확인한 것만 */
+    operator: Text(30).optional(),
+    note: Text(120).optional(),
+    items: z.array(Item).max(4).optional(),
+  }),
   'place-feature': z.strictObject({
     ...base,
     template: z.literal('place-feature'),
@@ -235,6 +282,18 @@ export const sectionSchemas = {
       )
       .min(1)
       .max(4),
+  }),
+  /** 스탬프 카드 — 들른 가게마다 도장이 찍힌다. 이름을 모르는 집은 빈 도장 */
+  'stamp-rally': z.strictObject({
+    ...base,
+    template: z.literal('stamp-rally'),
+    heading: Text(40).optional(),
+    /** 카드 제목 (예: "사누키 우동 순례") */
+    card: Text(24).optional(),
+    stamps: z
+      .array(z.strictObject({ media: MediaId, name: Text(14).optional(), note: Text(80).optional() }))
+      .min(2)
+      .max(12),
   }),
   recommendation: z
     .strictObject({
@@ -266,6 +325,19 @@ export const sectionSchemas = {
       )
       .min(2)
       .max(12),
+  }),
+  /** 24시간 원형 시계 — 사진이 촬영 시각 자리에 붙고, 배경이 그날 해의 높이에 맞춰 변한다 */
+  'day-clock': z.strictObject({
+    ...base,
+    template: z.literal('day-clock'),
+    heading: Text(40).optional(),
+    date: IsoDate,
+    /** 일출·일몰 계산용 (공개해도 되는 대략의 도시 좌표) */
+    place: z.strictObject({ name: Text(30), lat: Lat, lng: Lng }),
+    /** UTC 와의 시차(시간). 없으면 경도로 어림한다 */
+    utcOffset: z.number().min(-12).max(14).optional(),
+    /** 촬영 시각(media.json taken)이 있는 사진만 */
+    items: z.array(Item).min(3).max(12),
   }),
   'travel-stats': z.strictObject({
     ...base,
@@ -343,6 +415,17 @@ export const sectionSchemas = {
     text: Text(12),
     media: MediaId.optional(),
     caption: Text(80).optional(),
+  }),
+  /** 하루를 촬영 순서대로 색 줄무늬 띠로 — 사진마다 대표색 */
+  'palette-diary': z.strictObject({
+    ...base,
+    template: z.literal('palette-diary'),
+    heading: Text(40).optional(),
+    caption: Text(120).optional(),
+    days: z
+      .array(z.strictObject({ label: Text(20), items: z.array(MediaId).min(3).max(48) }))
+      .min(1)
+      .max(7),
   }),
 } as const;
 

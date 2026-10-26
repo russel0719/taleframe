@@ -22,8 +22,9 @@
 | `scripts/postexport.mjs` | 빌드 뒤처리 — 공유 카드 `opengraph-image` 에 .png 를 붙인다 (Pages 의 Content-Type 때문) |
 | `.github/workflows/pages.yml` | main 푸시 → media 브랜치 체크아웃 → 검사 → 정적 내보내기 → GitHub Pages |
 | `scripts/shot.ts` | Playwright 스크롤 스크린샷 + 자동 검사(콘솔 오류·깨진 이미지·가로 넘침). `shot -- lab` 은 실험실 |
-| `src/templates/art.tsx` | 작품 템플릿 7종 (verse · color-field · film-roll · diptych · spotlight · riso-print · kinetic-type) |
-| `src/lib/lab.ts` · `/lab` | 템플릿 실험실 — 실제 스토리의 미디어로 모든 템플릿을 한 페이지에 (개발 전용) |
+| `src/templates/art.tsx` | 작품 템플릿 8종 (verse · color-field · film-roll · diptych · spotlight · riso-print · kinetic-type · palette-diary) |
+| `src/templates/keepsake.tsx` | 기록물 5종 (stamp-rally · transit-ticket · day-clock · contact-sheet · photo-map) |
+| `src/lib/lab.ts` · `/lab` | 템플릿 실험실 — 실제 스토리의 미디어로 모든 템플릿을 한 페이지에 (개발 전용). `/lab/<slug>` 로 사진 출처, `?t=a,b` 로 템플릿을 고른다 |
 | `studio/` | **TaleFrame Studio** — 폰(집 와이파이)에서 업로드·질문 답변·미리보기 승인·게시. Hono 서버, `npm run studio -- --lan` |
 | `studio/prompts.ts` | headless 단계별 지시 + 응답 zod 스키마. 판단 규칙은 스킬 문서를 Read 하게 할 뿐 여기 다시 쓰지 않는다 |
 
@@ -66,6 +67,9 @@
 - Satori(OG 이미지)는 `inset` 을 모른다 — top/left/width/height 를 직접 준다.
 - 눈·비 같은 잔 디테일 영상은 CRF 만으로 15Mbps 를 넘는다 → `-maxrate`. 파생 규칙을 바꾸면 `DERIVE_VERSION` 을 올린다.
 - 색면 배경은 DarkMuted 부터 고르면 사진마다 같은 갈색이 된다 → DarkVibrant 우선.
+- **SSR 하는 클라이언트 컴포넌트에 삼각함수 결과를 그대로 넣지 않는다.** 서버·브라우저의 부동소수 끝자리가 달라
+  하이드레이션이 어긋났다 (손그림 경로·다이얼 좌표·도장 각도) → 소수 2~3자리로 반올림. 화면 비율 같은 브라우저 값도 첫 렌더에 넣지 않는다.
+- SVG `pathLength` 애니메이션에 `vector-effect: non-scaling-stroke` 를 같이 쓰면 큰 화면에서 선이 반만 그려진다.
 
 ## 규칙
 

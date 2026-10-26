@@ -1,9 +1,10 @@
 import type { ComponentType } from 'react';
 import type { TemplateId } from '@/lib/story/schema';
-import { ColorField, Diptych, FilmRoll, KineticType, RisoPrint, Spotlight, Verse } from './art';
+import { ColorField, Diptych, FilmRoll, KineticType, PaletteDiary, RisoPrint, Spotlight, Verse } from './art';
 import { DailyTimeline, FoodReview, Closing, Recommendation, TravelStats } from './experience';
 import { BeforeAfter, PhotoGallery, PhotoOverlay, PhotoSingle, PhotoStrip, PolaroidCollage } from './gallery';
 import { HeroFullbleed, PostcardCover } from './hero';
+import { ContactSheet, DayClock, PhotoMap, StampRally, TransitTicket } from './keepsake';
 import { GlobeIntro, MapJourney, Panorama, PlaceFeature, SplitFeature } from './place';
 import { ChapterDivider, EditorialText, FactCard, QuoteMoment, WeatherCard } from './text';
 import type { TemplateProps } from './types';
@@ -47,4 +48,10 @@ export const registry: { [K in TemplateId]: ComponentType<TemplateProps<K>> } = 
   spotlight: Spotlight,
   'riso-print': RisoPrint,
   'kinetic-type': KineticType,
+  'stamp-rally': StampRally,
+  'transit-ticket': TransitTicket,
+  'day-clock': DayClock,
+  'contact-sheet': ContactSheet,
+  'photo-map': PhotoMap,
+  'palette-diary': PaletteDiary,
 };

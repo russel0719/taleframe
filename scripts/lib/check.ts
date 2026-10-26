@@ -166,6 +166,8 @@ function privacy(slug: string, story: Story): Issue[] {
     if (s.template === 'map-journey') s.stops.forEach((st, j) => pts.push([`stops[${j}]`, st.lng, st.lat]));
     if (s.template === 'weather-card') pts.push(['place', s.place.lng, s.place.lat]);
     if (s.template === 'globe-intro') pts.push(['target', s.target.lng, s.target.lat]);
+    if (s.template === 'day-clock') pts.push(['place', s.place.lng, s.place.lat]);
+    if (s.template === 'photo-map') s.points.forEach((p, j) => pts.push([`points[${j}]`, p.lng, p.lat]));
     for (const [where, lng, lat] of pts) {
       if (nearLodging([lng, lat], lodging)) {
         out.push({ level: 'error', where: `sections[${i}] (${s.id}).${where}`, message: '숙소 후보 반경 안의 좌표다 — 공개하지 않는다' });

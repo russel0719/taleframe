@@ -2,8 +2,9 @@ import { stopsKey } from '@/lib/story/routes';
 import type { MediaEntry, MediaManifest, RouteData, SectionOf, Story } from '@/lib/story/schema';
 
 /** 모든 템플릿을 한 번씩 쓰는 가짜 스토리 — 렌더·검증 테스트용. 실제 파일은 없다 */
-const image = (id: string, w = 1600, h = 1200): MediaEntry => ({
+const image = (id: string, w = 1600, h = 1200, taken?: string): MediaEntry => ({
   kind: 'image',
+  ...(taken ? { taken } : {}),
   base: `${id}-abcdef12`,
   width: w,
   height: h,
@@ -15,12 +16,12 @@ const image = (id: string, w = 1600, h = 1200): MediaEntry => ({
 export const manifest: MediaManifest = {
   version: 1,
   items: {
-    m001: image('m001'),
-    m002: image('m002', 1200, 1600),
-    m003: image('m003'),
-    m004: image('m004'),
-    m005: image('m005'),
-    m006: image('m006'),
+    m001: image('m001', 1600, 1200, '2026-02-07T08:05'),
+    m002: image('m002', 1200, 1600, '2026-02-07T10:40'),
+    m003: image('m003', 1600, 1200, '2026-02-07T12:15'),
+    m004: image('m004', 1600, 1200, '2026-02-07T15:30'),
+    m005: image('m005', 1600, 1200, '2026-02-07T17:45'),
+    m006: image('m006', 1600, 1200, '2026-02-07T19:20'),
     m007: image('m007', 8000, 4000),
     m010: {
       kind: 'video',
@@ -124,6 +125,14 @@ export const showcase: Story = {
     { ...s, id: 'riso', template: 'riso-print', media: 'm005', title: 'NISHIKI', inks: ['#ff48b0', '#3255a4'] },
     { ...s, id: 'note6', template: 'quote-moment', quote: '쉼표' },
     { ...s, id: 'kinetic', template: 'kinetic-type', text: '교토', media: 'm001' },
+    { ...s, id: 'stamps', template: 'stamp-rally', card: '우동 순례', stamps: [{ media: 'm001', name: '가게' }, { media: 'm002' }, { media: 'm003', note: '메모' }] },
+    { ...s, id: 'note7', template: 'photo-single', media: 'm002' },
+    { ...s, id: 'ticket', template: 'transit-ticket', from: '다카마쓰', to: '나오시마', mode: 'ferry', date: '2026-02-07', depart: '08:12', items: [{ media: 'm004' }] },
+    { ...s, id: 'clock', template: 'day-clock', date: '2026-02-07', place: { name: '교토', lat: 35.0, lng: 135.77 }, items: [{ media: 'm001' }, { media: 'm003' }, { media: 'm005', caption: '노을' }] },
+    { ...s, id: 'sheet', template: 'contact-sheet', frames: ['m001', 'm002', 'm003', 'm004', 'm005', 'm006'].map((m, i) => ({ media: m, pick: i === 2 })) },
+    { ...s, id: 'pmap', template: 'photo-map', points: [{ media: 'm001', lat: 35.001, lng: 135.771 }, { media: 'm002', lat: 35.004, lng: 135.775 }, { media: 'm003', lat: 35.01, lng: 135.78 }] },
+    { ...s, id: 'diary', template: 'palette-diary', days: [{ label: '둘째 날', items: ['m001', 'm003', 'm004', 'm005'] }] },
+    { ...s, id: 'note8', template: 'quote-moment', quote: '사이' },
     { ...s, id: 'end', template: 'closing', media: 'm001', line: '끝', credit: '2026. 02' },
   ],
 };

@@ -132,6 +132,7 @@
 /* ── 섹션 톤 — 밝은/어두운 타일이 번갈아 나오며 색 변화 자체가 구분선이 된다 ── */
 @utility tone-light {
   background: var(--color-canvas);
+  --tone-bg: var(--color-canvas);
   color: var(--color-ink);
   --tone-muted: var(--color-ink-48);
   --tone-link: var(--color-primary);
@@ -140,6 +141,7 @@
 }
 @utility tone-parchment {
   background: var(--color-parchment);
+  --tone-bg: var(--color-parchment);
   color: var(--color-ink);
   --tone-muted: var(--color-ink-48);
   --tone-link: var(--color-primary);
@@ -148,6 +150,7 @@
 }
 @utility tone-dark {
   background: var(--color-tile-1);
+  --tone-bg: var(--color-tile-1);
   color: var(--color-on-dark);
   --tone-muted: var(--color-muted-on-dark);
   --tone-link: var(--color-primary-on-dark);
@@ -157,6 +160,7 @@
 /* 어두운 타일이 연달아 오면 한 단계 밝은 타일로 아주 옅게 구분 */
 @utility tone-dark-2 {
   background: var(--color-tile-2);
+  --tone-bg: var(--color-tile-2);
   color: var(--color-on-dark);
   --tone-muted: var(--color-muted-on-dark);
   --tone-link: var(--color-primary-on-dark);

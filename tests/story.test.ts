@@ -63,6 +63,26 @@ describe('의미 검증', () => {
     expect(errors(showcase)).toEqual([]);
   });
 
+  it('사진 지도 좌표는 소수점 3자리까지만 받는다 (정확한 촬영 지점 비공개)', () => {
+    const st = clone(showcase);
+    const m = st.sections.find((x) => x.template === 'photo-map') as SectionOf<'photo-map'>;
+    m.points[0].lat = 35.00123;
+    expect(Story.safeParse(st).success).toBe(false);
+  });
+
+  it('밀착 인화지는 고른 컷이 있어야 한다', () => {
+    const st = clone(showcase);
+    const c = st.sections.find((x) => x.template === 'contact-sheet') as SectionOf<'contact-sheet'>;
+    c.frames.forEach((f) => delete f.pick);
+    expect(Story.safeParse(st).success).toBe(false);
+  });
+
+  it('하루 시계·색의 일기는 촬영 시각이 없는 사진을 잡는다', () => {
+    const st = clone(showcase);
+    (st.sections.find((x) => x.template === 'day-clock') as SectionOf<'day-clock'>).items.push({ media: 'm007' });
+    expect(errors(st).map((e) => e.message).join()).toContain('촬영 시각이 없는 사진: m007');
+  });
+
   it('없는 미디어를 잡는다', () => {
     const st = clone(showcase);
     (st.sections[8] as { media: string }).media = 'm999';
@@ -157,7 +177,9 @@ describe('실험실', () => {
   it('모든 템플릿을 실제 미디어로 한 번씩 그린다', () => {
     const lab = buildLab({ story: showcase, manifest });
     expect(lab.skipped).toEqual([]);
-    expect(lab.story.sections.map((s) => s.template).sort()).toEqual([...templateIds].sort());
+    // 창틀처럼 모양이 여럿인 템플릿은 변형도 함께 그린다
+    expect([...new Set(lab.story.sections.map((s) => s.template))].sort()).toEqual([...templateIds].sort());
+    expect(new Set(lab.story.sections.map((s) => s.id)).size).toBe(lab.story.sections.length);
     expect(Story.safeParse(lab.story).success).toBe(true);
     expect(checkStory(lab.story, manifest).filter((i) => i.level === 'error')).toEqual([]);
   });
@@ -200,5 +222,15 @@ describe('톤', () => {
     for (let i = 1; i < tones.length; i++) {
       if (!showcase.sections[i].tone) expect(tones[i], showcase.sections[i].id).not.toBe(tones[i - 1]);
     }
+  });
+});
+
+describe('해와 시계', () => {
+  it('다카마쓰 10월 하순의 일출·일몰을 몇 분 오차로 맞춘다', async () => {
+    const { sunTimes } = await import('@/lib/sun');
+    const t = sunTimes('2026-10-23', 34.34, 134.05, 9)!;
+    // 실제: 일출 06:13 · 일몰 17:26 (국립천문대 기준 근사)
+    expect(Math.abs(t.rise - (6 + 13 / 60))).toBeLessThan(0.15);
+    expect(Math.abs(t.set - (17 + 26 / 60))).toBeLessThan(0.15);
   });
 });

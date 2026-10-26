@@ -75,6 +75,19 @@ export function checkStory(story: Story, manifest?: MediaManifest, extras: Extra
         }
       });
     }
+    // 시각으로 배치하는 템플릿 — 촬영 시각이 없으면 자리를 정할 수 없다
+    if ((s.template === 'day-clock' || s.template === 'palette-diary') && manifest) {
+      const ids = s.template === 'day-clock' ? s.items.map((it) => it.media) : s.days.flatMap((d) => d.items);
+      const missing = ids.filter((id) => manifest.items[id] && !manifest.items[id].taken);
+      if (missing.length) err(where, `촬영 시각이 없는 사진: ${missing.join(', ')} — 시각순 배치를 할 수 없다`);
+      if (s.template === 'day-clock') {
+        const other = s.items.filter((it) => manifest.items[it.media]?.taken && manifest.items[it.media].taken!.slice(0, 10) !== s.date);
+        if (other.length) warn(where, `date(${s.date})와 다른 날 찍은 사진이 섞였다: ${other.map((x) => x.media).join(', ')}`);
+      }
+    }
+    if (s.template === 'transit-ticket' && s.depart && s.arrive && s.arrive < s.depart) {
+      warn(where, '도착 시각이 출발보다 이르다 — 자정을 넘긴 이동이 아니라면 확인');
+    }
     if (s.template === 'panorama' && manifest) {
       const m = manifest.items[s.media];
       if (m && Math.abs(m.width / m.height - 2) > 0.1) {

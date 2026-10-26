@@ -563,3 +563,70 @@ export function KineticType({ section: s }: TemplateProps<'kinetic-type'>) {
     </div>
   );
 }
+
+// ── Palette Diary — 색의 일기 ─────────────────────────────────
+
+/** 위(밝은 색)에서 아래(어두운 색)로 — 하늘에서 땅으로 읽히게 */
+const STRIPE_ORDER = ['LightMuted', 'LightVibrant', 'Vibrant', 'Muted', 'DarkVibrant', 'DarkMuted'];
+
+function stripe(m: ClientMedia): string {
+  const cols = STRIPE_ORDER.map((k) => m.palette[k]).filter(Boolean);
+  if (!cols.length) return '#8a8a8a';
+  const step = 100 / cols.length;
+  return `linear-gradient(180deg, ${cols.map((c, i) => `${c} ${(i * step).toFixed(1)}% ${((i + 1) * step).toFixed(1)}%`).join(', ')})`;
+}
+
+export function PaletteDiary({ section: s }: TemplateProps<'palette-diary'>) {
+  const { media, openLightbox } = useStory();
+  const reduce = useReducedMotion();
+  const days = s.days.map((d) => {
+    const items = d.items.map((id) => media[id]).sort((a, b) => (a.taken ?? '').localeCompare(b.taken ?? ''));
+    return { label: d.label, items, from: items[0]?.taken?.slice(11), to: items[items.length - 1]?.taken?.slice(11) };
+  });
+  return (
+    <div className="section-pad">
+      {s.heading && (
+        <Reveal className="mx-auto mb-12 max-w-[1068px]">
+          <h2 className="font-serif text-[clamp(28px,3.4vw,44px)] leading-tight">{s.heading}</h2>
+        </Reveal>
+      )}
+      <div className="mx-auto max-w-[1068px] space-y-10">
+        {days.map((d, di) => (
+          <div key={di} className="md:grid md:grid-cols-[120px_1fr] md:items-end md:gap-6">
+            <p className="mb-3 font-serif text-[17px] md:mb-0 md:pb-6">{d.label}</p>
+            <div>
+              <div className="flex h-[clamp(120px,24svh,240px)] items-end gap-[2px]">
+                {d.items.map((m, i) => (
+                  <motion.button
+                    key={m.id}
+                    type="button"
+                    onClick={() => openLightbox(d.items.map((x) => ({ media: x, caption: x.taken?.slice(11) })), i)}
+                    aria-label={`${m.taken?.slice(11) ?? ''} 사진 보기`}
+                    className="group relative h-full min-w-[3px] flex-1 cursor-zoom-in"
+                    style={{ background: stripe(m), transformOrigin: '50% 100%' }}
+                    initial={reduce ? false : { scaleY: 0 }}
+                    whileInView={{ scaleY: 1 }}
+                    viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+                    transition={{ duration: 0.6, ease: [0.2, 0.7, 0.2, 1], delay: i * 0.025 }}
+                  >
+                    {/* 마우스를 올리면 그 줄의 사진이 떠오른다 */}
+                    <span className="pointer-events-none absolute bottom-[calc(100%+8px)] left-1/2 z-10 hidden w-28 -translate-x-1/2 overflow-hidden rounded-[4px] shadow-product group-hover:block">
+                      {/* eslint-disable-next-line @next/next/no-img-element -- 줄 위 미리보기 */}
+                      <img src={m.img.fallback ?? m.full.srcSet[0].src} alt="" className="aspect-[4/3] w-full object-cover" />
+                    </span>
+                  </motion.button>
+                ))}
+              </div>
+              <p className="mt-2 flex justify-between font-mono text-[11px] tracking-[0.12em] text-[var(--tone-muted)]">
+                <span>{d.from}</span>
+                <span>{d.items.length}</span>
+                <span>{d.to}</span>
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+      {s.caption && <p className="t-caption text-muted mx-auto mt-10 max-w-[1068px] font-serif">{s.caption}</p>}
+    </div>
+  );
+}
