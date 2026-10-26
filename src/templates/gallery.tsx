@@ -13,6 +13,7 @@ import { Reveal } from '@/components/Reveal';
 import { useStory, type LightboxSlide } from '@/components/StoryContext';
 import type { ClientMedia } from '@/lib/resolve';
 import type { TemplateProps } from './types';
+import { arVar, fitStyle, FRAME, isWide } from './util';
 
 function useItems(items: { media: string; caption?: string }[]) {
   const { media } = useStory();
@@ -25,7 +26,8 @@ export function PhotoSingle({ section: s, first }: TemplateProps<'photo-single'>
   const { media } = useStory();
   const m = media[s.media];
   const portrait = m.height > m.width * 1.05;
-  const size = s.size ?? (portrait ? 'narrow' : 'wide');
+  // 가로 사진이 아니면 'full' 이어도 화면 폭을 채우지 않는다 — 1:1 이 위아래로 잘렸다
+  const size = s.size === 'full' && !isWide(m) ? 'wide' : (s.size ?? (portrait ? 'narrow' : 'wide'));
   const max = { narrow: 'max-w-[560px]', wide: 'max-w-[1068px]', full: 'max-w-none' }[size];
   const sizes = { narrow: '(max-width: 600px) 92vw, 560px', wide: '(max-width: 1100px) 94vw, 1068px', full: '100vw' }[size];
   return (
@@ -35,8 +37,8 @@ export function PhotoSingle({ section: s, first }: TemplateProps<'photo-single'>
           media={m}
           sizes={sizes}
           fit="cover"
-          className={`w-full ${size === 'full' ? 'max-h-[100svh]' : 'max-h-[85svh] rounded-sm'}`}
-          style={{ aspectRatio: `${m.width} / ${m.height}` }}
+          className={`w-full ${size === 'full' ? 'max-h-[100svh]' : 'rounded-sm'}`}
+          style={size === 'full' ? { aspectRatio: `${m.width} / ${m.height}` } : fitStyle(m, 85)}
           priority={first}
           zoom={{ slides: [{ media: m, caption: s.caption }], index: 0 }}
         />
@@ -54,21 +56,25 @@ export function PhotoSingle({ section: s, first }: TemplateProps<'photo-single'>
 export function PhotoOverlay({ section: s, first }: TemplateProps<'photo-overlay'>) {
   const { media } = useStory();
   const m = media[s.media];
+  // 가로 사진이 아니면 PC 에서는 어두운 바탕 가운데에 원래 비율로 — 자막은 그 사진 아래쪽에 덮인다
+  const framed = !isWide(m);
   return (
-    <figure className="relative overflow-hidden text-on-dark">
-      <Img
-        media={m}
-        sizes="100vw"
-        className="h-[min(100svh,max(70svh,56vw))] w-full"
-        priority={first}
-        zoom={{ slides: [{ media: m, caption: s.caption }], index: 0 }}
-      />
-      <figcaption className="scrim-bottom pointer-events-none absolute inset-x-0 bottom-0 px-6 pt-32 pb-10">
-        <Reveal className="mx-auto max-w-[980px]">
-          {s.place && <p className="t-caption-strong mb-2 text-on-dark/80">{s.place}</p>}
-          <p className="t-lead">{s.caption}</p>
-        </Reveal>
-      </figcaption>
+    <figure className={`relative overflow-hidden text-on-dark ${framed ? 'md:flex md:justify-center md:bg-void md:py-[6svh]' : ''}`} style={arVar(m)}>
+      <div className={`relative ${framed ? `md:overflow-hidden md:rounded-[4px] ${FRAME}` : ''}`}>
+        <Img
+          media={m}
+          sizes={framed ? '(max-width: 768px) 100vw, 82svh' : '100vw'}
+          className={`h-[min(100svh,max(70svh,56vw))] w-full ${framed ? 'md:h-full' : ''}`}
+          priority={first}
+          zoom={{ slides: [{ media: m, caption: s.caption }], index: 0 }}
+        />
+        <figcaption className="scrim-bottom pointer-events-none absolute inset-x-0 bottom-0 px-6 pt-32 pb-10">
+          <Reveal className="mx-auto max-w-[980px]">
+            {s.place && <p className="t-caption-strong mb-2 text-on-dark/80">{s.place}</p>}
+            <p className="t-lead">{s.caption}</p>
+          </Reveal>
+        </figcaption>
+      </div>
     </figure>
   );
 }

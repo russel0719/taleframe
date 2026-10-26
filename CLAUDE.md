@@ -93,6 +93,8 @@
 - 파생 형식(실측 근거는 커밋 메시지·프로젝트 문서): 사진은 AVIF q62 + 가장 작은 폭 WebP 대체본, 일반 영상 H.264 CRF 28
   (상한 10Mbps), 스크럽 H.264 키프레임 4간격. 파일 하나 95MiB 초과 시 실패 (GitHub 100MiB 한도).
 - 자산 URL 은 반드시 `basePath`(`src/lib/media.ts`)를 붙인다 — Pages 는 `/<repo>/` 아래에 열린다. next/link 는 자동.
+- **PC 에서는 가로 사진(1.5:1 이상)만 화면을 꽉 채운다.** 사용자는 주로 1:1 로 찍는다 — 그 밖의 사진은 원래 비율로 여백을 두고 놓는다
+  (`src/templates/util.ts` 의 `isWide`·`FRAME`·`fitStyle`). 3:2·16:9 같은 고정 비율로 자르지 않는다. 모바일은 꽉 채워도 된다.
 - 반응형 + `prefers-reduced-motion` 존중 (모든 스크롤 장면에 정적 대체가 있다). 무거운 위젯(지도·파노라마·라이트박스)은 화면 근처에서만 로드.
 - 디자인 토큰은 `src/app/globals.css` 한곳 (`~/.claude/design.md` 값). 디자인 방향은 미정 — 바꿀 때 이 파일 위주로.
   작품 섹션만 예외적으로 명조(`font-serif`, Noto Serif KR)·잡음 질감·사진 팔레트 색을 쓴다 (프로젝트 문서에 편차 기록).

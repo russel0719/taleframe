@@ -6,6 +6,7 @@ import { Img } from '@/components/Img';
 import { Reveal } from '@/components/Reveal';
 import { useStory } from '@/components/StoryContext';
 import type { TemplateProps } from './types';
+import { arVar, isWide } from './util';
 
 export function FoodReview({ section: s }: TemplateProps<'food-review'>) {
   const { media } = useStory();
@@ -169,10 +170,18 @@ export function Closing({ section: s }: TemplateProps<'closing'>) {
     </Reveal>
   );
   if (!m) return <div className="section-pad py-[140px]">{text}</div>;
+  const framed = !isWide(m);
   return (
-    <div className="relative grid min-h-[100svh] place-items-center overflow-hidden text-on-dark">
-      <Img media={m} sizes="100vw" className="absolute inset-0 h-full w-full" />
-      <div className="absolute inset-0 bg-black/45" />
+    <div
+      className={`relative grid min-h-[100svh] place-items-center overflow-hidden text-on-dark ${framed ? 'md:flex md:flex-col md:justify-center md:gap-12 md:bg-void md:py-[8svh]' : ''}`}
+      style={arVar(m)}
+    >
+      <Img
+        media={m}
+        sizes={framed ? '(max-width: 768px) 100vw, 64svh' : '100vw'}
+        className={`absolute inset-0 h-full w-full ${framed ? 'md:relative md:inset-auto md:aspect-[var(--ar)] md:h-[min(64svh,calc(80vw/var(--ar)))] md:w-auto md:rounded-[4px]' : ''}`}
+      />
+      <div className={`absolute inset-0 bg-black/45 ${framed ? 'md:hidden' : ''}`} />
       {text}
     </div>
   );

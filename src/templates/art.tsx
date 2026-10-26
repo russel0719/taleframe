@@ -21,6 +21,10 @@ import { Reveal } from '@/components/Reveal';
 import { useMedia, useStory } from '@/components/StoryContext';
 import type { ClientMedia } from '@/lib/resolve';
 import type { TemplateProps } from './types';
+import { arVar, fitStyle, FRAME, isWide } from './util';
+
+/** PC 에서 가로 사진이 아니면 화면 가운데에 원래 비율로 (어둠 속 빛·글자 속으로) */
+const CENTERED = `md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:overflow-hidden md:rounded-[4px] ${FRAME}`;
 
 // ── 공용 ─────────────────────────────────────────────────────
 
@@ -364,6 +368,8 @@ export function Spotlight({ section: s }: TemplateProps<'spotlight'>) {
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] });
   const [pointer, setPointer] = useState(false);
+  const box = useRef<HTMLDivElement>(null);
+  const framed = !isWide(m);
   const pointerMode = useMotionValue(0);
   const px = useMotionValue(50);
   const py = useMotionValue(50);
@@ -389,7 +395,7 @@ export function Spotlight({ section: s }: TemplateProps<'spotlight'>) {
   if (reduce) {
     return (
       <figure className="relative bg-void">
-        <Img media={m} sizes="100vw" className="h-[90svh] w-full" />
+        <Img media={m} sizes="100vw" className="w-full" style={fitStyle(m, 90)} />
         {caption && <figcaption className="section-pad">{caption}</figcaption>}
       </figure>
     );
@@ -400,8 +406,9 @@ export function Spotlight({ section: s }: TemplateProps<'spotlight'>) {
       <div
         className="sticky top-0 h-[100svh] overflow-hidden"
         onPointerMove={(e) => {
-          if (e.pointerType !== 'mouse') return;
-          const b = e.currentTarget.getBoundingClientRect();
+          if (e.pointerType !== 'mouse' || !box.current) return;
+          // 빛의 위치는 사진 상자 기준 — PC 에서 사진이 가운데 작게 놓일 때도 맞게
+          const b = box.current.getBoundingClientRect();
           px.set(((e.clientX - b.left) / b.width) * 100);
           py.set(((e.clientY - b.top) / b.height) * 100);
           if (!pointer) {
@@ -410,9 +417,11 @@ export function Spotlight({ section: s }: TemplateProps<'spotlight'>) {
           }
         }}
       >
-        <motion.div className="absolute inset-0" style={{ maskImage: mask, WebkitMaskImage: mask }}>
-          <Img media={m} sizes="100vw" className="h-full w-full" />
-        </motion.div>
+        <div style={arVar(m)} className="contents">
+          <motion.div ref={box} className={`absolute inset-0 ${framed ? CENTERED : ''}`} style={{ maskImage: mask, WebkitMaskImage: mask }}>
+            <Img media={m} sizes={framed ? '(max-width: 768px) 100vw, 82svh' : '100vw'} className="h-full w-full" />
+          </motion.div>
+        </div>
         <motion.p style={{ opacity: hintOpacity }} className="t-fine pointer-events-none absolute top-[calc(44px+4svh)] left-1/2 -translate-x-1/2 tracking-[0.2em] text-white/60">
           {pointer ? '빛을 움직여 보세요' : '내려가며 비춰 보세요'}
         </motion.p>
@@ -544,8 +553,8 @@ export function KineticType({ section: s }: TemplateProps<'kinetic-type'>) {
     <div ref={ref} className="relative bg-void" style={{ height: '260svh' }}>
       <div className="sticky top-0 grid h-[100svh] place-items-center overflow-hidden text-white">
         {m && (
-          <motion.div className="absolute inset-0" style={{ opacity: imgOpacity }}>
-            <Img media={m} sizes="100vw" className="h-full w-full" />
+          <motion.div className={`absolute inset-0 ${!isWide(m) ? CENTERED : ''}`} style={{ opacity: imgOpacity, ...arVar(m) }}>
+            <Img media={m} sizes={!isWide(m) ? '(max-width: 768px) 100vw, 82svh' : '100vw'} className="h-full w-full" />
           </motion.div>
         )}
         <motion.p

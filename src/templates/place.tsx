@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Img } from '@/components/Img';
 import { Reveal } from '@/components/Reveal';
 import { useStory } from '@/components/StoryContext';
-import { largestOf } from './util';
+import { fitStyle, largestOf } from './util';
 import { ScrollHint, TitleTransition } from './hero';
 import type { TemplateProps } from './types';
 
@@ -104,7 +104,7 @@ export function MapJourney({ section: s, route }: TemplateProps<'map-journey'>) 
                 </p>
                 <h3 className="t-tagline mt-1">{st.name}</h3>
                 {m && (
-                  <Img media={m} sizes="(max-width: 834px) 90vw, 420px" className="mt-4 aspect-[3/2] w-full rounded-sm" zoom={{ slides: [{ media: m, caption: st.name }], index: 0 }} />
+                  <Img media={m} sizes="(max-width: 834px) 90vw, 420px" className="mt-4 w-full rounded-sm" style={fitStyle(m, 40)} zoom={{ slides: [{ media: m, caption: st.name }], index: 0 }} />
                 )}
                 {st.note && <p className="t-body mt-3">{st.note}</p>}
                 {i > 0 && route?.legs[i - 1] && route.legs[i - 1].mode !== 'straight' && (
@@ -153,7 +153,7 @@ export function PlaceFeature({ section: s }: TemplateProps<'place-feature'>) {
     <div className="section-pad">
       <div className="mx-auto max-w-[1068px]">
         <Reveal>
-          <Img media={m} sizes="(max-width: 1100px) 94vw, 1068px" className="aspect-[16/9] w-full rounded-sm" zoom={{ slides, index: 0 }} />
+          <Img media={m} sizes="(max-width: 1100px) 94vw, 1068px" className="w-full rounded-sm" style={fitStyle(m, 78)} zoom={{ slides, index: 0 }} />
         </Reveal>
         <div className="mt-10 grid gap-10 md:grid-cols-[1.4fr_1fr]">
           <Reveal>

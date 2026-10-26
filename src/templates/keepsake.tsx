@@ -23,6 +23,11 @@ const jitter = (i: number, seed = 1) => {
   const x = Math.sin((i + 1) * 12.9898 * seed) * 43758.5453;
   return x - Math.floor(x) - 0.5;
 };
+/** 묶음의 대표 비율(중앙값) — 칸 모양을 사진에 맞춘다. 1:1 을 3:2 칸에 넣으면 위아래가 잘렸다 */
+const typicalRatio = (ms: ClientMedia[]) => {
+  const rs = ms.map((m) => m.width / m.height).sort((a, b) => a - b);
+  return rs.length ? rs[Math.floor(rs.length / 2)].toFixed(4) : '1.5';
+};
 const shortDate = (t?: string) => (t ? `${Number(t.slice(5, 7))}/${Number(t.slice(8, 10))}` : undefined);
 /** 작은 썸네일 — AVIF 를 못 읽는 브라우저도 있는 webp 대체본을 먼저 */
 export const thumbSrc = (m: ClientMedia) => m.img.fallback ?? m.full.srcSet[0].src;
@@ -225,7 +230,7 @@ export function TransitTicket({ section: s }: TemplateProps<'transit-ticket'>) {
         <div className={`mx-auto mt-10 grid max-w-[980px] gap-3 ${items.length > 1 ? 'grid-cols-2' : ''} ${items.length > 2 ? 'md:grid-cols-4' : ''}`}>
           {items.map((it, i) => (
             <figure key={i}>
-              <Img media={it.m} sizes="(max-width: 768px) 48vw, 245px" className="aspect-[4/3] w-full rounded-sm" zoom={{ slides, index: i }} />
+              <Img media={it.m} sizes="(max-width: 768px) 48vw, 245px" className="w-full rounded-sm" style={{ aspectRatio: typicalRatio(items.map((x) => x.m)) }} zoom={{ slides, index: i }} />
               {it.caption && <figcaption className="t-caption text-muted mt-2">{it.caption}</figcaption>}
             </figure>
           ))}
@@ -393,6 +398,7 @@ export function ContactSheet({ section: s }: TemplateProps<'contact-sheet'>) {
   const frames = s.frames.map((f) => ({ ...f, m: media[f.media] }));
   const slides = frames.map((f, i) => ({ media: f.m, caption: f.caption ?? `${i + 1}A` }));
   const label = s.label ?? 'TALEFRAME';
+  const frameRatio = typicalRatio(frames.map((f) => f.m));
   let pickNo = 0;
   return (
     <div className="section-pad bg-[#141414] text-white">
@@ -410,7 +416,7 @@ export function ContactSheet({ section: s }: TemplateProps<'contact-sheet'>) {
             const n = f.pick ? pickNo++ : -1;
             return (
               <li key={i} className={`relative ${f.pick ? 'z-10' : ''}`}>
-                <Img media={f.m} sizes="(max-width: 768px) 32vw, 260px" className={`aspect-[3/2] w-full ${f.pick ? '' : 'opacity-80'}`} zoom={{ slides, index: i }} />
+                <Img media={f.m} sizes="(max-width: 768px) 32vw, 260px" className={`w-full ${f.pick ? '' : 'opacity-80'}`} style={{ aspectRatio: frameRatio }} zoom={{ slides, index: i }} />
                 <p className="mt-1 flex justify-between font-mono text-[10px] tracking-[0.12em] text-[#f0a541]">
                   <span>{i + 1}A</span>
                   <span className="text-white/40">{f.m.taken?.slice(11)}</span>
