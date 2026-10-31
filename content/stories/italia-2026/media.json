@@ -1,0 +1,4218 @@
+{
+  "version": 1,
+  "items": {
+    "m001": {
+      "kind": "image",
+      "base": "m001-2596b4a3",
+      "width": 4284,
+      "height": 4284,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "4PcVHwSId3iPeIeGh2h3aId5eAkXh3AD",
+      "focus": [
+        0.59,
+        0.44
+      ],
+      "palette": {
+        "Vibrant": "#346c8c",
+        "DarkVibrant": "#502d1c",
+        "LightVibrant": "#e5c08f",
+        "Muted": "#8b796f",
+        "DarkMuted": "#344c5c",
+        "LightMuted": "#a2bcd4"
+      },
+      "format": "avif",
+      "taken": "2026-08-06T19:30"
+    },
+    "m002": {
+      "kind": "image",
+      "base": "m002-9a890070",
+      "width": 4284,
+      "height": 4284,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "22kGFwShiIigs4dVplZ6homHiSQHJ3IA",
+      "focus": [
+        0.69,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#c67036",
+        "DarkVibrant": "#74340c",
+        "LightVibrant": "#e9c6a8",
+        "Muted": "#a47c5e",
+        "DarkMuted": "#4c3c30",
+        "LightMuted": "#d0b4a6"
+      },
+      "format": "avif",
+      "taken": "2026-08-06T21:20"
+    },
+    "m003": {
+      "kind": "image",
+      "base": "m003-f01a4ac6",
+      "width": 4284,
+      "height": 4284,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "VQgWFwJ3eId/h4eIeFiIZ3d4ScYGY3kA",
+      "focus": [
+        0.83,
+        0.34
+      ],
+      "palette": {
+        "Vibrant": "#c47c38",
+        "DarkVibrant": "#a06438",
+        "LightVibrant": "#ebb875",
+        "Muted": "#9f8062",
+        "DarkMuted": "#413129",
+        "LightMuted": "#c8b18f"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T06:36"
+    },
+    "m004": {
+      "kind": "image",
+      "base": "m004-58f8c60d",
+      "width": 3024,
+      "height": 3024,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "nhgGDwKfmFagimdsiWR6hmmZpvCLCa8I",
+      "focus": [
+        0.22,
+        0.17
+      ],
+      "palette": {
+        "Vibrant": "#74442a",
+        "DarkVibrant": "#58341c",
+        "LightVibrant": "#dfb39b",
+        "Muted": "#948270",
+        "DarkMuted": "#504035",
+        "LightMuted": "#bdafa3"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T09:22"
+    },
+    "m005": {
+      "kind": "image",
+      "base": "m005-e430814c",
+      "width": 4032,
+      "height": 2268,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "4fcVFIJpaXifhneGh3aVcFcJVw==",
+      "focus": [
+        0.83,
+        0.4
+      ],
+      "palette": {
+        "Vibrant": "#4d7db1",
+        "DarkVibrant": "#28415c",
+        "LightVibrant": "#b4c8de",
+        "Muted": "#7d766f",
+        "DarkMuted": "#4f4b3e",
+        "LightMuted": "#bccee0"
+      },
+      "og": true,
+      "format": "avif",
+      "taken": "2026-08-07T10:37"
+    },
+    "m006": {
+      "kind": "image",
+      "base": "m006-01526c74",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "oPcRLAaH+IeneHRnh6h3gHUHaA==",
+      "focus": [
+        0.83,
+        0.53
+      ],
+      "palette": {
+        "Vibrant": "#b5ad49",
+        "DarkVibrant": "#45421c",
+        "LightVibrant": "#9cb4dc",
+        "Muted": "#816e54",
+        "DarkMuted": "#544537",
+        "LightMuted": "#b4c4d4"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T10:44"
+    },
+    "m007": {
+      "kind": "image",
+      "base": "m007-3507991e",
+      "width": 4284,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "IjkKDQDshHOX9zVaiHhnaPyelvoq",
+      "focus": [
+        0.17,
+        0.38
+      ],
+      "palette": {
+        "Vibrant": "#c89c74",
+        "DarkVibrant": "#3c1c14",
+        "LightVibrant": "#dbbda0",
+        "Muted": "#a48168",
+        "DarkMuted": "#503229",
+        "LightMuted": "#d4c0b2"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T11:01"
+    },
+    "m008": {
+      "kind": "image",
+      "base": "m008-71e2f22e",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "GggOJIZBgItol5aIh3fxdgh8hw==",
+      "focus": [
+        0.41,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#769cd6",
+        "DarkVibrant": "#141c05",
+        "LightVibrant": "#94ccfc",
+        "Muted": "#ac8c71",
+        "DarkMuted": "#4e4138",
+        "LightMuted": "#c4a68c"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T11:02"
+    },
+    "m009": {
+      "kind": "image",
+      "base": "m009-f1f90b14",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "3hgGDAJrJ5/ZUpsml2h6r/eHnA==",
+      "focus": [
+        0.83,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#c6a787",
+        "DarkVibrant": "#18150b",
+        "LightVibrant": "#eccca8",
+        "Muted": "#9f826c",
+        "DarkMuted": "#504f32",
+        "LightMuted": "#d7c2b0"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T11:08"
+    },
+    "m010": {
+      "kind": "image",
+      "base": "m010-f6361ee3",
+      "width": 5711,
+      "height": 3212,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "JSkGDIKHVrF4iaeoUIVKj4fv2Q==",
+      "focus": [
+        0.81,
+        0.34
+      ],
+      "palette": {
+        "Vibrant": "#b78e62",
+        "DarkVibrant": "#5c3e1d",
+        "LightVibrant": "#dcccb4",
+        "Muted": "#a38d5c",
+        "DarkMuted": "#765c36",
+        "LightMuted": "#c9b7a7"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T12:14"
+    },
+    "m011": {
+      "kind": "image",
+      "base": "m011-4d4103b8",
+      "width": 5711,
+      "height": 3212,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "IikODIK3CVeHZ3mJhYi3f7mPeA==",
+      "focus": [
+        0.83,
+        0.4
+      ],
+      "palette": {
+        "Vibrant": "#b28757",
+        "DarkVibrant": "#5c640c",
+        "LightVibrant": "#e2c49e",
+        "Muted": "#ac9862",
+        "DarkMuted": "#5b4c2e",
+        "LightMuted": "#cdb79b"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T12:33"
+    },
+    "m012": {
+      "kind": "image",
+      "base": "m012-8fb7035f",
+      "width": 5711,
+      "height": 3212,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "YDkKHITalXePend6Z2YHkGcAeQ==",
+      "focus": [
+        0.28,
+        0.28
+      ],
+      "palette": {
+        "Vibrant": "#d69348",
+        "DarkVibrant": "#844612",
+        "LightVibrant": "#f8e0a8",
+        "Muted": "#b18f5e",
+        "DarkMuted": "#5d4834",
+        "LightMuted": "#d1bca8"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T12:45"
+    },
+    "m013": {
+      "kind": "image",
+      "base": "m013-e3498f1d",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "3/cRNISHh4h/eHiHiIWIcIYIRw==",
+      "focus": [
+        0.83,
+        0.17
+      ],
+      "palette": {
+        "Vibrant": "#7c9ccc",
+        "DarkVibrant": "#6c5c24",
+        "LightVibrant": "#9bbce1",
+        "Muted": "#8f7660",
+        "DarkMuted": "#5c5635",
+        "LightMuted": "#bac9e0"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T15:21"
+    },
+    "m014": {
+      "kind": "image",
+      "base": "m014-7363b30b",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "HRgOJIaWZXefdoZ6l3aYkIYKeQ==",
+      "focus": [
+        0.56,
+        0.25
+      ],
+      "palette": {
+        "Vibrant": "#847424",
+        "DarkVibrant": "#442418",
+        "LightVibrant": "#a2bedd",
+        "Muted": "#9f7664",
+        "DarkMuted": "#4a392e",
+        "LightMuted": "#a8c4d4"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T15:35"
+    },
+    "m015": {
+      "kind": "image",
+      "base": "m015-3f75f736",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "3ygGDAILymaIpoSZR6jKb5j9hw==",
+      "focus": [
+        0.5,
+        0.31
+      ],
+      "palette": {
+        "Vibrant": "#ae7c54",
+        "DarkVibrant": "#6d5133",
+        "LightVibrant": "#dcc46c",
+        "Muted": "#9e765a",
+        "DarkMuted": "#533f32",
+        "LightMuted": "#d7c8b6"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T15:36"
+    },
+    "m016": {
+      "kind": "image",
+      "base": "m016-0963d104",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "ZDkKDAL5lon2Nnp2d2j6iq6f6A==",
+      "focus": [
+        0.31,
+        0.63
+      ],
+      "palette": {
+        "Vibrant": "#c49c7c",
+        "DarkVibrant": "#2c2414",
+        "LightVibrant": "#e4bc94",
+        "Muted": "#a08163",
+        "DarkMuted": "#4c4337",
+        "LightMuted": "#c4a384"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T15:37"
+    },
+    "m017": {
+      "kind": "image",
+      "base": "m017-16c11afd",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "3gcGJASABY1KSKRbyEhlcFQGRw==",
+      "focus": [
+        0.83,
+        0.66
+      ],
+      "palette": {
+        "Vibrant": "#3c557e",
+        "DarkVibrant": "#2a3c59",
+        "LightVibrant": "#e6cfb7",
+        "Muted": "#4c6794",
+        "DarkMuted": "#5b4d43",
+        "LightMuted": "#d5bda9"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T15:41"
+    },
+    "m018": {
+      "kind": "image",
+      "base": "m018-c50bb856",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "nygKFASld4f4aIGXl1d4j4P3SA==",
+      "focus": [
+        0.83,
+        0.41
+      ],
+      "palette": {
+        "Vibrant": "#88582c",
+        "DarkVibrant": "#84440c",
+        "LightVibrant": "#ddb598",
+        "Muted": "#9e7d63",
+        "DarkMuted": "#594033",
+        "LightMuted": "#b7bcc2"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T15:53"
+    },
+    "m019": {
+      "kind": "image",
+      "base": "m019-d2b62f58",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "GykGHATrViVmoDuJ1neagKQIWA==",
+      "focus": [
+        0.4,
+        0.56
+      ],
+      "palette": {
+        "Vibrant": "#b58e5f",
+        "DarkVibrant": "#2c0705",
+        "LightVibrant": "#d1a879",
+        "Muted": "#ac8555",
+        "DarkMuted": "#534233",
+        "LightMuted": "#b8ac8a"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T16:00"
+    },
+    "m020": {
+      "kind": "image",
+      "base": "m020-6b08d724",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "XkkODAJJOHenp474qIcHW/dH0g==",
+      "focus": [
+        0.31,
+        0.53
+      ],
+      "palette": {
+        "Vibrant": "#d08d2e",
+        "DarkVibrant": "#2c1408",
+        "LightVibrant": "#f1b98d",
+        "Muted": "#a1806c",
+        "DarkMuted": "#2c3444",
+        "LightMuted": "#c7ab9d"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T16:10"
+    },
+    "m021": {
+      "kind": "image",
+      "base": "m021-b5352639",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "XvcJLAaY+IY4d4SneWeHgHYHeA==",
+      "focus": [
+        0.17,
+        0.41
+      ],
+      "palette": {
+        "Vibrant": "#648cb6",
+        "DarkVibrant": "#2a415a",
+        "LightVibrant": "#8cb4dc",
+        "Muted": "#5c7ca4",
+        "DarkMuted": "#513b35",
+        "LightMuted": "#a0b3cc"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T16:18"
+    },
+    "m022": {
+      "kind": "image",
+      "base": "m022-f6c180f1",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "2TgGDAL6mpt5dVqmyHe3NKAGMQ==",
+      "focus": [
+        0.69,
+        0.17
+      ],
+      "palette": {
+        "Vibrant": "#d0ac34",
+        "DarkVibrant": "#651715",
+        "LightVibrant": "#d0c870",
+        "Muted": "#a46949",
+        "DarkMuted": "#4a342b",
+        "LightMuted": "#c6b8a1"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T16:23"
+    },
+    "m023": {
+      "kind": "image",
+      "base": "m023-891c8162",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "oBgKDALltZfJeI/Yd4d4dYBVBw==",
+      "focus": [
+        0.83,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#5164ad",
+        "DarkVibrant": "#242c4c",
+        "LightVibrant": "#fcece4",
+        "Muted": "#907965",
+        "DarkMuted": "#513e2c",
+        "LightMuted": "#d2c5b4"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T16:44"
+    },
+    "m024": {
+      "kind": "image",
+      "base": "m024-77daea12",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "IAgGJIQBbYi/hoiGd3m4kIMMOQ==",
+      "focus": [
+        0.75,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#7ea4e5",
+        "DarkVibrant": "#16366e",
+        "LightVibrant": "#85bcfc",
+        "Muted": "#8e755f",
+        "DarkMuted": "#493629",
+        "LightMuted": "#cebdaa"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T16:48"
+    },
+    "m025": {
+      "kind": "image",
+      "base": "m025-0ab6e733",
+      "width": 5711,
+      "height": 3212,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "oBgKFIIJWbd0iIiGd4UIh2FyCA==",
+      "focus": [
+        0.59,
+        0.25
+      ],
+      "palette": {
+        "Vibrant": "#bd9764",
+        "DarkVibrant": "#422e18",
+        "LightVibrant": "#d4bc94",
+        "Muted": "#7e776b",
+        "DarkMuted": "#504434",
+        "LightMuted": "#d0be9e"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T19:09"
+    },
+    "m026": {
+      "kind": "image",
+      "base": "m026-90554efc",
+      "width": 5711,
+      "height": 3212,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "4SgGFIIdDShyNHp6cmIGeHGCBw==",
+      "focus": [
+        0.72,
+        0.31
+      ],
+      "palette": {
+        "Vibrant": "#b0842a",
+        "DarkVibrant": "#785114",
+        "LightVibrant": "#e5ca93",
+        "Muted": "#9e8051",
+        "DarkMuted": "#513c32",
+        "LightMuted": "#ccc4ba"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T19:24"
+    },
+    "m027": {
+      "kind": "image",
+      "base": "m027-9a269179",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "GAgODIITuWWPh3mJiYYnaHBjBg==",
+      "focus": [
+        0.53,
+        0.5
+      ],
+      "palette": {
+        "Vibrant": "#c49c6c",
+        "DarkVibrant": "#1c344c",
+        "LightVibrant": "#f6deb8",
+        "Muted": "#ac8c54",
+        "DarkMuted": "#5c3e2e",
+        "LightMuted": "#ccd0d3"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T19:50"
+    },
+    "m028": {
+      "kind": "image",
+      "base": "m028-713654ee",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "FggWDIJziGdvdniZd5awWgGsNg==",
+      "focus": [
+        0.63,
+        0.37
+      ],
+      "palette": {
+        "Vibrant": "#bfbf3f",
+        "DarkVibrant": "#0c0c04",
+        "LightVibrant": "#f4dbbd",
+        "Muted": "#a48c7c",
+        "DarkMuted": "#3f3c3b",
+        "LightMuted": "#c0bcbc"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T20:13"
+    },
+    "m029": {
+      "kind": "image",
+      "base": "m029-f4a118c3",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "YBgOFAQ891p3mXd5mHfAQAccdg==",
+      "focus": [
+        0.69,
+        0.41
+      ],
+      "palette": {
+        "Vibrant": "#b97c66",
+        "DarkVibrant": "#522622",
+        "LightVibrant": "#c4d9f3",
+        "Muted": "#9f6d5b",
+        "DarkMuted": "#584932",
+        "LightMuted": "#b4bac8"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T20:16"
+    },
+    "m030": {
+      "kind": "image",
+      "base": "m030-681f434c",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "20gSDASl94WYeZqWiHjYwpAmCQ==",
+      "focus": [
+        0.17,
+        0.19
+      ],
+      "palette": {
+        "Vibrant": "#da2637",
+        "DarkVibrant": "#753715",
+        "LightVibrant": "#d8a8a8",
+        "Muted": "#997268",
+        "DarkMuted": "#5e3630",
+        "LightMuted": "#d7c8b8"
+      },
+      "format": "avif",
+      "taken": "2026-08-07T21:21"
+    },
+    "m031": {
+      "kind": "image",
+      "base": "m031-e3767ada",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "3OcRNASm+IZ4aIZniHd4cHgHeA==",
+      "focus": [
+        0.81,
+        0.5
+      ],
+      "palette": {
+        "Vibrant": "#849cc4",
+        "DarkVibrant": "#5c5d24",
+        "LightVibrant": "#aac3e4",
+        "Muted": "#687e9c",
+        "DarkMuted": "#61612d",
+        "LightMuted": "#a7bcd5"
+      },
+      "format": "avif",
+      "taken": "2026-08-08T09:04"
+    },
+    "m032": {
+      "kind": "image",
+      "base": "m032-e42e279b",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "H+cJJIRVhYugiHhWd6k2oFwCyg==",
+      "focus": [
+        0.75,
+        0.81
+      ],
+      "palette": {
+        "Vibrant": "#446495",
+        "DarkVibrant": "#34547d",
+        "LightVibrant": "#e9dac7",
+        "Muted": "#5072a5",
+        "DarkMuted": "#3f5272",
+        "LightMuted": "#ccbaa8"
+      },
+      "format": "avif",
+      "taken": "2026-08-08T09:19"
+    },
+    "m033": {
+      "kind": "image",
+      "base": "m033-eb0ee52d",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "XQgOFAK0+1endIUYZ5UIrHSASg==",
+      "focus": [
+        0.28,
+        0.22
+      ],
+      "palette": {
+        "Vibrant": "#b2a752",
+        "DarkVibrant": "#a89834",
+        "LightVibrant": "#a3c5e8",
+        "Muted": "#8e8576",
+        "DarkMuted": "#584b40",
+        "LightMuted": "#cdb8a0"
+      },
+      "format": "avif",
+      "taken": "2026-08-08T09:48"
+    },
+    "m034": {
+      "kind": "image",
+      "base": "m034-956a55a9",
+      "width": 4032,
+      "height": 3024,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "XQgKDYKCVaiVmYiilyl4cC+3+nDd",
+      "focus": [
+        0.28,
+        0.66
+      ],
+      "palette": {
+        "Vibrant": "#8e7e29",
+        "DarkVibrant": "#2c4d7a",
+        "LightVibrant": "#a7c9ee",
+        "Muted": "#90816e",
+        "DarkMuted": "#504638",
+        "LightMuted": "#c3b4a1"
+      },
+      "format": "avif",
+      "taken": "2026-08-08T11:52"
+    },
+    "m035": {
+      "kind": "image",
+      "base": "m035-db3778d0",
+      "width": 4032,
+      "height": 3024,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "WBgGFYKIqYl/hniDeleXecl5j6z3",
+      "focus": [
+        0.41,
+        0.38
+      ],
+      "palette": {
+        "Vibrant": "#527ec4",
+        "DarkVibrant": "#324c7c",
+        "LightVibrant": "#9cb5dd",
+        "Muted": "#857367",
+        "DarkMuted": "#4c3c35",
+        "LightMuted": "#b8c6db"
+      },
+      "format": "avif",
+      "taken": "2026-08-08T12:32"
+    },
+    "m036": {
+      "kind": "image",
+      "base": "m036-4fbbb565",
+      "width": 4032,
+      "height": 3024,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "YecNJYaNeIePhnhlh4iWh3BwBRdo",
+      "focus": [
+        0.17,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#7ca4dc",
+        "DarkVibrant": "#241411",
+        "LightVibrant": "#a0c3ea",
+        "Muted": "#577ca5",
+        "DarkMuted": "#40352a",
+        "LightMuted": "#d2b9ae"
+      },
+      "format": "avif",
+      "taken": "2026-08-08T12:33"
+    },
+    "m037": {
+      "kind": "image",
+      "base": "m037-0e565b8a",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "JRgKDIJ9WXdUV3lQenU3r5XQWw==",
+      "focus": [
+        0.17,
+        0.34
+      ],
+      "palette": {
+        "Vibrant": "#844c3c",
+        "DarkVibrant": "#5c341c",
+        "LightVibrant": "#a9ccdc",
+        "Muted": "#9c8e7c",
+        "DarkMuted": "#57473a",
+        "LightMuted": "#adbdd5"
+      },
+      "format": "avif",
+      "taken": "2026-08-08T12:39"
+    },
+    "m038": {
+      "kind": "image",
+      "base": "m038-562a81e0",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "XRgOHAR195V3eKiGh4iZk7ApCQ==",
+      "focus": [
+        0.22,
+        0.63
+      ],
+      "palette": {
+        "Vibrant": "#7ca4d4",
+        "DarkVibrant": "#513821",
+        "LightVibrant": "#8cb2e9",
+        "Muted": "#9f7d69",
+        "DarkMuted": "#4a4039",
+        "LightMuted": "#cfbba5"
+      },
+      "format": "avif",
+      "taken": "2026-08-08T12:41"
+    },
+    "m039": {
+      "kind": "image",
+      "base": "m039-fee6b696",
+      "width": 4032,
+      "height": 3024,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "INcRFYKIh3ePh4d7eHh4eGlwqQWW",
+      "focus": [
+        0.41,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#5192ad",
+        "DarkVibrant": "#24414d",
+        "LightVibrant": "#acc5e5",
+        "Muted": "#5c7c9b",
+        "DarkMuted": "#304958",
+        "LightMuted": "#869fc1"
+      },
+      "format": "avif",
+      "taken": "2026-08-08T12:45"
+    },
+    "m040": {
+      "kind": "image",
+      "base": "m040-c52b1256",
+      "width": 5712,
+      "height": 4284,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "4CgGHYIVqliQhGphbVp3miiIcMQH",
+      "focus": [
+        0.19,
+        0.44
+      ],
+      "palette": {
+        "Vibrant": "#ac7e4c",
+        "DarkVibrant": "#68482e",
+        "LightVibrant": "#ecbf7f",
+        "Muted": "#947c65",
+        "DarkMuted": "#58382d",
+        "LightMuted": "#c2bcbd"
+      },
+      "format": "avif",
+      "taken": "2026-08-08T13:27"
+    },
+    "m041": {
+      "kind": "image",
+      "base": "m041-3311de46",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "oygKDIKWC2qJd3h7gmUBDALTMw==",
+      "focus": [
+        0.17,
+        0.34
+      ],
+      "palette": {
+        "Vibrant": "#d49c48",
+        "DarkVibrant": "#5e3b23",
+        "LightVibrant": "#dfccb4",
+        "Muted": "#aa8b6c",
+        "DarkMuted": "#3b3f56",
+        "LightMuted": "#c8bdb3"
+      },
+      "format": "avif",
+      "taken": "2026-08-08T13:29"
+    },
+    "m042": {
+      "kind": "image",
+      "base": "m042-57990f4b",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "4CgGFIToRYdWBUiJQYIDR0JgNg==",
+      "focus": [
+        0.17,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#d49434",
+        "DarkVibrant": "#5c3014",
+        "LightVibrant": "#e0b786",
+        "Muted": "#ae8153",
+        "DarkMuted": "#384769",
+        "LightMuted": "#a9b9ce"
+      },
+      "format": "avif",
+      "taken": "2026-08-08T13:29"
+    },
+    "m043": {
+      "kind": "image",
+      "base": "m043-f48f31b2",
+      "width": 4032,
+      "height": 2268,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "YecNJIZ/doiOhnhplmeQdgV5Rw==",
+      "focus": [
+        0.83,
+        0.17
+      ],
+      "palette": {
+        "Vibrant": "#6c94b9",
+        "DarkVibrant": "#4c511c",
+        "LightVibrant": "#b4ccfc",
+        "Muted": "#6387aa",
+        "DarkMuted": "#4f473b",
+        "LightMuted": "#9cb4cc"
+      },
+      "format": "avif",
+      "taken": "2026-08-08T14:03"
+    },
+    "m044": {
+      "kind": "image",
+      "base": "m044-a6592a50",
+      "width": 4032,
+      "height": 2268,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "WxgGDIJfh0YqVqdxaXZYe4CkBw==",
+      "focus": [
+        0.17,
+        0.37
+      ],
+      "palette": {
+        "Vibrant": "#bc7c50",
+        "DarkVibrant": "#825a36",
+        "LightVibrant": "#c48c74",
+        "Muted": "#9a7c6b",
+        "DarkMuted": "#513d32",
+        "LightMuted": "#d5c1ae"
+      },
+      "format": "avif",
+      "taken": "2026-08-08T14:06"
+    },
+    "m045": {
+      "kind": "image",
+      "base": "m045-a91e8f5d",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "Y+cRHARj93iXiZV4l3eLcLYIZw==",
+      "focus": [
+        0.17,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#84a3c4",
+        "DarkVibrant": "#2a4159",
+        "LightVibrant": "#a4c4ec",
+        "Muted": "#6d88a1",
+        "DarkMuted": "#644c34",
+        "LightMuted": "#acbcd4"
+      },
+      "format": "avif",
+      "taken": "2026-08-08T14:06"
+    },
+    "m046": {
+      "kind": "image",
+      "base": "m046-e3963d59",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "G/gNLAR2+WfHeIiJeIeYgHYpCA==",
+      "focus": [
+        0.83,
+        0.38
+      ],
+      "palette": {
+        "Vibrant": "#8c2c2e",
+        "DarkVibrant": "#414711",
+        "LightVibrant": "#96bcec",
+        "Muted": "#8b7a5e",
+        "DarkMuted": "#4e4332",
+        "LightMuted": "#b8a78e"
+      },
+      "format": "avif",
+      "taken": "2026-08-08T14:38"
+    },
+    "m047": {
+      "kind": "image",
+      "base": "m047-b4f27186",
+      "width": 5711,
+      "height": 3212,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "IykKFIJmB4lYd3p5c3YEZxFxBg==",
+      "focus": [
+        0.83,
+        0.22
+      ],
+      "palette": {
+        "Vibrant": "#ce8c2e",
+        "DarkVibrant": "#713816",
+        "LightVibrant": "#ddbfa7",
+        "Muted": "#a08462",
+        "DarkMuted": "#52483f",
+        "LightMuted": "#ccbcb0"
+      },
+      "format": "avif",
+      "taken": "2026-08-08T18:35"
+    },
+    "m048": {
+      "kind": "image",
+      "base": "m048-2e4debdc",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "YvcNLAZo93iXmISXeJeXkHcJiQ==",
+      "focus": [
+        0.83,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#84a2d3",
+        "DarkVibrant": "#243c54",
+        "LightVibrant": "#9cbae3",
+        "Muted": "#6c8498",
+        "DarkMuted": "#4b352c",
+        "LightMuted": "#acc0d4"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T11:01"
+    },
+    "m049": {
+      "kind": "image",
+      "base": "m049-70f79825",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "IQgOFIJTaIh/h3l6iImctPAqHQ==",
+      "focus": [
+        0.53,
+        0.66
+      ],
+      "palette": {
+        "Vibrant": "#8aaedb",
+        "DarkVibrant": "#080d16",
+        "LightVibrant": "#8cbcec",
+        "Muted": "#967162",
+        "DarkMuted": "#343c5c",
+        "LightMuted": "#d1b2a0"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T11:03"
+    },
+    "m050": {
+      "kind": "image",
+      "base": "m050-b1f31a67",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "XBgKFIROmZffdHmbeFWgRAdckw==",
+      "focus": [
+        0.69,
+        0.62
+      ],
+      "palette": {
+        "Vibrant": "#d44c2c",
+        "DarkVibrant": "#5f3a25",
+        "LightVibrant": "#7d9cc4",
+        "Muted": "#778ead",
+        "DarkMuted": "#74523f",
+        "LightMuted": "#b4c4d4"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T11:03"
+    },
+    "m051": {
+      "kind": "image",
+      "base": "m051-84a0ed6b",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "3gcOHASGt4fHhmMIZ3iGcGYIdw==",
+      "focus": [
+        0.53,
+        0.19
+      ],
+      "palette": {
+        "Vibrant": "#82482a",
+        "DarkVibrant": "#334a6a",
+        "LightVibrant": "#deb19a",
+        "Muted": "#918379",
+        "DarkMuted": "#54542e",
+        "LightMuted": "#b6bbc5"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T11:05"
+    },
+    "m052": {
+      "kind": "image",
+      "base": "m052-f9b1027e",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "3/cRFIJ3d3d/d3d4iHZWcDoF1w==",
+      "focus": [
+        0.19,
+        0.17
+      ],
+      "palette": {
+        "Vibrant": "#a4444c",
+        "DarkVibrant": "#345c7c",
+        "LightVibrant": "#d8a1a5",
+        "Muted": "#5c7cac",
+        "DarkMuted": "#4c4734",
+        "LightMuted": "#afb6c2"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T11:05"
+    },
+    "m053": {
+      "kind": "image",
+      "base": "m053-1df76157",
+      "width": 4032,
+      "height": 2268,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "4SgGHITafIXon3f+folRMAcEYg==",
+      "focus": [
+        0.17,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#ecbc78",
+        "DarkVibrant": "#68452f",
+        "LightVibrant": "#a4d1f7",
+        "Muted": "#9e7a5a",
+        "DarkMuted": "#573c2b",
+        "LightMuted": "#98b8c8"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T11:15"
+    },
+    "m054": {
+      "kind": "image",
+      "base": "m054-2727e9e3",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "oBgOHASm+Gl3eHt4SHiWgWAICA==",
+      "focus": [
+        0.83,
+        0.56
+      ],
+      "palette": {
+        "Vibrant": "#dcac6c",
+        "DarkVibrant": "#221404",
+        "LightVibrant": "#fccc8b",
+        "Muted": "#a8835e",
+        "DarkMuted": "#564232",
+        "LightMuted": "#abb1ba"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T11:18"
+    },
+    "m055": {
+      "kind": "image",
+      "base": "m055-ea560d06",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "4AcOFAIQ95Znh6t1eFg4cHYDhw==",
+      "focus": [
+        0.47,
+        0.44
+      ],
+      "palette": {
+        "Vibrant": "#ae8650",
+        "DarkVibrant": "#1a140c",
+        "LightVibrant": "#dcc4b4",
+        "Muted": "#587398",
+        "DarkMuted": "#4c3e3b",
+        "LightMuted": "#c5beb4"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T11:23"
+    },
+    "m056": {
+      "kind": "image",
+      "base": "m056-bfefde31",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "oEkGFIJDZ3d0ZmlViECEcEcLpw==",
+      "focus": [
+        0.44,
+        0.37
+      ],
+      "palette": {
+        "Vibrant": "#ac7b51",
+        "DarkVibrant": "#8e591e",
+        "LightVibrant": "#dfad7b",
+        "Muted": "#a47850",
+        "DarkMuted": "#6b4e3b",
+        "LightMuted": "#e3d6cc"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T11:40"
+    },
+    "m057": {
+      "kind": "image",
+      "base": "m057-8125a951",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "HTkKDAJ5B4c3hmZ3mUeGcW9J9w==",
+      "focus": [
+        0.17,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#d47c34",
+        "DarkVibrant": "#4a2812",
+        "LightVibrant": "#e6b68c",
+        "Muted": "#a57d58",
+        "DarkMuted": "#452e23",
+        "LightMuted": "#d7c9ba"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T12:02"
+    },
+    "m058": {
+      "kind": "image",
+      "base": "m058-d5e66c00",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "3DgGDAKq2lgmiYkWSAhAdwpjZA==",
+      "focus": [
+        0.56,
+        0.22
+      ],
+      "palette": {
+        "Vibrant": "#a01a24",
+        "DarkVibrant": "#551d1a",
+        "LightVibrant": "#e0b484",
+        "Muted": "#ad7859",
+        "DarkMuted": "#5a3830",
+        "LightMuted": "#ccbdad"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T12:07"
+    },
+    "m059": {
+      "kind": "image",
+      "base": "m059-93023a80",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "H+cNJIKYh3h/iIeEdmR4gJgIiA==",
+      "focus": [
+        0.69,
+        0.28
+      ],
+      "palette": {
+        "Vibrant": "#6484b7",
+        "DarkVibrant": "#2a3c5a",
+        "LightVibrant": "#96add5",
+        "Muted": "#6078a2",
+        "DarkMuted": "#3c4d5b",
+        "LightMuted": "#bcc7da"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T12:33"
+    },
+    "m060": {
+      "kind": "image",
+      "base": "m060-27ad4b55",
+      "width": 4032,
+      "height": 2268,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "3/cNHIKKhoiviHh3iGaHkHUJSQ==",
+      "focus": [
+        0.47,
+        0.4
+      ],
+      "palette": {
+        "Vibrant": "#7394be",
+        "DarkVibrant": "#2a3f5a",
+        "LightVibrant": "#99b4dc",
+        "Muted": "#6e8cb9",
+        "DarkMuted": "#4c442c",
+        "LightMuted": "#afbed3"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T12:58"
+    },
+    "m061": {
+      "kind": "image",
+      "base": "m061-30fcfd92",
+      "width": 4032,
+      "height": 2268,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "HwgKHIRvZIdManZrW2doYIMGNg==",
+      "focus": [
+        0.28,
+        0.47
+      ],
+      "palette": {
+        "Vibrant": "#3c5480",
+        "DarkVibrant": "#3c5c84",
+        "LightVibrant": "#c8ac8c",
+        "Muted": "#4d678e",
+        "DarkMuted": "#4a443b",
+        "LightMuted": "#c8b59f"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T12:58"
+    },
+    "m062": {
+      "kind": "image",
+      "base": "m062-98542b39",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "IQgOHISEiXZPmHiFh3VWUGMFNg==",
+      "focus": [
+        0.59,
+        0.17
+      ],
+      "palette": {
+        "Vibrant": "#aa7a50",
+        "DarkVibrant": "#a17444",
+        "LightVibrant": "#d39a65",
+        "Muted": "#5d7393",
+        "DarkMuted": "#485e80",
+        "LightMuted": "#b5b9c3"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T13:03"
+    },
+    "m063": {
+      "kind": "image",
+      "base": "m063-ac58c674",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "3vcRHIJ2eId/d4iLeId5cKoHtg==",
+      "focus": [
+        0.83,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#b59c49",
+        "DarkVibrant": "#514621",
+        "LightVibrant": "#92acd4",
+        "Muted": "#6c798c",
+        "DarkMuted": "#383e43",
+        "LightMuted": "#b3bfd0"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T13:18"
+    },
+    "m064": {
+      "kind": "image",
+      "base": "m064-ef358110",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "4PcNHIRGeYaPiniIZYRagKgFiA==",
+      "focus": [
+        0.5,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#a67e58",
+        "DarkVibrant": "#56412e",
+        "LightVibrant": "#d0bca8",
+        "Muted": "#5c77a4",
+        "DarkMuted": "#544237",
+        "LightMuted": "#d2beab"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T13:18"
+    },
+    "m065": {
+      "kind": "image",
+      "base": "m065-1db30e1e",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "3igKDIJ7Wnegh4h3VmNckbBECQ==",
+      "focus": [
+        0.25,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#bc8e58",
+        "DarkVibrant": "#5e2e14",
+        "LightVibrant": "#e0c4a8",
+        "Muted": "#8e6f5c",
+        "DarkMuted": "#533f36",
+        "LightMuted": "#cdae97"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T13:40"
+    },
+    "m066": {
+      "kind": "image",
+      "base": "m066-79012c63",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "nUkGJIaDeqWVdUpwZoYJdZZAZw==",
+      "focus": [
+        0.66,
+        0.19
+      ],
+      "palette": {
+        "Vibrant": "#c6732c",
+        "DarkVibrant": "#9c5c0c",
+        "LightVibrant": "#dfc28f",
+        "Muted": "#9b836c",
+        "DarkMuted": "#635143",
+        "LightMuted": "#d2c8b9"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T13:40"
+    },
+    "m067": {
+      "kind": "image",
+      "base": "m067-ae00a21d",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "4igKFIKICGVziZiHk3Ipd4CFBw==",
+      "focus": [
+        0.83,
+        0.62
+      ],
+      "palette": {
+        "Vibrant": "#b4843a",
+        "DarkVibrant": "#814c0c",
+        "LightVibrant": "#d4aa80",
+        "Muted": "#a07a50",
+        "DarkMuted": "#36261e",
+        "LightMuted": "#cdbcab"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T13:40"
+    },
+    "m068": {
+      "kind": "image",
+      "base": "m068-4b9e549c",
+      "width": 4032,
+      "height": 3024,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "IggOJYR9h3dreIePh4d4dHeAegen",
+      "focus": [
+        0.83,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#b6a548",
+        "DarkVibrant": "#5a5224",
+        "LightVibrant": "#d4bba5",
+        "Muted": "#95836b",
+        "DarkMuted": "#665937",
+        "LightMuted": "#ccb7a1"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T14:04"
+    },
+    "m069": {
+      "kind": "image",
+      "base": "m069-3d0df4ca",
+      "width": 5712,
+      "height": 3214,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "XecVDIKad4h/eId4d4ZCUS809Q==",
+      "focus": [
+        0.75,
+        0.17
+      ],
+      "palette": {
+        "Vibrant": "#849cc4",
+        "DarkVibrant": "#121d27",
+        "LightVibrant": "#9fbbde",
+        "Muted": "#6a7b90",
+        "DarkMuted": "#3b424d",
+        "LightMuted": "#9babbe"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T14:12"
+    },
+    "m070": {
+      "kind": "image",
+      "base": "m070-ffda6f53",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "4vcFHASHt2NZpbIESLh2YGYIdg==",
+      "focus": [
+        0.83,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#978067",
+        "DarkVibrant": "#4e4235",
+        "LightVibrant": "#c9bdb0",
+        "Muted": "#667996",
+        "DarkMuted": "#51483f",
+        "LightMuted": "#c6b9ab"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T14:22"
+    },
+    "m071": {
+      "kind": "image",
+      "base": "m071-a17caa10",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "G/gNHIKMiIiNh3d/d3eTYEYJZg==",
+      "focus": [
+        0.17,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#8ca9d1",
+        "DarkVibrant": "#5c562c",
+        "LightVibrant": "#a2b7d9",
+        "Muted": "#867d62",
+        "DarkMuted": "#4d4932",
+        "LightMuted": "#b7c4dd"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T15:43"
+    },
+    "m073": {
+      "kind": "image",
+      "base": "m073-298b5fda",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "nvcNHIJFd4ifd4hriXV5YIYGdg==",
+      "focus": [
+        0.44,
+        0.17
+      ],
+      "palette": {
+        "Vibrant": "#88a1c6",
+        "DarkVibrant": "#2c3c0c",
+        "LightVibrant": "#abc0dc",
+        "Muted": "#5a7aa8",
+        "DarkMuted": "#544839",
+        "LightMuted": "#adbcd0"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T15:45"
+    },
+    "m074": {
+      "kind": "image",
+      "base": "m074-687493c0",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "WzkGDAKGmHnqdLaGCGhpo88Dyw==",
+      "focus": [
+        0.72,
+        0.19
+      ],
+      "palette": {
+        "Vibrant": "#ce9061",
+        "DarkVibrant": "#5c3412",
+        "LightVibrant": "#e49ca4",
+        "Muted": "#af835c",
+        "DarkMuted": "#644b37",
+        "LightMuted": "#cdc1b7"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T15:56"
+    },
+    "m075": {
+      "kind": "image",
+      "base": "m075-633a3a1f",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "XRgKFILzimmbeYmHdoYJi6eAWw==",
+      "focus": [
+        0.83,
+        0.5
+      ],
+      "palette": {
+        "Vibrant": "#b4844c",
+        "DarkVibrant": "#493621",
+        "LightVibrant": "#8caccc",
+        "Muted": "#977f67",
+        "DarkMuted": "#5a4835",
+        "LightMuted": "#a0b5cd"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T16:00"
+    },
+    "m076": {
+      "kind": "image",
+      "base": "m076-f54380a6",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "pCgODALyy3mmaIeIeIehaV9a9g==",
+      "focus": [
+        0.44,
+        0.17
+      ],
+      "palette": {
+        "Vibrant": "#cfa16f",
+        "DarkVibrant": "#634321",
+        "LightVibrant": "#dca49c",
+        "Muted": "#936a50",
+        "DarkMuted": "#503d3a",
+        "LightMuted": "#d4c4b3"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T19:16"
+    },
+    "m077": {
+      "kind": "image",
+      "base": "m077-4d10d412",
+      "width": 5711,
+      "height": 3212,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "ZEkKHIT0VXd4iIl8hJkHd2RgRw==",
+      "focus": [
+        0.17,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#94541d",
+        "DarkVibrant": "#683512",
+        "LightVibrant": "#e4c7b0",
+        "Muted": "#b18f66",
+        "DarkMuted": "#513629",
+        "LightMuted": "#d4bcac"
+      },
+      "format": "avif",
+      "taken": "2026-08-09T19:50"
+    },
+    "m078": {
+      "kind": "image",
+      "base": "m078-e792fbb6",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "X+cNHIR6h4ePd3h1h3V2YFQHRg==",
+      "focus": [
+        0.75,
+        0.44
+      ],
+      "palette": {
+        "Vibrant": "#7494c0",
+        "DarkVibrant": "#293e5b",
+        "LightVibrant": "#94b4d0",
+        "Muted": "#758cb5",
+        "DarkMuted": "#3c4449",
+        "LightMuted": "#9eb3ca"
+      },
+      "format": "avif",
+      "taken": "2026-08-10T09:12"
+    },
+    "m079": {
+      "kind": "image",
+      "base": "m079-d3e6ed7b",
+      "width": 4032,
+      "height": 2268,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "oucJHIJMqGmPh3VceleFcGQIRw==",
+      "focus": [
+        0.17,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#92abcc",
+        "DarkVibrant": "#2a3e5a",
+        "LightVibrant": "#84a4c4",
+        "Muted": "#7c8080",
+        "DarkMuted": "#53483b",
+        "LightMuted": "#94acc1"
+      },
+      "format": "avif",
+      "taken": "2026-08-10T09:37"
+    },
+    "m080": {
+      "kind": "image",
+      "base": "m080-9148aca7",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "oPcNHARZ+miIh4WJiHeYcIAJBw==",
+      "focus": [
+        0.37,
+        0.47
+      ],
+      "palette": {
+        "Vibrant": "#d6a168",
+        "DarkVibrant": "#68431c",
+        "LightVibrant": "#9bbcde",
+        "Muted": "#978078",
+        "DarkMuted": "#323d48",
+        "LightMuted": "#9cb4cc"
+      },
+      "format": "avif",
+      "taken": "2026-08-10T09:40"
+    },
+    "m081": {
+      "kind": "image",
+      "base": "m081-66f8fdf6",
+      "width": 5712,
+      "height": 4284,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "nQcKNYachWh/h3dzhniWloRwNQlH",
+      "focus": [
+        0.44,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#b86c4c",
+        "DarkVibrant": "#543627",
+        "LightVibrant": "#9ab7d3",
+        "Muted": "#5c7cad",
+        "DarkMuted": "#463122",
+        "LightMuted": "#c8ad9c"
+      },
+      "format": "avif",
+      "taken": "2026-08-10T09:41"
+    },
+    "m082": {
+      "kind": "image",
+      "base": "m082-34c889a0",
+      "width": 5712,
+      "height": 4284,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "2gcKHYaZhXePd4hil6eGmIJRkDAX",
+      "focus": [
+        0.19,
+        0.44
+      ],
+      "palette": {
+        "Vibrant": "#5eb97b",
+        "DarkVibrant": "#8f3c2c",
+        "LightVibrant": "#dcb0b0",
+        "Muted": "#5674a2",
+        "DarkMuted": "#4a3835",
+        "LightMuted": "#c3999a"
+      },
+      "format": "avif",
+      "taken": "2026-08-10T09:42"
+    },
+    "m083": {
+      "kind": "image",
+      "base": "m083-970e3690",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "GxgKHISvd4ddd4eMdmiWUDJKBQ==",
+      "focus": [
+        0.17,
+        0.34
+      ],
+      "palette": {
+        "Vibrant": "#cd5a4c",
+        "DarkVibrant": "#461a1a",
+        "LightVibrant": "#8fb2e0",
+        "Muted": "#a56758",
+        "DarkMuted": "#534530",
+        "LightMuted": "#dbcab1"
+      },
+      "format": "avif",
+      "taken": "2026-08-10T09:47"
+    },
+    "m084": {
+      "kind": "image",
+      "base": "m084-4429cc42",
+      "width": 4032,
+      "height": 2268,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "HDkOFISfpmeHeHlqiHkPdtdwiA==",
+      "focus": [
+        0.34,
+        0.4
+      ],
+      "palette": {
+        "Vibrant": "#fcb454",
+        "DarkVibrant": "#701f14",
+        "LightVibrant": "#f0b867",
+        "Muted": "#a37155",
+        "DarkMuted": "#4b352e",
+        "LightMuted": "#d1b8a2"
+      },
+      "format": "avif",
+      "taken": "2026-08-10T10:04"
+    },
+    "m085": {
+      "kind": "image",
+      "base": "m085-c286bac7",
+      "width": 5712,
+      "height": 4284,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "oOcRLYaHiIh/eId6h0iIeHdwhwdY",
+      "focus": [
+        0.53,
+        0.38
+      ],
+      "palette": {
+        "Vibrant": "#8ca9d9",
+        "DarkVibrant": "#203a63",
+        "LightVibrant": "#badefb",
+        "Muted": "#7c7c81",
+        "DarkMuted": "#5e593b",
+        "LightMuted": "#a0b4c9"
+      },
+      "format": "avif",
+      "taken": "2026-08-10T11:00"
+    },
+    "m086": {
+      "kind": "image",
+      "base": "m086-d6ae0a9f",
+      "width": 4032,
+      "height": 2268,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "HvgJFIJwjJhdlomcdmjMsrCLCg==",
+      "focus": [
+        0.17,
+        0.25
+      ],
+      "palette": {
+        "Vibrant": "#2c76d2",
+        "DarkVibrant": "#163d6d",
+        "LightVibrant": "#a4c4ec",
+        "Muted": "#9f8779",
+        "DarkMuted": "#4b3e34",
+        "LightMuted": "#9fb3cf"
+      },
+      "format": "avif",
+      "taken": "2026-08-10T11:04"
+    },
+    "m087": {
+      "kind": "image",
+      "base": "m087-ca03ea9e",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "2vcJFIITaXdbZmitV2+bgIUKOw==",
+      "focus": [
+        0.63,
+        0.4
+      ],
+      "palette": {
+        "Vibrant": "#84543c",
+        "DarkVibrant": "#5b3a29",
+        "LightVibrant": "#c0e4fa",
+        "Muted": "#818a89",
+        "DarkMuted": "#563c32",
+        "LightMuted": "#a8bfd3"
+      },
+      "format": "avif",
+      "taken": "2026-08-10T11:07"
+    },
+    "m088": {
+      "kind": "image",
+      "base": "m088-83b1facb",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "YucJLAZwpopoiGpWiHhogIcHeA==",
+      "focus": [
+        0.4,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#7c9cc2",
+        "DarkVibrant": "#2a405a",
+        "LightVibrant": "#e0cbba",
+        "Muted": "#6785ac",
+        "DarkMuted": "#343c4c",
+        "LightMuted": "#a4b4c4"
+      },
+      "format": "avif",
+      "taken": "2026-08-10T11:19"
+    },
+    "m089": {
+      "kind": "image",
+      "base": "m089-f94576e2",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "GzkOHASY93eHd3Znh5h3f4/Y9w==",
+      "focus": [
+        0.83,
+        0.28
+      ],
+      "palette": {
+        "Vibrant": "#e2ad61",
+        "DarkVibrant": "#530e11",
+        "LightVibrant": "#f4c474",
+        "Muted": "#9c7e5c",
+        "DarkMuted": "#6c4f3f",
+        "LightMuted": "#d7cbbb"
+      },
+      "format": "avif",
+      "taken": "2026-08-10T11:23"
+    },
+    "m090": {
+      "kind": "image",
+      "base": "m090-f6632ea0",
+      "width": 4032,
+      "height": 2268,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "5fcJHIReWXh/lYd3h3WkUDYLZQ==",
+      "focus": [
+        0.17,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#c49484",
+        "DarkVibrant": "#5c342c",
+        "LightVibrant": "#abcbec",
+        "Muted": "#877e79",
+        "DarkMuted": "#4c2c34",
+        "LightMuted": "#c8b8a9"
+      },
+      "format": "avif",
+      "taken": "2026-08-10T11:29"
+    },
+    "m091": {
+      "kind": "image",
+      "base": "m091-41c1d49c",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "makGHIybpnZvqHhYunqEYGgJiA==",
+      "focus": [
+        0.44,
+        0.53
+      ],
+      "palette": {
+        "Vibrant": "#d62c1f",
+        "DarkVibrant": "#781512",
+        "LightVibrant": "#e6bc94",
+        "Muted": "#a4704f",
+        "DarkMuted": "#663030",
+        "LightMuted": "#cdbdb4"
+      },
+      "format": "avif",
+      "taken": "2026-08-10T12:01"
+    },
+    "m092": {
+      "kind": "image",
+      "base": "m092-88ffa771",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "3vcJHAIGuIbXZXV6Z5iIoIUWDA==",
+      "focus": [
+        0.44,
+        0.31
+      ],
+      "palette": {
+        "Vibrant": "#86a8d9",
+        "DarkVibrant": "#34547c",
+        "LightVibrant": "#8eb2e4",
+        "Muted": "#838d8f",
+        "DarkMuted": "#4c4832",
+        "LightMuted": "#acbcd4"
+      },
+      "format": "avif",
+      "taken": "2026-08-10T12:47"
+    },
+    "m093": {
+      "kind": "image",
+      "base": "m093-f741e162",
+      "width": 4032,
+      "height": 2268,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "4AcOJIZ5h4d/iIeXd3h3c4BXCA==",
+      "focus": [
+        0.81,
+        0.47
+      ],
+      "palette": {
+        "Vibrant": "#c48464",
+        "DarkVibrant": "#603824",
+        "LightVibrant": "#d9bda2",
+        "Muted": "#a77e6b",
+        "DarkMuted": "#664634",
+        "LightMuted": "#a1b4c4"
+      },
+      "format": "avif",
+      "taken": "2026-08-10T13:34"
+    },
+    "m094": {
+      "kind": "image",
+      "base": "m094-16d9c457",
+      "width": 4032,
+      "height": 2268,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "o+cJHISHZ4iPeIiFeHVogHI2CA==",
+      "focus": [
+        0.83,
+        0.53
+      ],
+      "palette": {
+        "Vibrant": "#8ca7cc",
+        "DarkVibrant": "#283e5b",
+        "LightVibrant": "#94accc",
+        "Muted": "#a27868",
+        "DarkMuted": "#5f4f44",
+        "LightMuted": "#d2bdaf"
+      },
+      "format": "avif",
+      "taken": "2026-08-10T13:36"
+    },
+    "m095": {
+      "kind": "image",
+      "base": "m095-8960f26e",
+      "width": 5711,
+      "height": 3212,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "5SgGFIJxbHdnVXh/c1RMdtB2Bw==",
+      "focus": [
+        0.83,
+        0.72
+      ],
+      "palette": {
+        "Vibrant": "#b18439",
+        "DarkVibrant": "#694428",
+        "LightVibrant": "#dcba8d",
+        "Muted": "#a27b50",
+        "DarkMuted": "#3b261a",
+        "LightMuted": "#d4c1ae"
+      },
+      "format": "avif",
+      "taken": "2026-08-10T14:46"
+    },
+    "m096": {
+      "kind": "image",
+      "base": "m096-1a75d727",
+      "width": 5711,
+      "height": 3212,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "oxgKFIIaCWZjZnp3Y3YHeFKABg==",
+      "focus": [
+        0.53,
+        0.17
+      ],
+      "palette": {
+        "Vibrant": "#b39460",
+        "DarkVibrant": "#2d1c15",
+        "LightVibrant": "#c49862",
+        "Muted": "#a78457",
+        "DarkMuted": "#483b34",
+        "LightMuted": "#c4bcbc"
+      },
+      "format": "avif",
+      "taken": "2026-08-10T19:05"
+    },
+    "m097": {
+      "kind": "image",
+      "base": "m097-206890b6",
+      "width": 5711,
+      "height": 3212,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "IikKHIS4C2iDM1hmY1oJVacwhQ==",
+      "focus": [
+        0.47,
+        0.17
+      ],
+      "palette": {
+        "Vibrant": "#ba723c",
+        "DarkVibrant": "#723a12",
+        "LightVibrant": "#d1b68c",
+        "Muted": "#9f8f70",
+        "DarkMuted": "#544434",
+        "LightMuted": "#c6ba9f"
+      },
+      "format": "avif",
+      "taken": "2026-08-10T19:16"
+    },
+    "m098": {
+      "kind": "image",
+      "base": "m098-f07a1020",
+      "width": 5711,
+      "height": 3212,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "oigODIAIRqZkeIl2dnYTaQDLJQ==",
+      "focus": [
+        0.34,
+        0.28
+      ],
+      "palette": {
+        "Vibrant": "#bc7c2c",
+        "DarkVibrant": "#653f18",
+        "LightVibrant": "#c5a47e",
+        "Muted": "#a27947",
+        "DarkMuted": "#4f3b2f",
+        "LightMuted": "#d4ccc1"
+      },
+      "format": "avif",
+      "taken": "2026-08-10T19:27"
+    },
+    "m099": {
+      "kind": "image",
+      "base": "m099-bb397de2",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "IggKDAJn6IhpWHw3+FjcsLANSQ==",
+      "focus": [
+        0.83,
+        0.19
+      ],
+      "palette": {
+        "Vibrant": "#3c80a6",
+        "DarkVibrant": "#346486",
+        "LightVibrant": "#bfd9f4",
+        "Muted": "#9f896f",
+        "DarkMuted": "#6b5840",
+        "LightMuted": "#c7c1c0"
+      },
+      "format": "avif",
+      "taken": "2026-08-11T07:54"
+    },
+    "m100": {
+      "kind": "image",
+      "base": "m100-f2a82b60",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "IecJLASH+Jk4aGa2WXdogIkGqA==",
+      "focus": [
+        0.19,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#7c9cc4",
+        "DarkVibrant": "#293f5b",
+        "LightVibrant": "#98b4d6",
+        "Muted": "#6c8cb6",
+        "DarkMuted": "#514d2c",
+        "LightMuted": "#d7c4ae"
+      },
+      "format": "avif",
+      "taken": "2026-08-11T08:59"
+    },
+    "m101": {
+      "kind": "image",
+      "base": "m101-6770e760",
+      "width": 4032,
+      "height": 2268,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "4vcRJIR5eHh/d4d2eIeIcIYHRw==",
+      "focus": [
+        0.17,
+        0.62
+      ],
+      "palette": {
+        "Vibrant": "#c4a882",
+        "DarkVibrant": "#595222",
+        "LightVibrant": "#e4c48c",
+        "Muted": "#937e6f",
+        "DarkMuted": "#5f553a",
+        "LightMuted": "#acbcd0"
+      },
+      "format": "avif",
+      "taken": "2026-08-11T08:59"
+    },
+    "m102": {
+      "kind": "image",
+      "base": "m102-7e2c1b34",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "3vcRLIZ6iHd/h4d4iHaHcHQIRw==",
+      "focus": [
+        0.17,
+        0.75
+      ],
+      "palette": {
+        "Vibrant": "#8dacd4",
+        "DarkVibrant": "#514c24",
+        "LightVibrant": "#9bb8dc",
+        "Muted": "#907d6c",
+        "DarkMuted": "#494032",
+        "LightMuted": "#a4bad1"
+      },
+      "format": "avif",
+      "taken": "2026-08-11T09:23"
+    },
+    "m103": {
+      "kind": "image",
+      "base": "m103-c3e6e3ff",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "XucFHARKB3UYm0aZibY4gHkCmA==",
+      "focus": [
+        0.4,
+        0.41
+      ],
+      "palette": {
+        "Vibrant": "#b4504c",
+        "DarkVibrant": "#344c74",
+        "LightVibrant": "#debb9c",
+        "Muted": "#5c7ca3",
+        "DarkMuted": "#3c5474",
+        "LightMuted": "#d5c3b2"
+      },
+      "format": "avif",
+      "taken": "2026-08-11T09:37"
+    },
+    "m104": {
+      "kind": "image",
+      "base": "m104-5a5cf44f",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "XwgOJISZZ4ePh4hriGhpUKIXBQ==",
+      "focus": [
+        0.22,
+        0.47
+      ],
+      "palette": {
+        "Vibrant": "#a4843e",
+        "DarkVibrant": "#59481d",
+        "LightVibrant": "#9cb9db",
+        "Muted": "#a38662",
+        "DarkMuted": "#574330",
+        "LightMuted": "#acc2d7"
+      },
+      "format": "avif",
+      "taken": "2026-08-11T09:37"
+    },
+    "m105": {
+      "kind": "image",
+      "base": "m105-e1b8f150",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "HggOHIR3dHiPdoZ6hmi1gGELOA==",
+      "focus": [
+        0.83,
+        0.25
+      ],
+      "palette": {
+        "Vibrant": "#d9bc8c",
+        "DarkVibrant": "#634a20",
+        "LightVibrant": "#aed1f1",
+        "Muted": "#927b6b",
+        "DarkMuted": "#543c31",
+        "LightMuted": "#bda288"
+      },
+      "format": "avif",
+      "taken": "2026-08-11T09:56"
+    },
+    "m106": {
+      "kind": "image",
+      "base": "m106-2db64c49",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "nvcNHASz+HSYWpqHd3h8kMUHWQ==",
+      "focus": [
+        0.17,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#3a79c4",
+        "DarkVibrant": "#1e3f66",
+        "LightVibrant": "#a8c4e5",
+        "Muted": "#7f766e",
+        "DarkMuted": "#4c3e38",
+        "LightMuted": "#a4b5d0"
+      },
+      "format": "avif",
+      "taken": "2026-08-11T10:06"
+    },
+    "m107": {
+      "kind": "image",
+      "base": "m107-d5a657d7",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "n/cNFILgZYdclnaYZopvYPYmZg==",
+      "focus": [
+        0.25,
+        0.72
+      ],
+      "palette": {
+        "Vibrant": "#8ba7cc",
+        "DarkVibrant": "#283e5c",
+        "LightVibrant": "#acc4e3",
+        "Muted": "#7288a9",
+        "DarkMuted": "#4c3c3a",
+        "LightMuted": "#b4c4d4"
+      },
+      "format": "avif",
+      "taken": "2026-08-11T10:08"
+    },
+    "m108": {
+      "kind": "image",
+      "base": "m108-da5e07b1",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "XxgGHASciRzmbc9pVoTRQAEcJA==",
+      "focus": [
+        0.17,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#86acdc",
+        "DarkVibrant": "#543c20",
+        "LightVibrant": "#e9c898",
+        "Muted": "#a18466",
+        "DarkMuted": "#513f37",
+        "LightMuted": "#9cb4d4"
+      },
+      "format": "avif",
+      "taken": "2026-08-11T10:13"
+    },
+    "m109": {
+      "kind": "image",
+      "base": "m109-6230870b",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "XwgCDAKvi5TVeUkWK5rajJ/t9w==",
+      "focus": [
+        0.53,
+        0.63
+      ],
+      "palette": {
+        "Vibrant": "#947e6a",
+        "DarkVibrant": "#4c4137",
+        "LightVibrant": "#c7bcb2",
+        "Muted": "#8c7b70",
+        "DarkMuted": "#354750",
+        "LightMuted": "#c3b7ac"
+      },
+      "format": "avif",
+      "taken": "2026-08-11T10:14"
+    },
+    "m110": {
+      "kind": "image",
+      "base": "m110-5ea0e024",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "oxgKFAIMUrf2NXuEd4cEmiagWQ==",
+      "focus": [
+        0.59,
+        0.66
+      ],
+      "palette": {
+        "Vibrant": "#d0ac84",
+        "DarkVibrant": "#301d0f",
+        "LightVibrant": "#e4a484",
+        "Muted": "#908172",
+        "DarkMuted": "#5a4639",
+        "LightMuted": "#d4bca7"
+      },
+      "format": "avif",
+      "taken": "2026-08-11T10:16"
+    },
+    "m111": {
+      "kind": "image",
+      "base": "m111-59c54517",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "oRgKDAKt9WbaZ5aJhndSbz/l9g==",
+      "focus": [
+        0.66,
+        0.19
+      ],
+      "palette": {
+        "Vibrant": "#dcb484",
+        "DarkVibrant": "#21140e",
+        "LightVibrant": "#e9c0a4",
+        "Muted": "#8c7b73",
+        "DarkMuted": "#564033",
+        "LightMuted": "#c6b4a8"
+      },
+      "format": "avif",
+      "taken": "2026-08-11T10:17"
+    },
+    "m112": {
+      "kind": "image",
+      "base": "m112-66ff56d9",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "3mkGHASDSWMq1332WKr4cWh/tg==",
+      "focus": [
+        0.47,
+        0.44
+      ],
+      "palette": {
+        "Vibrant": "#bc7c46",
+        "DarkVibrant": "#6e3325",
+        "LightVibrant": "#fcb494",
+        "Muted": "#956846",
+        "DarkMuted": "#734d38",
+        "LightMuted": "#d4bda9"
+      },
+      "format": "avif",
+      "taken": "2026-08-11T11:27"
+    },
+    "m113": {
+      "kind": "image",
+      "base": "m113-fd298e50",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "nVkKHASoeZfnl3L5eHiGgGsHeA==",
+      "focus": [
+        0.78,
+        0.17
+      ],
+      "palette": {
+        "Vibrant": "#eca357",
+        "DarkVibrant": "#73360f",
+        "LightVibrant": "#fcc474",
+        "Muted": "#957461",
+        "DarkMuted": "#5c432f",
+        "LightMuted": "#ccbcac"
+      },
+      "format": "avif",
+      "taken": "2026-08-11T11:28"
+    },
+    "m114": {
+      "kind": "image",
+      "base": "m114-68111986",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "3mkKHIT316h8d4hyiJj2e3OrBw==",
+      "focus": [
+        0.41,
+        0.17
+      ],
+      "palette": {
+        "Vibrant": "#f4a35e",
+        "DarkVibrant": "#6c3c14",
+        "LightVibrant": "#f9c179",
+        "Muted": "#b07050",
+        "DarkMuted": "#634a3b",
+        "LightMuted": "#ae8770"
+      },
+      "format": "avif",
+      "taken": "2026-08-11T11:28"
+    },
+    "m115": {
+      "kind": "image",
+      "base": "m115-8894dd5a",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "4AcKJASIx4j4iHhGeHh4gIIHJw==",
+      "focus": [
+        0.47,
+        0.47
+      ],
+      "palette": {
+        "Vibrant": "#89a4d4",
+        "DarkVibrant": "#3d2e1c",
+        "LightVibrant": "#98b6e4",
+        "Muted": "#8c817a",
+        "DarkMuted": "#483a2c",
+        "LightMuted": "#c8bcb0"
+      },
+      "format": "avif",
+      "taken": "2026-08-11T12:11"
+    },
+    "m116": {
+      "kind": "image",
+      "base": "m116-e7250791",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "HnsGDIJQeHqFWJiFbI1gmjjzSA==",
+      "focus": [
+        0.69,
+        0.25
+      ],
+      "palette": {
+        "Vibrant": "#dd5e25",
+        "DarkVibrant": "#773c0f",
+        "LightVibrant": "#f9c072",
+        "Muted": "#843714",
+        "DarkMuted": "#874411",
+        "LightMuted": "#925706"
+      },
+      "format": "avif",
+      "taken": "2026-08-11T12:27"
+    },
+    "m117": {
+      "kind": "image",
+      "base": "m117-f3fa57ad",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "ofcRHIRmaHh/dodnd3XHcHcKhw==",
+      "focus": [
+        0.17,
+        0.25
+      ],
+      "palette": {
+        "Vibrant": "#2382db",
+        "DarkVibrant": "#124372",
+        "LightVibrant": "#bad8f4",
+        "Muted": "#837f6d",
+        "DarkMuted": "#585234",
+        "LightMuted": "#b1bcc4"
+      },
+      "format": "avif",
+      "taken": "2026-08-12T09:20"
+    },
+    "m118": {
+      "kind": "image",
+      "base": "m118-9839ae62",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "4PcNJIaYd3i/h3ifdlWGgFUIVw==",
+      "focus": [
+        0.83,
+        0.69
+      ],
+      "palette": {
+        "Vibrant": "#90a8ca",
+        "DarkVibrant": "#1c140c",
+        "LightVibrant": "#bce4fb",
+        "Muted": "#8d7b72",
+        "DarkMuted": "#343c44",
+        "LightMuted": "#c9b3a2"
+      },
+      "format": "avif",
+      "taken": "2026-08-12T09:41"
+    },
+    "m119": {
+      "kind": "image",
+      "base": "m119-98de8d76",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "pSgOFIKGmIePd4iDh4jGpnAsCw==",
+      "focus": [
+        0.83,
+        0.75
+      ],
+      "palette": {
+        "Vibrant": "#cca484",
+        "DarkVibrant": "#14344c",
+        "LightVibrant": "#e7c8ac",
+        "Muted": "#9a7e6b",
+        "DarkMuted": "#4a3a35",
+        "LightMuted": "#ccb6a4"
+      },
+      "format": "avif",
+      "taken": "2026-08-12T10:00"
+    },
+    "m120": {
+      "kind": "image",
+      "base": "m120-420b5d54",
+      "width": 5711,
+      "height": 3212,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "IUkKDIKrOkZ1h4dsYJcKm1L7WQ==",
+      "focus": [
+        0.22,
+        0.17
+      ],
+      "palette": {
+        "Vibrant": "#b86c35",
+        "DarkVibrant": "#793613",
+        "LightVibrant": "#e1b484",
+        "Muted": "#af8868",
+        "DarkMuted": "#403c28",
+        "LightMuted": "#ccbbb0"
+      },
+      "format": "avif",
+      "taken": "2026-08-12T10:42"
+    },
+    "m121": {
+      "kind": "image",
+      "base": "m121-1a5e334e",
+      "width": 5711,
+      "height": 3212,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "H4oGJIJPiGapqImnV3YIdwU0Fw==",
+      "focus": [
+        0.17,
+        0.19
+      ],
+      "palette": {
+        "Vibrant": "#cd6b31",
+        "DarkVibrant": "#763a12",
+        "LightVibrant": "#ebbd85",
+        "Muted": "#b35d4f",
+        "DarkMuted": "#796c39",
+        "LightMuted": "#dac5b6"
+      },
+      "format": "avif",
+      "taken": "2026-08-12T10:46"
+    },
+    "m122": {
+      "kind": "image",
+      "base": "m122-6f5f6c12",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "ItcRFIJ3h3iPiHeYeIeeUPgacw==",
+      "focus": [
+        0.22,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#8cacd9",
+        "DarkVibrant": "#244c5a",
+        "LightVibrant": "#b2d4f0",
+        "Muted": "#5f7c96",
+        "DarkMuted": "#305063",
+        "LightMuted": "#a4bcd4"
+      },
+      "format": "avif",
+      "taken": "2026-08-12T12:16"
+    },
+    "m123": {
+      "kind": "image",
+      "base": "m123-10a0a1e0",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "n+cRJIR3eHiPiHiKd4h4gJgHdw==",
+      "focus": [
+        0.31,
+        0.75
+      ],
+      "palette": {
+        "Vibrant": "#2589d9",
+        "DarkVibrant": "#134770",
+        "LightVibrant": "#c0ddf4",
+        "Muted": "#687f97",
+        "DarkMuted": "#544b34",
+        "LightMuted": "#aabdd4"
+      },
+      "format": "avif",
+      "taken": "2026-08-12T12:19"
+    },
+    "m124": {
+      "kind": "image",
+      "base": "m124-fea47f08",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "3QcOHASJ+IjHd4h3Z3hmcGAHBw==",
+      "focus": [
+        0.56,
+        0.69
+      ],
+      "palette": {
+        "Vibrant": "#849cc4",
+        "DarkVibrant": "#44341c",
+        "LightVibrant": "#94bcec",
+        "Muted": "#928173",
+        "DarkMuted": "#4b382a",
+        "LightMuted": "#c4ae98"
+      },
+      "format": "avif",
+      "taken": "2026-08-12T13:58"
+    },
+    "m125": {
+      "kind": "image",
+      "base": "m125-fa46eca2",
+      "width": 5711,
+      "height": 3212,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "IzkGDIDEv3qIeneGaWNwRwFsMw==",
+      "focus": [
+        0.69,
+        0.25
+      ],
+      "palette": {
+        "Vibrant": "#c4946c",
+        "DarkVibrant": "#614129",
+        "LightVibrant": "#e1be97",
+        "Muted": "#9c8268",
+        "DarkMuted": "#544c34",
+        "LightMuted": "#d2b39c"
+      },
+      "format": "avif",
+      "taken": "2026-08-12T14:24"
+    },
+    "m126": {
+      "kind": "image",
+      "base": "m126-ba9c65aa",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "5igKBAB3qod3d3e3ZwaWT5kJdA==",
+      "focus": [
+        0.44,
+        0.25
+      ],
+      "palette": {
+        "Vibrant": "#ccb494",
+        "DarkVibrant": "#59452a",
+        "LightVibrant": "#dcc4ac",
+        "Muted": "#827063",
+        "DarkMuted": "#50413b",
+        "LightMuted": "#d4c4ac"
+      },
+      "format": "avif",
+      "taken": "2026-08-12T14:30"
+    },
+    "m127": {
+      "kind": "image",
+      "base": "m127-302ede1d",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "IAgOHARZ+HfIh3V4l3jbgKANGA==",
+      "focus": [
+        0.17,
+        0.17
+      ],
+      "palette": {
+        "Vibrant": "#cca586",
+        "DarkVibrant": "#26140c",
+        "LightVibrant": "#b0d4fc",
+        "Muted": "#ac8669",
+        "DarkMuted": "#4b3226",
+        "LightMuted": "#d7bea6"
+      },
+      "format": "avif",
+      "taken": "2026-08-12T14:44"
+    },
+    "m128": {
+      "kind": "image",
+      "base": "m128-ecb700e1",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "nBgKHIQLZqSLimebeX4HdHZAZw==",
+      "focus": [
+        0.17,
+        0.17
+      ],
+      "palette": {
+        "Vibrant": "#cd8f41",
+        "DarkVibrant": "#56240f",
+        "LightVibrant": "#d2ae87",
+        "Muted": "#987d6a",
+        "DarkMuted": "#443c3c",
+        "LightMuted": "#d1baa5"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T07:04"
+    },
+    "m129": {
+      "kind": "image",
+      "base": "m129-a07522b5",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "GvgNFARXaGb4eGd4qFafpqYJeA==",
+      "focus": [
+        0.28,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#1094ee",
+        "DarkVibrant": "#084c7c",
+        "LightVibrant": "#a8d8f9",
+        "Muted": "#7a818a",
+        "DarkMuted": "#45493b",
+        "LightMuted": "#d4c2b6"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T08:46"
+    },
+    "m130": {
+      "kind": "image",
+      "base": "m130-dc5b4813",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "XecNNAaG94iIeYR3h3d5gJYIWA==",
+      "focus": [
+        0.31,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#6c94c7",
+        "DarkVibrant": "#243e60",
+        "LightVibrant": "#8fbcea",
+        "Muted": "#83826b",
+        "DarkMuted": "#4c4341",
+        "LightMuted": "#b9c2c6"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T08:52"
+    },
+    "m131": {
+      "kind": "image",
+      "base": "m131-e0b6c2ef",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "oecRHASI+IiIeHZoh4h4gHIHNw==",
+      "focus": [
+        0.5,
+        0.38
+      ],
+      "palette": {
+        "Vibrant": "#3685c8",
+        "DarkVibrant": "#1c4568",
+        "LightVibrant": "#abcce8",
+        "Muted": "#898078",
+        "DarkMuted": "#444240",
+        "LightMuted": "#a9bdcc"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T08:53"
+    },
+    "m132": {
+      "kind": "image",
+      "base": "m132-91ace2a4",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "mhgKDIJqL5OJiXZaeno/pfVUWw==",
+      "focus": [
+        0.66,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#f4dc6c",
+        "DarkVibrant": "#64492a",
+        "LightVibrant": "#e5c8a7",
+        "Muted": "#9b846e",
+        "DarkMuted": "#4e3a2a",
+        "LightMuted": "#d3c8bf"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T08:58"
+    },
+    "m133": {
+      "kind": "image",
+      "base": "m133-520d4b30",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "mBgKDAJV+HgoqG2aVWcpjKDRCQ==",
+      "focus": [
+        0.5,
+        0.25
+      ],
+      "palette": {
+        "Vibrant": "#c8a87c",
+        "DarkVibrant": "#46311c",
+        "LightVibrant": "#f0d6af",
+        "Muted": "#948370",
+        "DarkMuted": "#4a3f35",
+        "LightMuted": "#c4b39e"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T08:59"
+    },
+    "m134": {
+      "kind": "image",
+      "base": "m134-c9a69a6a",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "mRgKDAI2C6zUR3l3pGe7r7n7mQ==",
+      "focus": [
+        0.56,
+        0.72
+      ],
+      "palette": {
+        "Vibrant": "#bc8c5d",
+        "DarkVibrant": "#6d4e32",
+        "LightVibrant": "#bc9464",
+        "Muted": "#a48062",
+        "DarkMuted": "#524233",
+        "LightMuted": "#cabcaa"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T09:00"
+    },
+    "m135": {
+      "kind": "image",
+      "base": "m135-e85af793",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "mCgGBACASndpiWaomHfesKcLeg==",
+      "focus": [
+        0.81,
+        0.66
+      ],
+      "palette": {
+        "Vibrant": "#9b6644",
+        "DarkVibrant": "#472f1c",
+        "LightVibrant": "#dcc4a9",
+        "Muted": "#948271",
+        "DarkMuted": "#543b2d",
+        "LightMuted": "#c1a791"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T09:01"
+    },
+    "m136": {
+      "kind": "image",
+      "base": "m136-7a4423d6",
+      "width": 4032,
+      "height": 2268,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "2PcJDIAJhHhlVYl8iH2vhKUMRg==",
+      "focus": [
+        0.38,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#4e92b1",
+        "DarkVibrant": "#284c5c",
+        "LightVibrant": "#c4dbe5",
+        "Muted": "#686d78",
+        "DarkMuted": "#41454c",
+        "LightMuted": "#b3afaa"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T09:10"
+    },
+    "m137": {
+      "kind": "image",
+      "base": "m137-3c1b4ff1",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "m9YFJAQXCKiHl4eHh4gIhIdAeA==",
+      "focus": [
+        0.53,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#4c74a4",
+        "DarkVibrant": "#34547c",
+        "LightVibrant": "#eccaab",
+        "Muted": "#5477a7",
+        "DarkMuted": "#3c547c",
+        "LightMuted": "#c4b4ac"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T09:11"
+    },
+    "m138": {
+      "kind": "image",
+      "base": "m138-426edd96",
+      "width": 4032,
+      "height": 2268,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "IQgGLIZGZ4eXiYhweGhmgGMGOA==",
+      "focus": [
+        0.75,
+        0.72
+      ],
+      "palette": {
+        "Vibrant": "#bd9c74",
+        "DarkVibrant": "#59442a",
+        "LightVibrant": "#e5c19f",
+        "Muted": "#5c7c9b",
+        "DarkMuted": "#4b4138",
+        "LightMuted": "#d3bea6"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T09:56"
+    },
+    "m140": {
+      "kind": "image",
+      "base": "m140-983a0c3f",
+      "width": 4032,
+      "height": 2268,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "IucRJIZ2d4iPd4eUiXeZgJgJlw==",
+      "focus": [
+        0.17,
+        0.37
+      ],
+      "palette": {
+        "Vibrant": "#7c9dcb",
+        "DarkVibrant": "#253d5e",
+        "LightVibrant": "#9abbe4",
+        "Muted": "#7e7b7a",
+        "DarkMuted": "#3f3939",
+        "LightMuted": "#9cb2cc"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T09:56"
+    },
+    "m141": {
+      "kind": "image",
+      "base": "m141-f2d95128",
+      "width": 3024,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "oygGDQK4ym96h4moZ5qlt61537v3",
+      "focus": [
+        0.47,
+        0.53
+      ],
+      "palette": {
+        "Vibrant": "#ccac94",
+        "DarkVibrant": "#3b2c1c",
+        "LightVibrant": "#d8b494",
+        "Muted": "#9d8674",
+        "DarkMuted": "#4f4036",
+        "LightMuted": "#d0b8a8"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T10:27"
+    },
+    "m142": {
+      "kind": "image",
+      "base": "m142-e1e69bdd",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "1igGHAS3D6mCd3i5tzh4j3b3iA==",
+      "focus": [
+        0.66,
+        0.83
+      ],
+      "palette": {
+        "Vibrant": "#744e31",
+        "DarkVibrant": "#623d1c",
+        "LightVibrant": "#d7b9a1",
+        "Muted": "#926c4e",
+        "DarkMuted": "#543a2a",
+        "LightMuted": "#a6abb8"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T10:31"
+    },
+    "m143": {
+      "kind": "image",
+      "base": "m143-607fd6a3",
+      "width": 3024,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "4SgGDQIsCVeNbZl4aHZ4aORfM+9U",
+      "focus": [
+        0.17,
+        0.17
+      ],
+      "palette": {
+        "Vibrant": "#b2844e",
+        "DarkVibrant": "#5c4428",
+        "LightVibrant": "#d9b27a",
+        "Muted": "#a48660",
+        "DarkMuted": "#3f332b",
+        "LightMuted": "#c9bca7"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T10:36"
+    },
+    "m144": {
+      "kind": "image",
+      "base": "m144-7d3fea18",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "3SgGFAKHiHj4eHWndnh3j3b4hw==",
+      "focus": [
+        0.83,
+        0.28
+      ],
+      "palette": {
+        "Vibrant": "#b49454",
+        "DarkVibrant": "#85643c",
+        "LightVibrant": "#d7c09c",
+        "Muted": "#9f7f58",
+        "DarkMuted": "#624933",
+        "LightMuted": "#c2a683"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T10:38"
+    },
+    "m145": {
+      "kind": "image",
+      "base": "m145-853f7804",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "mxgKFAK4mGn3R3m3eIfmj3LvKQ==",
+      "focus": [
+        0.62,
+        0.17
+      ],
+      "palette": {
+        "Vibrant": "#b07a46",
+        "DarkVibrant": "#58422a",
+        "LightVibrant": "#c5a682",
+        "Muted": "#ac7c59",
+        "DarkMuted": "#544940",
+        "LightMuted": "#b3a492"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T10:40"
+    },
+    "m147": {
+      "kind": "image",
+      "base": "m147-cd595092",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "nSgKDALM+Kcohm5FNlaKgJwI1w==",
+      "focus": [
+        0.19,
+        0.28
+      ],
+      "palette": {
+        "Vibrant": "#df5f1f",
+        "DarkVibrant": "#461e0a",
+        "LightVibrant": "#e4d4c1",
+        "Muted": "#8c7f74",
+        "DarkMuted": "#4c3931",
+        "LightMuted": "#d3cabf"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T10:44"
+    },
+    "m148": {
+      "kind": "image",
+      "base": "m148-6974238c",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "oRgKBADyqXioR4e3mKnNj/SceQ==",
+      "focus": [
+        0.44,
+        0.41
+      ],
+      "palette": {
+        "Vibrant": "#b58849",
+        "DarkVibrant": "#312514",
+        "LightVibrant": "#d8c1a0",
+        "Muted": "#947f66",
+        "DarkMuted": "#564a3d",
+        "LightMuted": "#d4c3b1"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T10:57"
+    },
+    "m149": {
+      "kind": "image",
+      "base": "m149-5a4c80f9",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "XRgGBAD9Asvlp21HV8nFlG+L+g==",
+      "focus": [
+        0.83,
+        0.17
+      ],
+      "palette": {
+        "Vibrant": "#b0824e",
+        "DarkVibrant": "#5c4328",
+        "LightVibrant": "#e1cfbb",
+        "Muted": "#9c7c64",
+        "DarkMuted": "#4c3728",
+        "LightMuted": "#cdb49c"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T11:16"
+    },
+    "m150": {
+      "kind": "image",
+      "base": "m150-80785d49",
+      "width": 3024,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "n/cFLQaYKXN3eohIeW8peEWAVQVZ",
+      "focus": [
+        0.83,
+        0.5
+      ],
+      "palette": {
+        "Vibrant": "#4c74a4",
+        "DarkVibrant": "#3c2414",
+        "LightVibrant": "#decab4",
+        "Muted": "#59789e",
+        "DarkMuted": "#504134",
+        "LightMuted": "#c6ab97"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T11:30"
+    },
+    "m151": {
+      "kind": "image",
+      "base": "m151-4e1f2e2a",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "3wcGHAS5+Id3V3RXmodogIEGFw==",
+      "focus": [
+        0.17,
+        0.5
+      ],
+      "palette": {
+        "Vibrant": "#be8140",
+        "DarkVibrant": "#634321",
+        "LightVibrant": "#ecdac7",
+        "Muted": "#6485ac",
+        "DarkMuted": "#42382f",
+        "LightMuted": "#c9b6a3"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T11:56"
+    },
+    "m152": {
+      "kind": "image",
+      "base": "m152-6ee6661e",
+      "width": 4032,
+      "height": 3024,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "n/cJNYZ0lnefmYZzdnh3iHhwhgZn",
+      "focus": [
+        0.83,
+        0.63
+      ],
+      "palette": {
+        "Vibrant": "#bc6c5c",
+        "DarkVibrant": "#5d2f26",
+        "LightVibrant": "#d4b699",
+        "Muted": "#6484ac",
+        "DarkMuted": "#5d4f40",
+        "LightMuted": "#7c99be"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T12:15"
+    },
+    "m153": {
+      "kind": "image",
+      "base": "m153-c6203b7f",
+      "width": 5711,
+      "height": 3212,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "nzkKFIL4enmshnaLdncEZwKDRg==",
+      "focus": [
+        0.34,
+        0.17
+      ],
+      "palette": {
+        "Vibrant": "#af8444",
+        "DarkVibrant": "#834b13",
+        "LightVibrant": "#dcc7b4",
+        "Muted": "#a18861",
+        "DarkMuted": "#786439",
+        "LightMuted": "#cbbeaf"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T12:25"
+    },
+    "m154": {
+      "kind": "image",
+      "base": "m154-1de0fd7d",
+      "width": 2268,
+      "height": 4032,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "oRgGFAKvmphFU6WLRYePqfa4aw==",
+      "focus": [
+        0.17,
+        0.63
+      ],
+      "palette": {
+        "Vibrant": "#d49c6c",
+        "DarkVibrant": "#663f1e",
+        "LightVibrant": "#f1b589",
+        "Muted": "#ae8464",
+        "DarkMuted": "#3e352d",
+        "LightMuted": "#dac7b2"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T13:17"
+    },
+    "m155": {
+      "kind": "image",
+      "base": "m155-94b58fa6",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "YRgGDIKfaBp6dnhXd4fvgPEuCQ==",
+      "focus": [
+        0.17,
+        0.78
+      ],
+      "palette": {
+        "Vibrant": "#7599c9",
+        "DarkVibrant": "#253e5f",
+        "LightVibrant": "#f8be8f",
+        "Muted": "#a4846a",
+        "DarkMuted": "#4d403b",
+        "LightMuted": "#d5c4af"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T13:19"
+    },
+    "m156": {
+      "kind": "image",
+      "base": "m156-73e9b673",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "3QcOFIRyd6h/l4mId3dP4/U1Tg==",
+      "focus": [
+        0.59,
+        0.34
+      ],
+      "palette": {
+        "Vibrant": "#2a7fd4",
+        "DarkVibrant": "#040c14",
+        "LightVibrant": "#a9d4fb",
+        "Muted": "#8e7870",
+        "DarkMuted": "#4c3d34",
+        "LightMuted": "#b1c4d4"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T13:25"
+    },
+    "m157": {
+      "kind": "image",
+      "base": "m157-5d216540",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "ZOcJPAhp95eXeYdmlnhpgIYGZw==",
+      "focus": [
+        0.25,
+        0.66
+      ],
+      "palette": {
+        "Vibrant": "#7ca3db",
+        "DarkVibrant": "#1c3b68",
+        "LightVibrant": "#94bcef",
+        "Muted": "#997e6b",
+        "DarkMuted": "#473b36",
+        "LightMuted": "#d7c7ba"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T13:30"
+    },
+    "m158": {
+      "kind": "image",
+      "base": "m158-58e7f5c9",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "nfcNJAaZ+HjndmWIZ5d2YGIHNg==",
+      "focus": [
+        0.17,
+        0.53
+      ],
+      "palette": {
+        "Vibrant": "#0b7ef3",
+        "DarkVibrant": "#06417e",
+        "LightVibrant": "#acd3fb",
+        "Muted": "#7e7069",
+        "DarkMuted": "#543436",
+        "LightMuted": "#a4b2c3"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T13:31"
+    },
+    "m159": {
+      "kind": "image",
+      "base": "m159-f65e015b",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "4jgKFIRZ/oavRWeFWIn6dJNvSA==",
+      "focus": [
+        0.17,
+        0.37
+      ],
+      "palette": {
+        "Vibrant": "#a56b48",
+        "DarkVibrant": "#5c3b28",
+        "LightVibrant": "#f4c7a1",
+        "Muted": "#a36b59",
+        "DarkMuted": "#4f3f30",
+        "LightMuted": "#b1b8c6"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T14:06"
+    },
+    "m160": {
+      "kind": "image",
+      "base": "m160-e19ea97a",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "4PcFJIT9emrMd2eKdHhRUBUFZQ==",
+      "focus": [
+        0.83,
+        0.62
+      ],
+      "palette": {
+        "Vibrant": "#648cbd",
+        "DarkVibrant": "#273f5d",
+        "LightVibrant": "#94bceb",
+        "Muted": "#6a84aa",
+        "DarkMuted": "#4e3c2a",
+        "LightMuted": "#cab9a8"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T14:11"
+    },
+    "m161": {
+      "kind": "image",
+      "base": "m161-478c8465",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "XwgGHIR3RUTbr5qcdWhDUDQFVQ==",
+      "focus": [
+        0.69,
+        0.56
+      ],
+      "palette": {
+        "Vibrant": "#7a9dcd",
+        "DarkVibrant": "#243d60",
+        "LightVibrant": "#8cb4de",
+        "Muted": "#5c7caa",
+        "DarkMuted": "#564532",
+        "LightMuted": "#ccb8a5"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T14:12"
+    },
+    "m162": {
+      "kind": "image",
+      "base": "m162-aa45518c",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "JAgKDAIWSWf3iXdnmHj2cXI/OA==",
+      "focus": [
+        0.53,
+        0.53
+      ],
+      "palette": {
+        "Vibrant": "#cf2f3b",
+        "DarkVibrant": "#461014",
+        "LightVibrant": "#b8e1fa",
+        "Muted": "#8e786c",
+        "DarkMuted": "#5c3835",
+        "LightMuted": "#c4bcb7"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T15:19"
+    },
+    "m163": {
+      "kind": "image",
+      "base": "m163-e81c9fd4",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "IAgKFAIWR1j2eWdoqHj1cmM/Nw==",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "palette": {
+        "Vibrant": "#0d8ff1",
+        "DarkVibrant": "#064a7d",
+        "LightVibrant": "#b5ddfb",
+        "Muted": "#908075",
+        "DarkMuted": "#47403a",
+        "LightMuted": "#a0bccc"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T15:20"
+    },
+    "m164": {
+      "kind": "image",
+      "base": "m164-6302e108",
+      "width": 5712,
+      "height": 3213,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "HvgRHIKHiId/eIeYd3hlcGIGBg==",
+      "focus": [
+        0.66,
+        0.47
+      ],
+      "palette": {
+        "Vibrant": "#2079de",
+        "DarkVibrant": "#113f73",
+        "LightVibrant": "#a0c6f1",
+        "Muted": "#86786e",
+        "DarkMuted": "#5e583d",
+        "LightMuted": "#b6ccd6"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T15:38"
+    },
+    "m165": {
+      "kind": "image",
+      "base": "m165-20208165",
+      "width": 3213,
+      "height": 5712,
+      "widths": [
+        640,
+        1280,
+        2048
+      ],
+      "thumbhash": "XucNNAaG94nIh5ZXh2iIgHQISQ==",
+      "focus": [
+        0.62,
+        0.44
+      ],
+      "palette": {
+        "Vibrant": "#c04c4f",
+        "DarkVibrant": "#622224",
+        "LightVibrant": "#90bceb",
+        "Muted": "#ac544c",
+        "DarkMuted": "#465430",
+        "LightMuted": "#c4d49e"
+      },
+      "format": "avif",
+      "taken": "2026-08-13T15:52"
+    }
+  }
+}
